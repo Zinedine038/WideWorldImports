@@ -34,7 +34,7 @@ print("<table> <tr> <th>Product</th><th>Prijs</th></tr>");
     foreach ($resultaat as $id) {
         $naam = sql("stockitems", "stockitemname", $id);
         $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
-        print("<tr><td><a href=http://localhost/WWItest/productpage.php?stockitemid=$id>$naam</a></td><td>$prijs</td></tr>");
+        print("<tr><td><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td>$prijs</td></tr>");
     }
     }
     ?>
