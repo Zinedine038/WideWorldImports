@@ -4,7 +4,7 @@
 include "functions.php";
 
 ///Haalt productnummer uit GET, standaard is 1 om te kunnen testen
-$productnr=1;
+$productnr=220;
 if(isset($_GET["stockitemid"])){
     $productnr=intval($_GET["stockitemid"]);
 }
@@ -14,7 +14,7 @@ $prijs = sql("stockitems", "RecommendedRetailPrice", $productnr);
 $marketing = sql("stockitems", "MarketingComments", $productnr);
 $voorraad = sql("stockitemholdings", "QuantityOnHand", $productnr);
 $gekoeld = sql("stockitems","ischillerstock",$productnr);
-$foto = sql("stockitems", "Photo", $productnr);
+$foto = sqlfoto($productnr);
 
 ?>
 
@@ -31,6 +31,7 @@ $foto = sql("stockitems", "Photo", $productnr);
 print("$productnaam - €$prijs <br> $marketing <br> Voorraad: $voorraad<br>");
 if($gekoeld){
     print("Product is gekoeld!");
+
     echo '<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/>';
 }
 
