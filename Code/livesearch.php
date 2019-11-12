@@ -10,11 +10,20 @@ if (strlen($q)>0) {
 
 ?>
 <table><?php
+    // Maak teller aan
+    $count=0;
+    // Foreach loop om elk resultaat te weergeven uit de database.
     foreach ($resultaat as $id) {
         $naam = sql("stockitems", "stockitemname", $id);
         $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
-        print("<tr><td><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td>$prijs</td></tr>");
-    }
+        // Limiteert de weergegeven resultaten tot 20.
+        if ($count!=20) {
+            print("<tr><td><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td>$prijs</td></tr>");
+        } else {
+            break;
+        }
+        $count++;
+        }
 ?></table>
     <?php
 }
