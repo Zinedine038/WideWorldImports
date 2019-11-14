@@ -35,7 +35,7 @@
 
 <form>
     <input type="text" size="30" onkeyup="showResult(this.value)">
-    <div id="livesearch"></div>
+    <div id="livesearch" style='width: 40%; background-color: red;'></div>
 </form>
 
 </body>
