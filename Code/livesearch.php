@@ -21,11 +21,12 @@ if (strlen($q)>0) {
         $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
         // Limiteert de weergegeven resultaten tot 8.
         if ($count!=8) {
+            //Geef de resultaten in een lijst mee aan de livesearch, met een css om in het midden te staan. De resultaten zijn een link naar het product, de achtergrond van de producten is om en om een verschillende tint blauw.
             if ($omEnOmKleur==0) {
-                print("<tr><td style='background-color: #00fafa'><img src='../placeholder.jpg' style='height: 8%; width: 8%;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td style='border: 1px solid black'>$prijs</td></tr>");
+                print("<tr><td style='background-color: #00fafa;'><img src='../placeholder.jpg' style='height: 8%; width: 8%; float: left;'><a style='text-align: center; padding-top: 2%; display: block;' href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td style='border: 1px solid black'>$prijs</td></tr>");
                 $omEnOmKleur=1;
             } elseif ($omEnOmKleur==1) {
-                print("<tr><td style='background-color: #00bfbf'><img src='../placeholder.jpg' style='height: 8%; width: 8%;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td style='border: 1px solid deepskyblue'>$prijs</td></tr>");
+                                print("<tr><td style='background-color: #00bfbf'><img src='../placeholder.jpg' style='height: 8%; width: 8%; float: left;'><a style='text-align: center; padding-top: 2%; display: block;' href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td style='border: 1px solid deepskyblue'>$prijs</td></tr>");
                 $omEnOmKleur=0;
             }
             } else {
