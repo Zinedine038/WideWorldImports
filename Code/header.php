@@ -31,8 +31,9 @@
 <div class="container-fluid header-bg">
     <div class="row">
         <div class="container">
-            <nav class="navbar-expand-md">
+            <nav class="navbar-expand-md d-flex flex-row align-items-center">
                 <a class="navbar-brand" href="index.php"><img src="logo-placeholder.png" class="logo" alt="logo" /></a>
+                <?php include 'livesearchbalk.php'?>
             </nav>
         </div>
     </div>
