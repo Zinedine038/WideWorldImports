@@ -104,7 +104,7 @@ function sqlfoto($productnr)
     $pass = "";
 
     ///SQL maakt statement, voert het uit en zet het in $result
-    $sql = "SELECT Photo FROM stockitems WHERE stockitemid = ?";
+    $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockitemstockimages WHERE StockItemID = ?)";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($statement, "i", $productnr);
@@ -114,9 +114,8 @@ function sqlfoto($productnr)
 
     ///Haalt de foto op en stuurt hem terug
 
-    $productinfo = mysqli_fetch_array($result);
+    $foto = mysqli_fetch_array($result);
 
-    $foto = $productinfo["Photo"];
 
     return $foto;
 }

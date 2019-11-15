@@ -85,12 +85,8 @@
       <workItem from="1573121191149" duration="20397000" />
       <workItem from="1573143569439" duration="9867000" />
       <workItem from="1573161877160" duration="6976000" />
-<<<<<<< Updated upstream
-=======
       <workItem from="1573482627429" duration="4280000" />
       <workItem from="1573668265188" duration="2746000" />
-      <workItem from="1573839101581" duration="2735000" />
->>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -102,7 +98,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -114,7 +112,7 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/functions.php</url>
           <line>111</line>
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
