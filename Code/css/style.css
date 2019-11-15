@@ -1,9 +1,20 @@
+.header-bg {
+    background-color: #45c2e3;
+}
+
+.logo {
+    max-height: 65px
+}
+
 .container {
     border: black;
     border: solid;
-    margin-top: 4%;
 }
 
+.content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
 .tekst {
 
