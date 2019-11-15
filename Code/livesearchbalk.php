@@ -21,7 +21,7 @@
                     // Geeft alleen resultaat als het verzoek om informatie te krijgen gelukt is aan de client-kant en server-kant.
                     document.getElementById("livesearch").innerHTML=this.responseText;
                     // Zet het resultaat van de zoekopdracht in de (zichtbare) zoekbalk.
-                    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                    document.getElementById("livesearch").style.border="1px solid #76eec6";
                     // Geeft de resultatenbalk een rand eromheen.
                 }
             }
@@ -35,7 +35,7 @@
 
 <form>
     <input type="text" size="30" onkeyup="showResult(this.value)">
-    <div id="livesearch" style='width: 40%; background-color: red;'></div>
+    <div id="livesearch" style='width: 40%; background-color: #008b8b;'></div>
 </form>
 
 </body>
