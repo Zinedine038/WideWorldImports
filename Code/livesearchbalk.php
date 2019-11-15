@@ -33,9 +33,19 @@
 </head>
 <body>
 
-<form>
+<style>
+    /* Dit zal later de pagina donkerder maken als de muis over het menu gaat, zodat deze beter zichtbaar is.
+    Dit gaat pas werken als de algemene stylesheet er is.
+    #resultaattabel:hover ~ #pagina {
+        opacity: 0.8;
+        background-color: blue;
+        color: green;
+    }
+    */
+</style>
+<form id="zoekform">
     <input type="text" size="30" onkeyup="showResult(this.value)">
-    <div id="livesearch" style='width: 40%; background-color: #008b8b;'></div>
+    <div id="livesearch" style='width: 40%;'></div>
 </form>
 
 </body>
