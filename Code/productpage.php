@@ -5,7 +5,7 @@
         <div class="col" align="center">
             <?php
             if ($foto) {
-                print ('<img src="data:image/jpeg;base64,' . base64_encode($foto) . '" /><br>');
+                print ('<img src="'.$foto["0"].'" /><br>');
             } else { // zo niet, foto van categorie tonen
                 print ("Afbeelding categorie<br>"); // Waar staan de categoriëen in de db??
             }
