@@ -1,13 +1,20 @@
 <?php
 
+include "../functions.php";
+
 function component($productname, $productprice, $productimg, $productDescription, $productID)
 {
+    $fotoPath = $productimg;
+    if(sqlfoto($productID)[0]!=null)
+    {
+        $fotoPath = sqlfoto($productID)[0];
+    }
     $element = "            
             <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
                 <form action=\"index.php\" method=\"post\">
                     <div class=\"card shadow\">
                         <div>
-                            <img src=\"$productimg\" alt=\"Image1\" class = \"img-fluid card-img-top\">
+                            <img src=\"$fotoPath\" alt=\"Image1\" class = \"img-fluid card-img-top\">
                         </div>
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">$productname</h5>
