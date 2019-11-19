@@ -33,18 +33,18 @@ if (strlen($q) > 0) {
                     if ($foto != NULL) {
                         //De tr is de link, zodat je op het hele blokje kan drukken inclusief het plaatje en de prijs om naar de informatie van het product te gaan, in plaats van dat je precies op de tekst moet drukken.
                         print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
-                                <td>
-                                 <img src=$fototje style='mix-blend-mode: multiply; width: 55px; float: left;'>
-                                 <p style='display:inline-block; margin-top: 15px;'>$naam
+                                <td class='container d-flex h-100 align-items-center'>
+                                 <img class='livefoto justify-content-center align-self-center' src=$fototje style='mix-blend-mode: multiply;'>
+                                 <p class='mb-0' style='display:inline-block;'>$naam</p>
                                 </td>
                                  <td><strong>$prijs</strong>
                                  </td>
                                 </tr>");
                     } else {
                         print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
-                                <td>
-                                 <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='margin-top: 15px; display: inline-block;'>$naam
+                                <td class='container d-flex h-100 align-items-center'>
+                                 <img class='livefoto justify-content-center align-self-center' src='../placeholder.jpg' style='mix-blend-mode: multiply; vertical-align: middle;'>
+                                 <p class='mb-0' style='display: inline-block;'>$naam</p>
                                 </td>
                                 <td><strong>$prijs</strong>
                                 </td>
@@ -55,17 +55,20 @@ if (strlen($q) > 0) {
                 } elseif ($omEnOmKleur == 1) {
                     if ($foto != NULL) {
                         print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer;'>
-                                <td>
-                                 <img src='$fototje' style='word-wrap: break-word; width: 55px; mix-blend-mode:multiply; float:left; vertical-align:middle;'>
-                                 <p style='display: inline-block;'>$naam</p></td><td><strong>$prijs</strong>
+                                <td class='container d-flex h-100 align-items-center'>
+                                 <img class='livefoto justify-content-center align-self-center' src='$fototje' style='word-wrap: break-word; mix-blend-mode:multiply; vertical-align:middle;'>
+                                 <p class='mb-0' style='display: inline-block;'>$naam</p>
+                                 </td>
+                                 <td>
+                                 <strong>$prijs</strong>
                                 </td>
                                </tr>");
                     } else {
                         print("
                                <tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer;'>
-                                <td style='word-wrap: break-word'>       
-                                 <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='display: inline-block;'>$naam</p>
+                                <td class='container d-flex h-100 align-items-center' style='word-wrap: break-word' >       
+                                 <img class='livefoto justify-content-center align-self-center' src='../placeholder.jpg' style='mix-blend-mode: multiply; vertical-align: middle;'>
+                                 <p class='mb-0' style='display: inline-block;'>$naam</p>
                                 </td>
                                <td><strong>$prijs</strong></td>
                                </tr>");
