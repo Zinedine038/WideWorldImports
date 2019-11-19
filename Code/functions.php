@@ -46,10 +46,10 @@ function search($zoekterm)
     foreach ($zoektermem as $term) {
         ///SQL maakt statement, voert het uit en zet het in $result
         $likestring = "%" . $term . "%";
-        $sql = "SELECT StockItemID FROM stockitems WHERE SearchDetails LIKE ? OR Tags LIKE ?";
+        $sql = "SELECT StockItemID FROM stockitems WHERE SearchDetails LIKE ? OR Tags LIKE ? OR StockItemID LIKE ?";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $statement = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($statement, "ss", $likestring, $likestring);
+        mysqli_stmt_bind_param($statement, "sss", $likestring, $likestring, $likestring);
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement);
