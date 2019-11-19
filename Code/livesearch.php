@@ -35,7 +35,7 @@ if (strlen($q) > 0) {
         }
 
         p{
-            width: 300px;
+            width: 450px;
             word-wrap: break-word; /* Breek de zin als te lang is*/
         }
 
@@ -43,9 +43,24 @@ if (strlen($q) > 0) {
             font-weight: 700;
         }
 
+        #resultaattabel {
+            margin-top: 5px;
+            list-style-type: none;
+            height: 0px;
+            overflow: hidden;
+            position: absolute; /* <-- added declarations */
+            top: 100%; /*     here               */
+            transition: height 1s ease;
+            top: 100%;
+            left: 0;
+        }
+
+        table {
+            width: 50%;
+        }
     </style>
     <!-- Cellspacing en celpadding op 0 is om de border tussen de resultaten weg te halen. -->
-    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='width: 100%; text-align: center; vertical-align: center;'><?php
+    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='text-align: center; vertical-align: center;'><?php
         // Maak teller aan
         $count = 0;
         //Zorg voor achtergrond kleur afwisselend

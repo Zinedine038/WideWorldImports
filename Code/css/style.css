@@ -1,5 +1,8 @@
 .header-bg {
     background-color: #45c2e3;
+    width: 33.33%;
+    float: left;
+    position: relative; /* <-- added declaration */
 }
 
 .logo {
