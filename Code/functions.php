@@ -3,12 +3,11 @@
 ///Geeft de waarde van 1 veld terug uit de database aan de hand van het productnummer
 function sql($tabel, $veld, $productnr)
 {
-    ///Database connectie info
-    $host = "localhost";
+    $host = "wideworld.mysql.database.azure.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "root";
-    $pass = "";
+    $user = "ICTM1n3@wideworld";
+    $pass = "Windesheim2019";
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT " . $veld . " FROM " . $tabel . " WHERE stockitemid = ?";
@@ -30,12 +29,11 @@ function sql($tabel, $veld, $productnr)
 ///Neemt een zoekterm en geeft product ID's terug
 function search($zoekterm)
 {
-    ///Database connectie info
-    $host = "localhost";
+    $host = "wideworld.mysql.database.azure.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "root";
-    $pass = "";
+    $user = "ICTM1n3@wideworld";
+    $pass = "Windesheim2019";
 
     ///maakt lege array aan waar zo de product IDs in komen
     $IDs = array();
@@ -97,11 +95,11 @@ function zoekadres($postcode, $huisnummer){
 function sqlfoto($productnr)
 {
     ///Database connectie info
-    $host = "localhost";
+    $host = "wideworld.mysql.database.azure.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "root";
-    $pass = "";
+    $user = "ICTM1n3@wideworld";
+    $pass = "Windesheim2019";
 
 
     ///SQL maakt statement, voert het uit en zet het in $result
@@ -139,11 +137,11 @@ function sqlfoto($productnr)
 function sqltemp($productnr)
 {
     ///Database connectie info
-    $host = "localhost";
+    $host = "wideworld.mysql.database.azure.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "root";
-    $pass = "";
+    $user = "ICTM1n3@wideworld";
+    $pass = "Windesheim2019";
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT temperature FROM coldroomtemperatures WHERE coldroomsensornumber = (SELECT ischillerstock FROM stockitems WHERE stockitemid = ?)";
@@ -164,11 +162,11 @@ function sqltemp($productnr)
 function DatabaseCatogorie($kolom, $tabel)
 {
 ///Database connectie info
-$host = "localhost";
-$databasename = "wideworldimporters";
-$port = 3306;
-$user = "root";
-$pass = "";
+    $host = "wideworld.mysql.database.azure.com";
+    $databasename = "wideworldimporters";
+    $port = 3306;
+    $user = "ICTM1n3@wideworld";
+    $pass = "Windesheim2019";
 ///SQL maakt statement, voert het uit en zet het in $result
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
 $sql = "SELECT $kolom FROM $tabel";
