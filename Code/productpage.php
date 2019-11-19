@@ -1,48 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php
-include "functions.php";
+<?php include 'header.php' ?>
 
-///Haalt productnummer uit GET, standaard is 1 om te kunnen testen
-$productnr=1;
-if(isset($_GET["stockitemid"])){
-    $productnr=intval($_GET["stockitemid"]);
-}
-///Haalt de informatie op uit de database
-$productnaam = sql("stockitems", "stockitemname", $productnr);
-$prijs = sql("stockitems", "RecommendedRetailPrice", $productnr);
-$marketing = sql("stockitems", "MarketingComments", $productnr);
-$voorraad = sql("stockitemholdings", "QuantityOnHand", $productnr);
-$gekoeld = sql("stockitems","ischillerstock",$productnr);
-$foto = sqlfoto($productnr);
+<div class="container content">
+    <div class="row">
+        <div class="col" align="center">
+            <?php
+            if ($foto) {
+                print ('<img src="'.$foto["0"].'" /><br>');
+            } else { // zo niet, foto van categorie tonen
+                print ("Afbeelding categorie<br>"); // Waar staan de categoriëen in de db??
+            }
+            ?>
+        </div>
 
-?>
+        <div class="col">
+            <?php
+            print ("<h5>$productnaam </h5> €$prijs <br>");
+            if ($marketing) {
+                print ("$marketing<br>");
+            }
+            print ("Voorraad: $voorraad<br>");
 
-<head>
-    <meta charset="UTF-8">
-    <title>Wide World Importers - <?php print($productnaam);?></title>
+            // Als er een foto in de database van product staat
 
+            if ($gekoeld) {
+                print ("Product is gekoeld!");
+                $temp = sqltemp($productnr);
+                print ("Het product is $temp&deg;");
+            }
+            ?>
+            <br>
+            <button type="button" class="btn btn-primary">Plaats in winkelwagen</button>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col" align="center">
+            <?php
+            if ($foto) {
+                print ('<img src="data:image/jpeg;base64,' . base64_encode($foto) . '" /><br>');
+            } else { // zo niet, foto van categorie tonen
+                print ("Afbeelding categorie<br>"); // Waar staan de categoriëen in de db??
+            }
+            ?>
+        </div>
+    </div>
+</div>
 
-</head>
-<body>
-<?php
-
-
-print("$productnaam - €$prijs <br> $marketing <br> Voorraad: $voorraad<br>");
-echo '<img src="'.$foto["0"].'">';
-if($gekoeld){
-    print("Product is gekoeld!");
-
-
-
-
-
-
-}
-
-?>
-
-
-
-</body>
-</html>
+<?php include 'footer.php' ?>

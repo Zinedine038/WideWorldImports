@@ -119,3 +119,30 @@ function sqlfoto($productnr)
 
     return $foto;
 }
+
+// Geef producttemperatuur weer
+function sqltemp($productnr)
+{
+    ///Database connectie info
+    $host = "localhost";
+    $databasename = "wideworldimporters";
+    $port = 3306;
+    $user = "root";
+    $pass = "";
+
+    ///SQL maakt statement, voert het uit en zet het in $result
+    $sql = "SELECT temperature FROM coldroomtemperatures WHERE coldroomsensornumber = (SELECT ischillerstock FROM stockitems WHERE stockitemid = ?)";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "i", $productnr);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+
+    ///Haalt de temperatuur op en stuurt hem terug
+    $productinfo = mysqli_fetch_array($result);
+
+    $temp = $productinfo["temperature"];
+
+    return number_format($temp, 1, ',', '.');
+}
