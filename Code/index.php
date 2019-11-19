@@ -1,7 +1,8 @@
 <?php include'header.php' ?>
 <?php include'footer.php' ?>
 <?php
-include "Categorie.php";
+include "Categorie.php"; ?>
+<link rel="stylesheet" type="text/css" href="css/style.css"> <?php
 
     $host = "localhost";
     $databasename = "wideworldimporters";
@@ -16,8 +17,32 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
     $naam = $row["StockItemName"];
     $id = $row["StockItemID"];
+    $foto = sqlfoto($id);
+    $fotoo=$foto["0"];
+
+        if ($foto != NULL) {
+            //De tr is de link, zodat je op het hele blokje kan drukken inclusief het plaatje en de prijs om naar de informatie van het product te gaan, in plaats van dat je precies op de tekst moet drukken.
+            print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
+                                <td>
+                                 <img src=$fotoo style='mix-blend-mode: multiply; width: 55px; float: left;'>
+                                 <p style='display:inline-block;'>$naam
+                                </td>
+                                 <td><strong>$prijs</strong>
+                                 </td>
+                                </tr>");
+        } else {
+            print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
+                                <td>
+                                 <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
+                                 <p style='display: inline-block;'>$naam
+                                </td>
+                                <td><strong>$prijs</strong>
+                                </td>
+                               </tr>");
+        }
+    }
     print("<a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a><br>");
-}
+
 if(isset($_GET["stockitemid"])) {
     $productnr = intval($_GET["stockitemid"]);
 }?>

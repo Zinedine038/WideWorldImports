@@ -161,3 +161,19 @@ function sqltemp($productnr)
 
     return number_format($temp, 1, ',', '.');
 }
+function DatabaseCatogorie($kolom, $tabel)
+{
+///Database connectie info
+$host = "localhost";
+$databasename = "wideworldimporters";
+$port = 3306;
+$user = "root";
+$pass = "";
+///SQL maakt statement, voert het uit en zet het in $result
+$connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+$sql = "SELECT $kolom FROM $tabel";
+$statement = mysqli_prepare($connection, $sql);
+mysqli_stmt_execute($statement);
+$result = mysqli_stmt_get_result($statement);
+return ($result);
+}

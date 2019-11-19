@@ -15,9 +15,10 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Font Awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-
+<!-- DROPDOWN SHIT EWA KILL -->
+    <link rel="stylesheet" type="text/css" href="css/Dropdown.css">
     <?php
-    require_once("functions.php");
+    include("functions.php");
 
     ///Haalt productnummer uit GET, standaard is 1 om te kunnen testen
     $productnr=1;
@@ -35,6 +36,9 @@
     <title>Wide World Importers - <?php print($productnaam);?></title>
 </head>
 <body>
+
+
+
 <div class="container-fluid header-bg">
     <div class="row">
         <div class="container">
@@ -55,7 +59,25 @@
                 }
                 ?>
                 )
+
+
+                <div class="contrainer">
+                    <div class="dropdown">
+                        <button class="dropbtn" style="text-align: left;">Categorieën</button>
+                        <div class="dropdown-content"> <?php
+                            $rij1 = "StockGroupName";
+                            $rij2 = "StockGroupID";
+
+                            $result = DatabaseCatogorie("*","stockgroups");
+                            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                $r1 = $row["$rij1"];
+                                $r2 = $row["$rij2"];
+                                print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+                            } ?>
+                        </div>
+                    </div>
             </nav>
+        </div>
         </div>
     </div>
 </div>
