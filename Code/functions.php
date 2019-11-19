@@ -103,6 +103,7 @@ function sqlfoto($productnr)
     $user = "root";
     $pass = "";
 
+
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockitemstockimages WHERE StockItemID = ?)";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
@@ -116,6 +117,20 @@ function sqlfoto($productnr)
 
     $foto = mysqli_fetch_array($result);
 
+    if (!isset($foto["0"])) {
+
+        $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockgroupstockimages WHERE StockGroupID IN (SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?)) limit 1";
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "i", $productnr);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+
+        ///Haalt de foto op en stuurt hem terug
+
+        $foto = mysqli_fetch_array($result);
+    }
 
     return $foto;
 }

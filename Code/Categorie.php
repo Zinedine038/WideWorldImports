@@ -1,5 +1,7 @@
 <?php
-include "functions.php";
+?>
+<link rel="stylesheet" type="text/css" href="css/Dropdown.css"> <?php
+
 function Rijen($kolom, $tabel, $rij1, $rij2) //$kolom is welke kolom je wil, zelfde met $tabel en $rij1 en $rij 2 is welke rijen (array) die je wilt
 {
 ///Database connectie info
@@ -12,14 +14,19 @@ function Rijen($kolom, $tabel, $rij1, $rij2) //$kolom is welke kolom je wil, zel
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $sql = "SELECT $kolom FROM $tabel";
     $statement = mysqli_prepare($connection, $sql);
-
     mysqli_stmt_execute($statement);
-    $result = mysqli_stmt_get_result($statement);
+    $result = mysqli_stmt_get_result($statement); ?>
+    <div class="dropdown">
+  <button class="dropbtn">Categorieën</button>
+  <div class="dropdown-content"> <?php
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $r1 = $row["$rij1"];
         $r2 = $row["$rij2"];
-        print("<tr><td><a href=http://localhost/wideworldimports/code/Groups.php?stockitemgroupid=$r2>$r2. $r1</a></td><td></td></tr><br>");
-    }
+        print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+    } ?>
+      </div>
+</div>
+<?php
 }
 $tabel = "stockgroups";
 $kolom = "*";
