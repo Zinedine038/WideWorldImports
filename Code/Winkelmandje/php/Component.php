@@ -23,7 +23,7 @@ function component($productname, $productprice, $productimg, $productDescription
                                 <i class=\"fas fa-star\"></i>
                                 <i class=\"far fa-star\"></i>
                             </h6>
-                            <p class=\"card-text\">
+                            <p class=\"card-text\" style='text-decoration: unset; width: unset; color: unset;'>
                                 $productDescription
                             </p>
                             <h5>
