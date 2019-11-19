@@ -6,20 +6,21 @@
     max-height: 65px
 }
 
-.container {
-    border: black;
-    border: solid;
-}
-
 .content {
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.tekst {
-
+.bg {
+    background-color: #45c2e3;
 }
 
-.foto {
+.rel-prod {
+    color: #ffffff;
+}
 
+.btn-primary {
+    width: 100%;
+    background-color: limegreen !important;
+    border: 0px !important;
 }
