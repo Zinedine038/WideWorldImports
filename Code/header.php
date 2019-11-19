@@ -3,6 +3,8 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
+<?php  session_start(); ?>
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -34,6 +36,20 @@
             <nav class="navbar-expand-md d-flex flex-row align-items-center">
                 <a class="navbar-brand" href="index.php"><img src="logo-placeholder.png" class="logo" alt="logo" /></a>
                 <?php include 'livesearchbalk.php'?>
+                <a class="navbar-brand" href="./Winkelmandje/cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>
+                Cart: (
+                <?php
+                if(isset($_SESSION['cart']))
+                {
+                    $count = count($_SESSION['cart']);
+                    echo "<span id=\"cart_count\">$count</span>";
+                }
+                else
+                {
+                    echo "<span id=\"cart_count\">0</span>";
+                }
+                ?>
+                )
             </nav>
         </div>
     </div>
