@@ -10,7 +10,8 @@ body {
 }
 
 .logo {
-    max-height: 65px
+    max-height: 65px;
+    margin: 8px 0px 8px 0px;
 }
 
 .content {
