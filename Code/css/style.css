@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
 .header-bg {
     background-color: #45c2e3;
     width: 33.33%;
@@ -22,8 +26,21 @@
     color: #ffffff;
 }
 
+.product-img {
+    width: 100% !important;
+}
+
 .btn-primary {
     width: 100%;
     background-color: limegreen !important;
     border: 0px !important;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Raleway', sans-serif;
+    color: #45c2e3;
+}
+
+.inh {
+    color: inherit !important;
 }
