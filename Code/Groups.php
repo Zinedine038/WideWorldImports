@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="css/Dropdown.css">
 <?php
 include "Categorie.php";
 $host = "localhost";
@@ -8,13 +9,19 @@ $pass = ""; //eigen password invullen
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
 $StockitemstockgroupID = $_GET["stockitemgroupid"];
 $sql = "SELECT * FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = $StockitemstockgroupID";
-$result = mysqli_query($connection, $sql);
+$result = mysqli_query($connection, $sql); ?>
+    <div class="dropdown">
+        <button class="dropbtn">Producten</button>
+  <div class="dropdown-content"> <?php
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
     $naam = $row["StockItemName"];
     $id = $row["StockItemID"];
-    print("<tr><td><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></td><td></td></tr><br>");
-}
+    print("<a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a><br>");
+} ?>
+  </div>
+</div>
+<?php
 if(isset($_GET["stockitemid"])) {
     $productnr = intval($_GET["stockitemid"]);
 
