@@ -40,17 +40,45 @@
             function hoverOver() {
                 document.getElementById('paginaalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
                 document.getElementById('bodyalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
+                document.getElementById('productnaam').style.color= 'rgba(0,0,0,0.8)';
+
                 var elements= document.getElementsByClassName('product-img');
                 for(var i=0; i<elements.length; i++) {
                     elements[i].style.outline= "318px solid rgba(0,0,0,0.8)";
                 }
+
+                var elements2= document.getElementsByClassName('btn-primary');
+                for(var i5=0; i5<elements2.length; i5++) {
+                    elements2[i5].style.color= 'rgba(255, 255, 255, 0.2)';
+                    elements2[i5].style.backgroundColor= 'rgba(255,255,255,0.2)';
+                }
+
+                var elements3= document.getElementsByClassName('btn');
+                for(var i6=0; i6<elements3.length; i6++) {
+                    elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                    elements3[i6].style.color= 'rgba(255, 255, 255, 0.2)';
+                }
+
+
             }
+
             function hoverAway() {
                 document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
                 document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
+                document.getElementById('productnaam').style.color= 'rgba(69,194,227,1)';
                 var elements= document.getElementsByClassName('product-img');
-                for(var i=0; i<elements.length; i++) {
-                    elements[i].style.outline= "318px solid rgba(0,0,0,0)";
+                for(var i1=0; i1<elements.length; i1++) {
+                    elements[i1].style.outline= "318px solid rgba(0,0,0,0)";
+                }
+
+                var elements2= document.getElementsByClassName('btn-primary');
+                for(var i2=0; i2<elements2.length; i2++) {
+                    elements2[i2].style.color= 'rgba(255, 255, 255, 1)';
+                }
+
+                var elements3= document.getElementsByClassName('btn-primary');
+                for(var i3=0; i3<elements3.length; i3++) {
+                    elements3[i3].removeAttribute('style');
                 }
             }
 

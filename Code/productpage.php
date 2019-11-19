@@ -34,7 +34,7 @@
     <div class="container content">
         <div class="row">
             <div class="col-12">
-                <h1><?php print ($productnaam) ?></h1>
+                <h1 id="productnaam"><?php print ($productnaam) ?></h1>
             </div>
         </div>
         <div class="row">
