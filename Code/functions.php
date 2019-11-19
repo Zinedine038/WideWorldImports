@@ -119,7 +119,7 @@ function sqlfoto($productnr)
 
     if (!isset($foto["0"])) {
 
-        $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockgroupstockimages WHERE StockGroupID IN (SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?)) limit 1";
+        $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockgroupstockimages WHERE StockGroupID IN (SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ? AND StockGroupID != 1)) limit 1";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $statement = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($statement, "i", $productnr);
