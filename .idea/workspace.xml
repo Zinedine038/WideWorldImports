@@ -23,6 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1TTEJwIcAnR8ZbvNeInLciM4CxW" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
@@ -42,6 +43,16 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="productpage.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Code/productpage.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.productpage.php" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -56,6 +67,7 @@
       <workItem from="1573544966335" duration="22000" />
       <workItem from="1573552639074" duration="1203000" />
       <workItem from="1573553853929" duration="1814000" />
+      <workItem from="1574150144968" duration="4743000" />
     </task>
     <servers />
   </component>
@@ -74,5 +86,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Code/functions.php</url>
+          <line>122</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Code/functions.php</url>
+          <line>111</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Code/functions.php</url>
+          <line>131</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
