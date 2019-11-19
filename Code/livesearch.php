@@ -35,7 +35,7 @@ if (strlen($q) > 0) {
                         print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src=$fototje style='mix-blend-mode: multiply; width: 55px; float: left;'>
-                                 <p style='display:inline-block;'>$naam
+                                 <p style='display:inline-block; margin-top: 15px;'>$naam
                                 </td>
                                  <td><strong>$prijs</strong>
                                  </td>
@@ -44,7 +44,7 @@ if (strlen($q) > 0) {
                         print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='display: inline-block;'>$naam
+                                 <p style='margin-top: 15px; display: inline-block;'>$naam
                                 </td>
                                 <td><strong>$prijs</strong>
                                 </td>

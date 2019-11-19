@@ -4,7 +4,6 @@ body {
 
 .header-bg {
     background-color: #45c2e3;
-    width: 33.33%;
     position: relative; /* <-- added declaration */
 }
 
@@ -63,7 +62,7 @@ p:hover {
 }
 
 p{
-    width: 450px;
+    width: 55%;
     word-wrap: break-word; /* Breek de zin als te lang is*/
 }
 
@@ -83,10 +82,8 @@ strong {
     z-index: 99;
     background-color: white;
     border: 1px solid black;
-
-
 }
 
 table {
-    width: 50%;
+    width: 40%;
 }
