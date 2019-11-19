@@ -51,18 +51,17 @@ tr.resultaatbalkje:hover {
     background-color: rgba(0, 174, 241, 0.3);
 }
 
+tr.resultaatbalkje {
+    height: 65px;
+}
+
 a {
     text-decoration: none;
     color: black;
 }
 
-p:hover {
-    text-decoration: underline;
-    color: #0000fa;
-}
-
-p{
-    width: 55%;
+p {
+    width: 450px;
     word-wrap: break-word; /* Breek de zin als te lang is*/
 }
 
@@ -72,7 +71,6 @@ strong {
 
 #resultaattabel {
     position: absolute;
-    margin-top: 5px;
     list-style-type: none;
     height: 0px;
     overflow: hidden;
@@ -80,10 +78,15 @@ strong {
     transition: height 1s ease;
     left: 1px;
     z-index: 99;
-    background-color: white;
-    border: 1px solid black;
+    background-color: #f9f9f9;
+
+    border-radius: 0px 0px 10px 10px;
 }
 
 table {
     width: 40%;
+}
+
+a:hover {
+    color: inherit;
 }
