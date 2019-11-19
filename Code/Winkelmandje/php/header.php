@@ -1,8 +1,8 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="index.php" class="navbar-brand">
+        <a href="../index.php" class="navbar-brand">
             <h3 class="px-5">
-                <i class="fas fa-shopping-basket"></i> WorldWideImports
+                <i class="fas fa-shopping-basket"></i> Wide World Importers
             </h3>
         </a>
         <button class="navbar-toggler"
@@ -24,7 +24,7 @@
                         <?php
                         if(isset($_SESSION['cart']))
                         {
-                            $count = count($_SESSION['cart'])-1;
+                            $count = count($_SESSION['cart']);
                             echo "<span id=\"cart_count\">$count</span>";
                         }
                         else
