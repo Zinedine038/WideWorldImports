@@ -1,7 +1,5 @@
 <?php
 
-include "../functions.php";
-
 function component($productname, $productprice, $productimg, $productDescription, $productID)
 {
     $fotoPath = $productimg;

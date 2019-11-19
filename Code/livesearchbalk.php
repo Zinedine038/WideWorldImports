@@ -49,7 +49,7 @@
     }
     */
 </style>
-<form id="zoekform" method="get" action="./Winkelmandje/zoekresultaten.php">
+<form id="zoekform" method="get" action="./zoekresultaten.php">
     <input name='zoekterm' onkeyup="showResult(this.value)" type="text">
     <div id="livesearch" style='width: 40%;'></div>
     <input type="submit" name="submit" value="Submit" style="background: transparent; border: none; font-size: 0;">
