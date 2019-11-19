@@ -1,4 +1,3 @@
-<div id="pagina">
 <?php
 include "functions.php";
 
@@ -12,7 +11,10 @@ if (strlen($q) > 0) {
         $productnr = intval($_GET["stockitemid"]);
     }
     ?>
-    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='text-align: center; vertical-align: center;'><?php
+
+    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='text-align: center; vertical-align: center;'>
+    <tbody id="overlaylive" onmouseover="hoverOver()" onmouseleave="hoverAway()">
+    <?php
         // Maak teller aan
         $count = 0;
         //Zorg voor achtergrond kleur afwisselend
@@ -32,9 +34,12 @@ if (strlen($q) > 0) {
                 if ($omEnOmKleur == 0) {
                     if ($foto != NULL) {
                         //De tr is de link, zodat je op het hele blokje kan drukken inclusief het plaatje en de prijs om naar de informatie van het product te gaan, in plaats van dat je precies op de tekst moet drukken.
-                        print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
+                        print("
+                               <tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td class='container d-flex h-100 align-items-center'>
                                  <img class='livefoto justify-content-center align-self-center' src=$fototje style='mix-blend-mode: multiply;'>
+                                 
+
                                  <p class='mb-0' style='display:inline-block;'>$naam</p>
                                 </td>
                                  <td><strong>$prijs</strong>
@@ -80,7 +85,7 @@ if (strlen($q) > 0) {
             }
             $count++;
         }
-        ?></table>
+        ?></tbody></table>
     <?php
 }
 //output the response

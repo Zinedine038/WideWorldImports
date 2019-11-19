@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
+<html id="paginaalles">
 <head>
     <!--- FONTS --->
     <link href="https://fonts.googleapis.com/css?family=Raleway:700&display=swap" rel="stylesheet">
@@ -34,8 +34,29 @@
     $foto = sqlfoto($productnr);
     ?>
     <title>Wide World Importers - <?php print($productnaam);?></title>
+
+    <script>
+
+            function hoverOver() {
+                document.getElementById('paginaalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
+                document.getElementById('bodyalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
+                var elements= document.getElementsByClassName('product-img');
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].style.outline= "318px solid rgba(0,0,0,0.8)";
+                }
+            }
+            function hoverAway() {
+                document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
+                document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
+                var elements= document.getElementsByClassName('product-img');
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].style.outline= "318px solid rgba(0,0,0,0)";
+                }
+            }
+
+    </script>
 </head>
-<body>
+<body id="bodyalles">
 
 
 
