@@ -44,17 +44,12 @@ function component($productname, $productprice, $productimg, $productDescription
 
 function cartElement($productname, $productprice, $productimg, $productID)
 {
-    $fotoPath = $productimg;
-    if(sqlfoto($productID)[0]!=null)
-    {
-        $fotoPath = sqlfoto($productID)[0];
-    }
     $element="
                 <form action=\"cart.php?action=remove&id=$productID\"  method=\"post\" class=\"cart-items\">
                 <div class=\"border rounded\">
                     <div class=\"row bg-white\">
                         <div class=\"col md-3 pl-0\">
-                            <img src=$fotoPath alt=$fotoPath class=\"img-fluid\">
+                            <img src=$productimg alt=$productimg class=\"img-fluid\">
                         </div>
                         <div class=\"col md-6\">
                             <h5 class=\"pt-2\">$productname</h5>
