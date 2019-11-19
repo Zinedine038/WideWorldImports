@@ -3,6 +3,12 @@
     <meta charset="UTF-8">
     <title>Zoek product</title>
     <script>
+
+        $zoekterm = "";
+        if (isset($_GET["submit"])) {
+            $zoekterm = $_GET["zoekterm"];
+        }
+
         function showResult(str) {
             if (str.length==0) {
                 document.getElementById("livesearch").innerHTML="";
@@ -43,10 +49,12 @@
     }
     */
 </style>
-<form id="zoekform">
-    <input type="text" size="30" onkeyup="showResult(this.value)">
+<form id="zoekform" method="get" action="./Winkelmandje/zoekresultaten.php">
+    <input name='zoekterm' onkeyup="showResult(this.value)" type="text">
     <div id="livesearch" style='width: 40%;'></div>
+    <input type="submit" name="submit" value="Submit" style="background: transparent; border: none; font-size: 0;">
 </form>
 
 </body>
 </html>
+

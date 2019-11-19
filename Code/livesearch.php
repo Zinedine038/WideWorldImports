@@ -9,6 +9,8 @@ include "functions.php";
 //get the q parameter from URL
 $q = $_GET["q"];
 
+
+
 //Zoekt alleen als de lengte langer is dan 0
 if (strlen($q) > 0) {
     $resultaat = search($q);
