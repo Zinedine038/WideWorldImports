@@ -1,9 +1,9 @@
 <?php
 //start session
-session_start();
 
-require_once("./php/component.php");
-require_once("../functions.php");
+include('header.php');
+require_once("winkelmandje/php/component.php");
+require_once("functions.php");
 
 if(isset($_POST['add']))
 {
@@ -23,8 +23,7 @@ if(isset($_POST['add']))
             $item_array=array('product_id' => $_POST['product_id']);
             $_SESSION['cart'][$count]=$item_array;
         }
-    }
-    else
+    } else
     {
         $item_array=array('product_id' => $_POST['product_id']);
         //Create new session variable

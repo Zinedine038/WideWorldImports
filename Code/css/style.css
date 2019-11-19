@@ -5,7 +5,6 @@ body {
 .header-bg {
     background-color: #45c2e3;
     width: 33.33%;
-    float: left;
     position: relative; /* <-- added declaration */
 }
 
@@ -44,4 +43,48 @@ h1, h2, h3, h4, h5 {
 
 .inh {
     color: inherit !important;
+}
+
+
+/* Css voor livesearch */
+
+tr.resultaatbalkje:hover {
+    background-color: rgba(0, 174, 241, 0.3);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p:hover {
+    text-decoration: underline;
+    color: #0000fa;
+}
+
+p{
+    width: 450px;
+    word-wrap: break-word; /* Breek de zin als te lang is*/
+}
+
+strong {
+    font-weight: 700;
+}
+
+#resultaattabel {
+    position: absolute;
+    margin-top: 5px;
+    list-style-type: none;
+    height: 0px;
+    overflow: hidden;
+    top: 100%; /*     here               */
+    transition: height 1s ease;
+    left: 1px;
+    z-index: 99;
+    background-color: white;
+    border: 1px solid black;
+}
+
+table {
+    width: 50%;
 }

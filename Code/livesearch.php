@@ -1,15 +1,9 @@
-<html>
-<head>
-</head>
-<body>
 <div id="pagina">
 <?php
 include "functions.php";
 
 //get the q parameter from URL
 $q = $_GET["q"];
-
-
 
 //Zoekt alleen als de lengte langer is dan 0
 if (strlen($q) > 0) {
@@ -18,48 +12,6 @@ if (strlen($q) > 0) {
         $productnr = intval($_GET["stockitemid"]);
     }
     ?>
-    <style>
-        /* tijdelijke inline css */
-        tr.resultaatbalkje:hover {
-            background-color: rgba(0, 174, 241, 0.3);
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        p:hover {
-            text-decoration: underline;
-            color: #0000fa;
-        }
-
-        p{
-            width: 450px;
-            word-wrap: break-word; /* Breek de zin als te lang is*/
-        }
-
-        strong {
-            font-weight: 700;
-        }
-
-        #resultaattabel {
-            margin-top: 5px;
-            list-style-type: none;
-            height: 0px;
-            overflow: hidden;
-            position: absolute; /* <-- added declarations */
-            top: 100%; /*     here               */
-            transition: height 1s ease;
-            top: 100%;
-            left: 0;
-        }
-
-        table {
-            width: 50%;
-        }
-    </style>
-    <!-- Cellspacing en celpadding op 0 is om de border tussen de resultaten weg te halen. -->
     <table id="resultaattabel" cellspacing="0" cellpadding="5" style='text-align: center; vertical-align: center;'><?php
         // Maak teller aan
         $count = 0;
@@ -128,11 +80,5 @@ if (strlen($q) > 0) {
         ?></table>
     <?php
 }
-
-
 //output the response
-
 ?>
-</div>
-</body>
-</html>
