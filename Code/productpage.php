@@ -1,4 +1,35 @@
-<?php include 'header.php' ?>
+<?php
+    //Sessie starten voor karretje
+    session_start();
+    //Kar behaviour
+    if(isset($_POST['add']))
+    {
+        //print_r($_POST['product_id']);
+        if(isset($_SESSION['cart']))
+        {
+            $item_array_id = array_column($_SESSION['cart'],"product_id");
+
+            if(in_array(($_POST['product_id']), $item_array_id))
+            {
+                echo "<script>alert('product is already added to your cart')</script>";
+                echo "<script>window.location = 'index.php</script>";
+            }
+            else
+            {
+                $count=count($_SESSION['cart']);
+                $item_array=array('product_id' => $_POST['product_id']);
+                $_SESSION['cart'][$count]=$item_array;
+            }
+        }
+        else
+        {
+            $item_array=array('product_id' => $_POST['product_id']);
+            //Create new session variable
+            $_SESSION['cart'][0] = $item_array;
+        }
+    }
+    include 'header.php';
+?>
 
     <div class="container content">
         <div class="row">
@@ -30,9 +61,13 @@
                     $temp = sqltemp($productnr);
                     print ("Het product is $temp&deg;.");
                 }
+                $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 ?>
                 <br>
-                <button type="button" class="btn btn-primary">Plaats in winkelwagen</button>
+                <form action= <?php echo $actual_link ?> method="post">
+                    <button type="submit" class="btn btn-primary" name="add">Plaats in winkelwagen</button>
+                    <input type='hidden' name='product_id' value=<?php echo $_GET["stockitemid"] ?>>
+                </form>
             </div>
         </div>
     </div>

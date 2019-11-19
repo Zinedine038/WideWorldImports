@@ -3,7 +3,6 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<?php  session_start(); ?>
 
 <html>
 <head>
@@ -45,7 +44,7 @@
                 <?php
                 if(isset($_SESSION['cart']))
                 {
-                    $count = count($_SESSION['cart']);
+                    $count = count($_SESSION['cart'])-1;
                     echo "<span id=\"cart_count\">$count</span>";
                 }
                 else

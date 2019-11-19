@@ -1,8 +1,8 @@
 <?php
+
     session_start();
     require_once ("php/databasefunctions.php");
     require_once ("php/Component.php");
-
     $db = new CreateDb("");
 
     if(isset($_POST['remove']))
@@ -83,8 +83,15 @@
                         <?php
                         if(isset($_SESSION['cart']))
                         {
-                            $count=count($_SESSION['cart']);
-                            echo "<h6>Price ($count items)</h6>";
+                            $count=count($_SESSION['cart'])-1;
+                            if($count==1)
+                            {
+                                echo "<h6>Price ($count item)</h6>";
+                            }
+                            else
+                            {
+                                echo "<h6>Price ($count items)</h6>";
+                            }
                         }
                         else
                         {

@@ -24,7 +24,7 @@
                         <?php
                         if(isset($_SESSION['cart']))
                         {
-                            $count = count($_SESSION['cart']);
+                            $count = count($_SESSION['cart'])-1;
                             echo "<span id=\"cart_count\">$count</span>";
                         }
                         else
