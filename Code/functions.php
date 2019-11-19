@@ -173,5 +173,8 @@ $sql = "SELECT $kolom FROM $tabel";
 $statement = mysqli_prepare($connection, $sql);
 mysqli_stmt_execute($statement);
 $result = mysqli_stmt_get_result($statement);
+mysqli_stmt_close($statement);
+
+
 return ($result);
 }
