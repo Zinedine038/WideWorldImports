@@ -41,46 +41,113 @@
 
     <script>
         function hoverOver() {
-            document.getElementById('paginaalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
-            document.getElementById('bodyalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
-            document.getElementById('productnaam').style.color= 'rgba(0,0,0,0.8)';
+            var a = document.getElementById('paginaalles');
+            var b = document.getElementById('bodyalles');
+            var c = document.getElementById('productnaam');
 
-            var elements= document.getElementsByClassName('product-img');
-            for(var i=0; i<elements.length; i++) {
-                elements[i].style.outline= "318px solid rgba(0,0,0,0.8)";
+            if (a) {
+                document.getElementById('paginaalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
             }
 
-            var elements2= document.getElementsByClassName('btn-primary');
-            for(var i5=0; i5<elements2.length; i5++) {
-                elements2[i5].style.color= 'rgba(255, 255, 255, 0.2)';
-                elements2[i5].style.backgroundColor= 'rgba(255,255,255,0.2)';
+            if (b) {
+                document.getElementById('bodyalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
             }
 
-            var elements3= document.getElementsByClassName('btn');
-            for(var i6=0; i6<elements3.length; i6++) {
-                elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
-                elements3[i6].style.color= 'rgba(255, 255, 255, 0.2)';
+            if (c) {
+                document.getElementById('productnaam').style.color = 'rgba(0,0,0,0.8)';
+            }
+
+
+            var elements = document.getElementsByClassName('product-img');
+            if (elements) {
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.outline = "318px solid rgba(0,0,0,0.8)";
+                }
+            }
+
+
+            var elements2 = document.getElementsByClassName('btn-primary');
+            if (elements2) {
+                for (var i5 = 0; i5 < elements2.length; i5++) {
+                    elements2[i5].style.color = 'rgba(255, 255, 255, 0.2)';
+                    elements2[i5].style.backgroundColor = 'rgba(255,255,255,0.2)';
+                }
+            }
+
+            var elements3 = document.getElementsByClassName('btn');
+            if (elements3) {
+                for (var i6 = 0; i6 < elements3.length; i6++) {
+                    elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                    elements3[i6].style.color = 'rgba(255, 255, 255, 0.2)';
+                }
+                }
+            var elements4 = document.getElementsByClassName('px5');
+            //of class px5
+            if (elements4) {
+                for (var ii2 = 0; ii2 < elements4.length; ii2++) {
+                    elements4[ii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                }
+            }
+
+            var elements100 = document.getElementsByClassName('pt-4');
+
+            if (elements100) {
+                for (var bii2 = 0; bii2 < elements100.length; bii2++) {
+                    elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                }
             }
         }
 
         function hoverAway() {
+            var elements99 = document.getElementsByClassName('px5');
+            //of class px5
+            if (elements99) {
+                for (var iia2 = 0; iia2 < elements99.length; iia2++) {
+                    elements99[iia2].removeAttribute('style');
+                }
+            }
+
+            var elements100 = document.getElementsByClassName('pt-4');
+            //of class px5
+            if (elements100) {
+                for (var bii2 = 0; bii2 < elements100.length; bii2++) {
+                    elements100[bii2].removeAttribute('style');
+                }
+
+            }
+
             document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
             document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
             document.getElementById('productnaam').style.color= 'rgba(69,194,227,1)';
-            var elements= document.getElementsByClassName('product-img');
-            for(var i1=0; i1<elements.length; i1++) {
-                elements[i1].style.outline= "318px solid rgba(0,0,0,0)";
-            }
+
+
+                var elements = document.getElementsByClassName('product-img');
+                if (elements) {
+                    for (var e1 = 0; e1 < elements.length; e1++) {
+                        elements[e1].style.outline = "318px solid rgba(0,0,0,0)";
+                    }
+                }
 
             var elements2= document.getElementsByClassName('btn-primary');
-            for(var i2=0; i2<elements2.length; i2++) {
-                elements2[i2].style.color= 'rgba(255, 255, 255, 1)';
+            if (elements2) {
+                for (var i2 = 0; i2 < elements2.length; i2++) {
+                    elements2[i2].style.color = 'rgba(255, 255, 255, 1)';
+                }
             }
-
+            var elements10 = document.getElementsByClassName('px5');
+            //of class px5
+            for (var iii2 = 0; iii2 < elements10.length; iii2++) {
+                elements10[iii2].removeAttribute('style');
+            }
             var elements3= document.getElementsByClassName('btn-primary');
+
             for(var i3=0; i3<elements3.length; i3++) {
                 elements3[i3].removeAttribute('style');
+
             }
+
+
+
         }
 
     </script>
