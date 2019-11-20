@@ -95,7 +95,7 @@
                 <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
                 <?php include 'livesearchbalk.php'?>
                 <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>
-                Cart: (
+                Winkelmandje: (
                 <?php
                 if(isset($_SESSION['cart']))
                 {
