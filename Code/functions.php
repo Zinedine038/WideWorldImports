@@ -3,10 +3,10 @@
 ///Geeft de waarde van 1 veld terug uit de database aan de hand van het productnummer
 function sql($tabel, $veld, $productnr)
 {
-    $host = "wideworld.mysql.database.azure.com";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "ICTM1n3@wideworld";
+    $user = "ICTM1n3";
     $pass = "Windesheim2019";
 
     ///SQL maakt statement, voert het uit en zet het in $result
@@ -29,10 +29,10 @@ function sql($tabel, $veld, $productnr)
 ///Neemt een zoekterm en geeft product ID's terug
 function search($zoekterm)
 {
-    $host = "wideworld.mysql.database.azure.com";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "ICTM1n3@wideworld";
+    $user = "ICTM1n3";
     $pass = "Windesheim2019";
 
     ///maakt lege array aan waar zo de product IDs in komen
@@ -95,10 +95,10 @@ function zoekadres($postcode, $huisnummer){
 function sqlfoto($productnr)
 {
     ///Database connectie info
-    $host = "wideworld.mysql.database.azure.com";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "ICTM1n3@wideworld";
+    $user = "ICTM1n3";
     $pass = "Windesheim2019";
 
 
@@ -137,10 +137,10 @@ function sqlfoto($productnr)
 function sqltemp($productnr)
 {
     ///Database connectie info
-    $host = "wideworld.mysql.database.azure.com";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "ICTM1n3@wideworld";
+    $user = "ICTM1n3";
     $pass = "Windesheim2019";
 
     ///SQL maakt statement, voert het uit en zet het in $result
@@ -162,10 +162,10 @@ function sqltemp($productnr)
 function DatabaseCatogorie($kolom, $tabel)
 {
 ///Database connectie info
-    $host = "wideworld.mysql.database.azure.com";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "ICTM1n3@wideworld";
+    $user = "ICTM1n3";
     $pass = "Windesheim2019";
 ///SQL maakt statement, voert het uit en zet het in $result
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
