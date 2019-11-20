@@ -92,10 +92,6 @@ a:hover {
     color: inherit;
 }
 
-input:focus {
-    background-color: rgba(173, 216, 230, 0.8);
-}
-
 img.livefoto {
     float: left;
     padding-right: 15px;
@@ -106,4 +102,10 @@ img.livefoto {
 
 .livefoto p {
     margin-top: unset;
+}
+
+.zoekbalk {
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
 }

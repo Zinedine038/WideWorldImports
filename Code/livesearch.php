@@ -11,8 +11,8 @@ if (strlen($q) > 0) {
         $productnr = intval($_GET["stockitemid"]);
     }
     ?>
-
-    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='text-align: center; vertical-align: center;'>
+<div class="contaier">
+    <table id="resultaattabel" cellspacing="0" cellpadding="5" style='vertical-align: center;'>
     <tbody id="overlaylive" onmouseover="hoverOver()" onmouseleave="hoverAway()">
     <?php
         // Maak teller aan
@@ -86,6 +86,7 @@ if (strlen($q) > 0) {
             $count++;
         }
         ?></tbody></table>
+</div>
     <?php
 }
 //output the response
