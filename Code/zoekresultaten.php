@@ -1,6 +1,6 @@
 <?php
 //start session
-
+session_start();
 require_once('header.php');
 require_once("winkelmandje/php/component.php");
 
