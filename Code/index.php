@@ -4,14 +4,14 @@ include'header.php' ?>
 <?php include'footer.php' ?>
 <link rel="stylesheet" type="text/css" href="css/style.css"> <?php
 
-    $host = "localhost";
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
     $port = 3306;
-    $user = "root";
-    $pass = ""; //eigen password invullen
+    $user = "ICTM1n3";
+    $pass = "Windesheim2019"; //eigen password invullen
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $StockitemstockgroupID = $_GET["stockitemgroupid"];
-    $sql = "SELECT * FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = $StockitemstockgroupID";
+    $sql = "SELECT StockItemName, StockItemID FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = $StockitemstockgroupID";
     $result = mysqli_query($connection, $sql);
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
