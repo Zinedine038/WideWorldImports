@@ -1,9 +1,6 @@
 <?php
 //start session
 session_start();
-require_once('header.php');
-require_once("winkelmandje/php/component.php");
-
 
 if(isset($_POST['add']))
 {
@@ -30,6 +27,9 @@ if(isset($_POST['add']))
         $_SESSION['cart'][0] = $item_array;
     }
 }
+
+require_once('header.php');
+require_once("winkelmandje/php/component.php");
 
 ?>
 

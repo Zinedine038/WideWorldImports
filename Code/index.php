@@ -1,4 +1,6 @@
-<?php include'header.php' ?>
+<?php
+session_start();
+include'header.php' ?>
 <?php include'footer.php' ?>
 <?php
 include "Categorie.php"; ?>
@@ -24,16 +26,17 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src=$fotoo style='mix-blend-mode: multiply; width: 55px; float: left;'>
-                                 <p style='display:inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a>
+                                 <p style='display:inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id /> $naam</a>
                                 </td>
                                  <td><strong>$prijs</strong>
                                  </td>
                                 </tr>");
+
         } else {
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='display: inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a>
+                                 <p style='display: inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id /> $naam </a>
                                 </td>
                                 <td><strong>$prijs</strong>
                                 </td>
