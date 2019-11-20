@@ -15,7 +15,7 @@ function component($productname, $productprice, $productimg, $productDescription
                     <div class=\"card shadow\">
                         <div>
                             <a href=$productPageLink>
-                                <img src=\"$fotoPath\" alt=\"Image1\" class = \"img-fluid card-img-top\">
+                                <img src=\"$fotoPath\" alt=\"Image1\" class = \"img-fluid card-img-top plaatjescomponent\">
                             </a>
                         </div>
                         <div class=\"card-body\">

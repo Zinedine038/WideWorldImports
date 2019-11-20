@@ -41,6 +41,15 @@
 
     <script>
         function hoverOver() {
+
+
+            var elementsab = document.getElementsByClassName('plaatjescomponent');
+            if (elementsab) {
+                for (var ibb = 0; ibb < elementsab.length; ibb++) {
+                    elementsab[ibb].setAttribute('style', 'filter: brightness(10%) !important');
+                }
+            }
+
             var a = document.getElementById('paginaalles');
             var b = document.getElementById('bodyalles');
             var c = document.getElementById('productnaam');
@@ -58,10 +67,43 @@
             }
 
 
-            var elements = document.getElementsByClassName('product-img');
-            if (elements) {
-                for (var i = 0; i < elements.length; i++) {
-                    elements[i].style.outline = "318px solid rgba(0,0,0,0.8)";
+            // var elements = document.getElementsByClassName('plaatjescomponent');
+            // if (elements) {
+            //     for (var i = 0; i < elements.length; i++) {
+            //         elements[i].style.backgroundColor = "red";
+            //     }
+            // }
+
+            var elementscd = document.getElementsByClassName('price');
+            if (elementscd) {
+                for (var icd = 0; icd < elementscd.length; icd++) {
+                    elementscd[icd].style.color = 'rgba(0,0,0,0.8)';
+                }
+            }
+
+
+
+
+
+            var elementsc = document.getElementsByClassName('card-title');
+            if (elementsc) {
+                for (var ic = 0; ic < elementsc.length; ic++) {
+                    elementsc[ic].style.color = 'rgba(0,0,0,0.8)';
+                }
+            }
+
+
+            // var elements44 = document.getElementsByClassName('card-img-top');
+            // if (elements44) {
+            //     for (var i44 = 0; i44 < elements44.length; i44++) {
+            //         elements44[i44].style.outline = "318px solid rgba(0,0,0,0.8)";
+            //     }
+            // }
+
+            var elementsa = document.getElementsByClassName('shadow');
+            if (elementsa) {
+                for (var ib = 0; ib < elementsa.length; ib++) {
+                    elementsa[ib].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
                 }
             }
 
@@ -85,7 +127,7 @@
             var elements32 = document.getElementsByClassName('btn-warning');
             if (elements32) {
                 for (var i62 = 0; i62 < elements32.length; i62++) {
-                    elements32[i62].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                    elements32[i62].setAttribute('style', 'background-color:rgba(0,0,0,0.5); border:rgba(0,0,0,0.5); !important');
                 }
             }
             var elements4 = document.getElementsByClassName('px5');
@@ -100,12 +142,40 @@
 
             if (elements100) {
                 for (var bii2 = 0; bii2 < elements100.length; bii2++) {
-                    elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                    elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5); color:none; outline:none; !important');
                 }
             }
         }
 
         function hoverAway() {
+
+            var elementsab = document.getElementsByClassName('plaatjescomponent');
+            if (elementsab) {
+                for (var ibb = 0; ibb < elementsab.length; ibb++) {
+                    elementsab[ibb].setAttribute('style', 'filter: brightness(100%) !important');
+                }
+            }
+
+            var elementsc = document.getElementsByClassName('card-title');
+            if (elementsc) {
+                for (var ic = 0; ic < elementsc.length; ic++) {
+                    elementsc[ic].style.color = 'rgba(69,194,227,1)';
+                }
+            }
+
+            var elementscd = document.getElementsByClassName('price');
+            if (elementscd) {
+                for (var icd = 0; icd < elementscd.length; icd++) {
+                    elementscd[icd].style.color = 'rgba(69,194,227,1)';
+                }
+            }
+
+            var elementsa = document.getElementsByClassName('shadow');
+            if (elementsa) {
+                for (var ib = 0; ib < elementsa.length; ib++) {
+                    elementsa[ib].removeAttribute('style');
+                }
+            }
 
             var elements22= document.getElementsByClassName('px5');
             if (elements22) {
