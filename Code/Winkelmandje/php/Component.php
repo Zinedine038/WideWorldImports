@@ -33,8 +33,8 @@ function component($productname, $productprice, $productimg, $productDescription
                                 $productDescription
                             </p>
                             <h5>
-                                <small><s class=\"text-secondary\">$699</s></small>
-                                <span class=\"price\">$$productprice
+                                <small><s class=\"text-secondary\">€699</s></small>
+                                <span class=\"price\">€$productprice
                             </span>
                             </h5>
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Voeg toe aan Winkelmandje<i class=\"fas fa-shopping-cart\"></i></button>
