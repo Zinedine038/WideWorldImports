@@ -19,13 +19,12 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     $id = $row["StockItemID"];
     $foto = sqlfoto($id);
     $fotoo=$foto["0"];
-
         if ($foto != NULL) {
             //De tr is de link, zodat je op het hele blokje kan drukken inclusief het plaatje en de prijs om naar de informatie van het product te gaan, in plaats van dat je precies op de tekst moet drukken.
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src=$fotoo style='mix-blend-mode: multiply; width: 55px; float: left;'>
-                                 <p style='display:inline-block;'>$naam
+                                 <p style='display:inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a>
                                 </td>
                                  <td><strong>$prijs</strong>
                                  </td>
@@ -34,15 +33,14 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='display: inline-block;'>$naam
+                                 <p style='display: inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a>
                                 </td>
                                 <td><strong>$prijs</strong>
                                 </td>
                                </tr>");
         }
     }
-    print("<a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a><br>");
-
+// print("<tr></tr><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></tr><br>");
 if(isset($_GET["stockitemid"])) {
     $productnr = intval($_GET["stockitemid"]);
 }?>
