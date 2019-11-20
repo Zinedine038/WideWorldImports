@@ -67,6 +67,7 @@
                 <form action= <?php echo $actual_link ?> method="post">
                     <button type="submit" class="btn btn-primary" name="add">Plaats in winkelwagen</button>
                     <input type='hidden' name='product_id' value=<?php echo $_GET["stockitemid"] ?>>
+                    <?php $product=$_GET["stockitemid"];?>
                 </form>
             </div>
         </div>
@@ -82,13 +83,35 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    GERELATEERD PRODUCT 1
+
+                    <?php
+//                    print("$product<br><br><br>");
+
+                    $foto = sqlfoto($product);
+                    $fototje = $foto["0"];
+                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    ?>
+
                 </div>
                 <div class="col-md-4">
-                    GERELATEERD PRODUCT 2
+
+                    <?php
+
+
+                    $foto = sqlfoto($product);
+                    $fototje = $foto["0"];
+                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    ?>
                 </div>
                 <div class="col-md-4">
-                    GERELATEERD PRODUCT 3
+
+                    <?php
+
+
+                    $foto = sqlfoto($product);
+                    $fototje = $foto["0"];
+                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    ?>
                 </div>
             </div>
         </div>
