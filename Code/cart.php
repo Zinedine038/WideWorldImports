@@ -1,8 +1,8 @@
 <?php
 
     session_start();
-    require_once ("php/databasefunctions.php");
-    require_once ("php/Component.php");
+    require_once("./Winkelmandje/php/databasefunctions.php");
+    require_once("./Winkelmandje/php/Component.php");
     $db = new CreateDb("");
 
     if(isset($_POST['remove']))
@@ -34,12 +34,12 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Winkelmandje/style.css">
 </head>
 <body class ="bg-light">
 
 <?php
-    require_once ('php/header.php');
+    require_once('./header.php');
 ?>
 
 <div class="container-fluid">
@@ -83,7 +83,7 @@
                         <?php
                         if(isset($_SESSION['cart']))
                         {
-                            $count=count($_SESSION['cart'])-1;
+                            $count=count($_SESSION['cart']);
                             if($count==1)
                             {
                                 echo "<h6>Price ($count item)</h6>";
