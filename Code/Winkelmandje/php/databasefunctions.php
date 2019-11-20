@@ -9,10 +9,10 @@ class CreateDb
 
     public function getData()
     {
-        $host = "wideworld.mysql.database.azure.com";
+        $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
         $databasename = "wideworldimporters";
         $port = 3306;
-        $user = "ICTM1n3@wideworld";
+        $user = "ICTM1n3";
         $pass = "Windesheim2019";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $sql = "SELECT * FROM stockitems";
