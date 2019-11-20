@@ -46,7 +46,7 @@
     <div class="row px5">
         <div class="col-md-7">
             <div class="shopping-cart"></div>
-            <h6>My Cart</h6>
+            <h6>Mijn winkelmandje</h6>
             <hr>
             <?php
 
