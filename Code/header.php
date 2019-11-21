@@ -42,6 +42,14 @@
     <script>
         function hoverOver() {
 
+            var elementsabc = document.getElementsByClassName('cart-items');
+            if (elementsabc) {
+                for (var ibbc = 0; ibbc < elementsabc.length; ibbc++) {
+                    elementsabc[ibbc].setAttribute('style', 'filter: brightness(45%) !important');
+                }
+            }
+
+
 
             var elementsab = document.getElementsByClassName('plaatjescomponent');
             if (elementsab) {
@@ -148,6 +156,14 @@
         }
 
         function hoverAway() {
+
+            var elementsabc = document.getElementsByClassName('cart-items');
+            if (elementsabc) {
+                for (var ibbc = 0; ibbc < elementsabc.length; ibbc++) {
+                    elementsabc[ibbc].removeAttribute('style');
+                }
+            }
+
 
             var elementsab = document.getElementsByClassName('plaatjescomponent');
             if (elementsab) {
