@@ -48,6 +48,7 @@
 </style>
 <form id="zoekform" method="get" action="./zoekresultaten.php">
     <input name='zoekterm' onkeyup="showResult(this.value)" type="text" class="zoekbalk">
-    <div id="livesearch" style='width: 40%;'></div>
-    <input type="submit" name="submit" value="Submit" style="background: transparent; border: none; font-size: 0;">
+<!--style='width: 40%; border: initial; !important;'-->
+        <div id="livesearch"></div>
+    <input type="submit" name="submit" value="Submit" style="background: transparent; border: unset; font-size: 0;">
 </form>
