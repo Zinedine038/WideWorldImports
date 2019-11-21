@@ -24,7 +24,7 @@ include'header.php' ?>
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='resultaatbalkje' style='cursor: pointer';>
                                 <td>
                                  
-                                 <p style='display:inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id /> <div style='width: 100%'>$naam</div></a>
+                                 <p style='display:inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id >$naam</a>
                                  <img src=$fotoo style='mix-blend-mode: multiply; width: 55px; float: left;'>
                                 </td>
                                  <td><strong>$prijs</strong>
@@ -35,7 +35,7 @@ include'header.php' ?>
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='container' style='cursor: pointer';>
                                 <td>
                                  <img src='../placeholder.jpg' style='mix-blend-mode: multiply; width: 60px; float: left; vertical-align: middle;'>
-                                 <p style='display: inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id /> <div>$naam </div></a>
+                                 <p style='display: inline-block;'><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id /> $naam </a>
                                 </td>
                                 <td><strong>$prijs</strong>
                                 </td>
