@@ -42,6 +42,13 @@
     <script>
         function hoverOver() {
 
+            var elementsabcd = document.getElementsByClassName('h-25');
+            if (elementsabcd) {
+                for (var ibbcd = 0; ibbcd < elementsabcd.length; ibbcd++) {
+                    elementsabcd[ibbcd].setAttribute('style', 'filter: brightness(45%) !important');
+                }
+            }
+
             var elementsabc = document.getElementsByClassName('cart-items');
             if (elementsabc) {
                 for (var ibbc = 0; ibbc < elementsabc.length; ibbc++) {
@@ -146,16 +153,23 @@
                 }
             }
 
-            var elements100 = document.getElementsByClassName('pt-4');
-
-            if (elements100) {
-                for (var bii2 = 0; bii2 < elements100.length; bii2++) {
-                    elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5); color:none; outline:none; !important');
-                }
-            }
+            // var elements100 = document.getElementsByClassName('pt-4');
+            //
+            // if (elements100) {
+            //     for (var bii2 = 0; bii2 < elements100.length; bii2++) {
+            //         elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5); color:none; outline:none; !important');
+            //     }
+            // }
         }
 
         function hoverAway() {
+
+            var elementsabcd = document.getElementsByClassName('h-25');
+            if (elementsabcd) {
+                for (var ibbcd = 0; ibbcd < elementsabcd.length; ibbcd++) {
+                    elementsabcd[ibbcd].removeAttribute('style');
+                }
+            }
 
             var elementsabc = document.getElementsByClassName('cart-items');
             if (elementsabc) {
@@ -207,14 +221,14 @@
                 }
             }
 
-             var elements100 = document.getElementsByClassName('pt-4');
-
-             if (elements100) {
-                 for (var bii2 = 0; bii2 < elements100.length; bii2++) {
-                     elements100[bii2].removeAttribute('style');
-                 }
-
-            }
+            //  var elements100 = document.getElementsByClassName('pt-4');
+            //
+            //  if (elements100) {
+            //      for (var bii2 = 0; bii2 < elements100.length; bii2++) {
+            //          elements100[bii2].removeAttribute('style');
+            //      }
+            //
+            // }
 
             document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
             document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
