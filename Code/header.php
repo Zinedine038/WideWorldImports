@@ -42,6 +42,13 @@
     <script>
         function hoverOver() {
 
+            var elementsz = document.getElementsByClassName('product-img');
+            if (elementsz) {
+                for (var ez1 = 0; ez1 < elementsz.length; ez1++) {
+                    elementsz[ez1].setAttribute('style', 'filter: brightness(45%) !important');
+                }
+            }
+
             var elementsabcd = document.getElementsByClassName('h-25');
             if (elementsabcd) {
                 for (var ibbcd = 0; ibbcd < elementsabcd.length; ibbcd++) {
@@ -131,13 +138,13 @@
             //     }
             // }
 
-            // var elements3 = document.getElementsByClassName('btn');
-            // if (elements3) {
-            //     for (var i6 = 0; i6 < elements3.length; i6++) {
-            //         elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
-            //         elements3[i6].style.color = 'rgba(255, 255, 255, 0.2)';
-            //     }
-            //     }
+            var elements3 = document.getElementsByClassName('btn');
+            if (elements3) {
+                for (var i6 = 0; i6 < elements3.length; i6++) {
+                    elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                    elements3[i6].style.color = 'rgba(255, 255, 255, 0.2)';
+                }
+                }
 
             var elements32 = document.getElementsByClassName('btn-warning');
             if (elements32) {
@@ -163,6 +170,8 @@
         }
 
         function hoverAway() {
+
+
 
             var elementsabcd = document.getElementsByClassName('h-25');
             if (elementsabcd) {
@@ -237,7 +246,7 @@
                  var elements = document.getElementsByClassName('product-img');
                  if (elements) {
                      for (var e1 = 0; e1 < elements.length; e1++) {
-                         elements[e1].style.outline = "318px solid rgba(0,0,0,0)";
+                         elements[e1].removeAttribute('style');
                      }
                  }
 
