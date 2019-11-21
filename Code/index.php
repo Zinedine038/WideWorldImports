@@ -10,15 +10,15 @@ include'header.php' ?>
     $user = "ICTM1n3";
     $pass = "Windesheim2019"; //eigen password invullen
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    if (isset($_GET["stockitemgroupid"])) {
     $StockitemstockgroupID = $_GET["stockitemgroupid"];
     $sql = "SELECT StockItemName, StockItemID FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = $StockitemstockgroupID";
     $result = mysqli_query($connection, $sql);
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-{
-    $naam = $row["StockItemName"];
-    $id = $row["StockItemID"];
-    $foto = sqlfoto($id);
-    $fotoo=$foto["0"];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $naam = $row["StockItemName"];
+        $id = $row["StockItemID"];
+        $foto = sqlfoto($id);
+        $fotoo = $foto["0"];
         if ($foto != NULL) {
             //De tr is de link, zodat je op het hele blokje kan drukken inclusief het plaatje en de prijs om naar de informatie van het product te gaan, in plaats van dat je precies op de tekst moet drukken.
             print("<tr onClick='window.location.href=\"http://localhost/wideworldimports/code/productpage.php?stockitemid=$id\"' class='container' style='cursor: pointer';>
@@ -43,6 +43,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         }
     }
 // print("<tr></tr><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></tr><br>");
-if(isset($_GET["stockitemid"])) {
-    $productnr = intval($_GET["stockitemid"]);
+    if (isset($_GET["stockitemid"])) {
+        $productnr = intval($_GET["stockitemid"]);
+    }
 }?>
