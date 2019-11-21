@@ -141,8 +141,7 @@
             var elements3 = document.getElementsByClassName('btn');
             if (elements3) {
                 for (var i6 = 0; i6 < elements3.length; i6++) {
-                    elements3[i6].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
-                    elements3[i6].style.color = 'rgba(255, 255, 255, 0.2)';
+                    elements3[i6].setAttribute('style', 'filter: brightness(100%) !important');
                 }
                 }
 
