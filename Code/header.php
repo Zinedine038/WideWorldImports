@@ -41,37 +41,6 @@
 
     <script>
         function hoverOver() {
-
-            var elementsz = document.getElementsByClassName('product-img');
-            if (elementsz) {
-                for (var ez1 = 0; ez1 < elementsz.length; ez1++) {
-                    elementsz[ez1].setAttribute('style', 'filter: brightness(45%) !important');
-                }
-            }
-
-            var elementsabcd = document.getElementsByClassName('h-25');
-            if (elementsabcd) {
-                for (var ibbcd = 0; ibbcd < elementsabcd.length; ibbcd++) {
-                    elementsabcd[ibbcd].setAttribute('style', 'filter: brightness(45%) !important');
-                }
-            }
-
-            var elementsabc = document.getElementsByClassName('cart-items');
-            if (elementsabc) {
-                for (var ibbc = 0; ibbc < elementsabc.length; ibbc++) {
-                    elementsabc[ibbc].setAttribute('style', 'filter: brightness(45%) !important');
-                }
-            }
-
-
-
-            var elementsab = document.getElementsByClassName('plaatjescomponent');
-            if (elementsab) {
-                for (var ibb = 0; ibb < elementsab.length; ibb++) {
-                    elementsab[ibb].setAttribute('style', 'filter: brightness(10%) !important');
-                }
-            }
-
             var a = document.getElementById('paginaalles');
             var b = document.getElementById('bodyalles');
             var c = document.getElementById('productnaam');
@@ -88,193 +57,174 @@
                 document.getElementById('productnaam').style.color = 'rgba(0,0,0,0.8)';
             }
 
-
-            // var elements = document.getElementsByClassName('plaatjescomponent');
-            // if (elements) {
-            //     for (var i = 0; i < elements.length; i++) {
-            //         elements[i].style.backgroundColor = "red";
-            //     }
-            // }
-
-            var elementscd = document.getElementsByClassName('price');
-            if (elementscd) {
-                for (var icd = 0; icd < elementscd.length; icd++) {
-                    elementscd[icd].style.color = 'rgba(0,0,0,0.8)';
+            var elements1 = document.getElementsByClassName('product-img');
+            if (elements1) {
+                for (var i1 = 0; i1 < elements1.length; i1++) {
+                    elements1[i1].setAttribute('style', 'filter: brightness(45%) !important');
                 }
             }
 
-
-
-
-
-            var elementsc = document.getElementsByClassName('card-title');
-            if (elementsc) {
-                for (var ic = 0; ic < elementsc.length; ic++) {
-                    elementsc[ic].style.color = 'rgba(0,0,0,0.8)';
+            var elements2 = document.getElementsByClassName('h-25');
+            if (elements2) {
+                for (var i2 = 0; i2 < elements2.length; i2++) {
+                    elements2[i2].setAttribute('style', 'filter: brightness(45%) !important');
                 }
             }
 
-
-            // var elements44 = document.getElementsByClassName('card-img-top');
-            // if (elements44) {
-            //     for (var i44 = 0; i44 < elements44.length; i44++) {
-            //         elements44[i44].style.outline = "318px solid rgba(0,0,0,0.8)";
-            //     }
-            // }
-
-            var elementsa = document.getElementsByClassName('shadow');
-            if (elementsa) {
-                for (var ib = 0; ib < elementsa.length; ib++) {
-                    elementsa[ib].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
-                }
-            }
-
-
-            // var elements2 = document.getElementsByClassName('btn-primary');
-            // if (elements2) {
-            //     for (var i5 = 0; i5 < elements2.length; i5++) {
-            //         elements2[i5].style.color = 'rgba(255, 255, 255, 0.2)';
-            //         elements2[i5].style.backgroundColor = 'rgba(255,255,255,0.2)';
-            //     }
-            // }
-
-            var elements3 = document.getElementsByClassName('btn');
+            var elements3 = document.getElementsByClassName('cart-items');
             if (elements3) {
-                for (var i6 = 0; i6 < elements3.length; i6++) {
-                    elements3[i6].setAttribute('style', 'filter: brightness(100%) !important');
-                }
-                }
-
-            var elements32 = document.getElementsByClassName('btn-warning');
-            if (elements32) {
-                for (var i62 = 0; i62 < elements32.length; i62++) {
-                    elements32[i62].setAttribute('style', 'background-color:rgba(0,0,0,0.5); border:rgba(0,0,0,0.5); !important');
+                for (var i3 = 0; i3 < elements3.length; i3++) {
+                    elements3[i3].setAttribute('style', 'filter: brightness(45%) !important');
                 }
             }
-            var elements4 = document.getElementsByClassName('px5');
-            //of class px5
+
+            var elements4 = document.getElementsByClassName('plaatjescomponent');
             if (elements4) {
-                for (var ii2 = 0; ii2 < elements4.length; ii2++) {
-                    elements4[ii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                for (var i4 = 0; i4 < elements4.length; i4++) {
+                    elements4[i4].setAttribute('style', 'filter: brightness(45%) !important');
                 }
             }
 
-            // var elements100 = document.getElementsByClassName('pt-4');
-            //
-            // if (elements100) {
-            //     for (var bii2 = 0; bii2 < elements100.length; bii2++) {
-            //         elements100[bii2].setAttribute('style', 'background-color:rgba(0,0,0,0.5); color:none; outline:none; !important');
-            //     }
-            // }
+            var elements5 = document.getElementsByClassName('price');
+            if (elements5) {
+                for (var i5 = 0; i5 < elements5.length; i5++) {
+                    elements5[i5].style.color = 'rgba(0,0,0,0.8)';
+                }
+            }
+
+
+            var elements6 = document.getElementsByClassName('card-title');
+            if (elements6) {
+                for (var i6 = 0; i6 < elements6.length; i6++) {
+                    elements6[i6].style.color = 'rgba(0,0,0,0.8)';
+                }
+            }
+
+
+            var elements7 = document.getElementsByClassName('shadow');
+            if (elements7) {
+                for (var i7 = 0; i7 < elements7.length; i7++) {
+                    elements7[i7].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                }
+            }
+
+
+            var elements8 = document.getElementsByClassName('btn');
+            if (elements8) {
+                for (var i8 = 0; i8 < elements8.length; i8++) {
+                    elements8[i8].setAttribute('style', 'filter: brightness(40%) !important');
+                }
+            }
+
+
+            var elements9 = document.getElementsByClassName('btn-warning');
+            if (elements9) {
+                for (var i9 = 0; i9 < elements9.length; i9++) {
+                    elements9[i9].setAttribute('style', 'background-color:rgba(0,0,0,0.4); border:rgba(0,0,0,0.5); !important');
+                }
+            }
+
+
+            var elements10 = document.getElementsByClassName('px5');
+            if (elements10) {
+                for (var i10 = 0; i10 < elements10.length; i10++) {
+                    elements10[i10].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
+                }
+            }
+
+            var elements11 = document.getElementsByClassName('text-secondary');
+            if (elements11) {
+                for (var i11 = 0; i11 < elements11.length; i11++) {
+                    elements11[i11].setAttribute('style', 'filter: brightness(40%) !important');
+                }
+            }
+
         }
 
         function hoverAway() {
 
-
-
-            var elementsabcd = document.getElementsByClassName('h-25');
-            if (elementsabcd) {
-                for (var ibbcd = 0; ibbcd < elementsabcd.length; ibbcd++) {
-                    elementsabcd[ibbcd].removeAttribute('style');
+            var elements1 = document.getElementsByClassName('h-25');
+            if (elements1) {
+                for (var i1 = 0; i1 < elements1.length; i1++) {
+                    elements1[i1].removeAttribute('style');
                 }
             }
 
-            var elementsabc = document.getElementsByClassName('cart-items');
-            if (elementsabc) {
-                for (var ibbc = 0; ibbc < elementsabc.length; ibbc++) {
-                    elementsabc[ibbc].removeAttribute('style');
-                }
-            }
-
-
-            var elementsab = document.getElementsByClassName('plaatjescomponent');
-            if (elementsab) {
-                for (var ibb = 0; ibb < elementsab.length; ibb++) {
-                    elementsab[ibb].setAttribute('style', 'filter: brightness(100%) !important');
-                }
-            }
-
-            var elementsc = document.getElementsByClassName('card-title');
-            if (elementsc) {
-                for (var ic = 0; ic < elementsc.length; ic++) {
-                    elementsc[ic].style.color = 'rgba(69,194,227,1)';
-                }
-            }
-
-            var elementscd = document.getElementsByClassName('price');
-            if (elementscd) {
-                for (var icd = 0; icd < elementscd.length; icd++) {
-                    elementscd[icd].style.color = 'rgba(69,194,227,1)';
-                }
-            }
-
-            var elementsa = document.getElementsByClassName('shadow');
-            if (elementsa) {
-                for (var ib = 0; ib < elementsa.length; ib++) {
-                    elementsa[ib].removeAttribute('style');
-                }
-            }
-
-            var elements22= document.getElementsByClassName('px5');
-            if (elements22) {
-                for (var i22 = 0; i22 < elements22.length; i22++) {
-                    elements22[i22].removeAttribute('style');
-                }
-            }
-
-            var elements2= document.getElementsByClassName('btn-warning');
+            var elements2 = document.getElementsByClassName('cart-items');
             if (elements2) {
                 for (var i2 = 0; i2 < elements2.length; i2++) {
                     elements2[i2].removeAttribute('style');
                 }
             }
 
-            //  var elements100 = document.getElementsByClassName('pt-4');
-            //
-            //  if (elements100) {
-            //      for (var bii2 = 0; bii2 < elements100.length; bii2++) {
-            //          elements100[bii2].removeAttribute('style');
-            //      }
-            //
-            // }
+            var elements3 = document.getElementsByClassName('plaatjescomponent');
+            if (elements3) {
+                for (var i3 = 0; i3 < elements3.length; i3++) {
+                    elements3[i3].removeAttribute('style');
+                }
+            }
 
-            document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
-            document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
-            document.getElementById('productnaam').style.color= 'rgba(69,194,227,1)';
+            var elements4 = document.getElementsByClassName('card-title');
+            if (elements4) {
+                for (var i4 = 0; i4 < elements4.length; i4++) {
+                    elements4[i4].style.color = 'rgba(69,194,227,1)';
+                }
+            }
 
-                 var elements = document.getElementsByClassName('product-img');
-                 if (elements) {
-                     for (var e1 = 0; e1 < elements.length; e1++) {
-                         elements[e1].removeAttribute('style');
-                     }
-                 }
+            var elements5 = document.getElementsByClassName('price');
+            if (elements5) {
+                for (var i5 = 0; i5 < elements5.length; i5++) {
+                    elements5[i5].style.color = 'rgba(69,194,227,1)';
+                }
+            }
 
+            var elements6 = document.getElementsByClassName('shadow');
+            if (elements6) {
+                for (var i6 = 0; i6 < elements6.length; i6++) {
+                    elements6[i6].removeAttribute('style');
+                }
+            }
+
+            var elements7= document.getElementsByClassName('px5');
+            if (elements7) {
+                for (var i7 = 0; i7 < elements7.length; i7++) {
+                    elements7[i7].removeAttribute('style');
+                }
+            }
+
+            var elements8= document.getElementsByClassName('btn-warning');
+            if (elements8) {
+                for (var i8 = 0; i8 < elements8.length; i8++) {
+                    elements8[i8].removeAttribute('style');
+                }
+            }
+
+            var elements9 = document.getElementsByClassName('product-img');
+            if (elements9) {
+                for (var i9 = 0; i9 < elements9.length; i9++) {
+                    elements9[i9].removeAttribute('style');
+                }
+            }
 
 
              var elements10 = document.getElementsByClassName('px5');
-
              if (elements10) {
                  for (var iii2 = 0; iii2 < elements10.length; iii2++) {
                     elements10[iii2].removeAttribute('style');
                  }
              }
 
-             var elements3= document.getElementsByClassName('btn-warning');
-             if (elements3) {
-             for(var i3=0; i3<elements3.length; i3++) {
-                         elements3[i3].setAttribute('style', 'background-color:rgba(0,0,0,0.5) !important');
-                         elements3[i3].style.color = 'rgba(255, 255, 255, 1)';
-                 }
-             }
-
-             var elements333 = document.getElementsByClassName('btn');
-             if (elements333) {
-                 for (var i36 = 0; i36 < elements333.length; i36++) {
-                     elements333[i36].removeAttribute('style');
-                 }
+            var elements11 = document.getElementsByClassName('text-secondary');
+            if (elements11) {
+                for (var i11 = 0; i11 < elements11.length; i11++) {
+                   elements11[i11].removeAttribute('style');
+                }
              }
 
 
+            document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
+            document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
+            document.getElementById('productnaam').style.color= 'rgba(69,194,227,1)';
 
         }
 
