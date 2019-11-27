@@ -242,7 +242,6 @@
                     <div class="dropdown-content"> <?php
                         $rij1 = "StockGroupName";
                         $rij2 = "StockGroupID";
-
                         $result = DatabaseCatogorie("*","stockgroups");
                         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             $r1 = $row["$rij1"];
