@@ -178,3 +178,26 @@ mysqli_stmt_close($statement);
 
 return ($result);
 }
+
+
+
+function gerelateerdeProducten ($stockid){
+    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
+    $databasename = "wideworldimporters";
+    $port = 3306;
+    $user = "ICTM1n3";
+    $pass = "Windesheim2019";
+    $sql = "SELECT StockitemID FROM stockitemstockgroups WHERE StockGroupID IN
+(SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ? AND StockGroupID != 1)
+ORDER BY rand() LIMIT 3";
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "i", $stockid);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_stmt_close($statement);
+    return ($result);
+}
+
+

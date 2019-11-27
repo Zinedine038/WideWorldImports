@@ -85,9 +85,9 @@
                 <div class="col-md-4">
 
                     <?php
-//                    print("$product<br><br><br>");
 
-                    $foto = sqlfoto($product);
+                    $gp= gerelateerdeProducten($product);
+                    $foto = sqlfoto($gp["0"]["StockitemID"]);
                     $fototje = $foto["0"];
                     print ('<img src='.$fototje.' class="product-img"/><br>');
                     ?>
@@ -97,8 +97,8 @@
 
                     <?php
 
-
-                    $foto = sqlfoto($product);
+                    $gp= gerelateerdeProducten($product);
+                    $foto = sqlfoto($gp["1"]["StockitemID"]);
                     $fototje = $foto["0"];
                     print ('<img src='.$fototje.' class="product-img"/><br>');
                     ?>
@@ -107,8 +107,9 @@
 
                     <?php
 
-
-                    $foto = sqlfoto($product);
+                    $gp= gerelateerdeProducten($product);
+                    $gp= gerelateerdeProducten($product);
+                    $foto = sqlfoto($gp["2"]["StockitemID"]);
                     $fototje = $foto["0"];
                     print ('<img src='.$fototje.' class="product-img"/><br>');
                     ?>
