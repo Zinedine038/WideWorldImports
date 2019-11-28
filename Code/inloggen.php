@@ -5,6 +5,9 @@
     <title>$Title$</title>
 </head>
 <body>
+<?php
+include "header.php";
+?>
 Noppes, nada
 </body>
 </html>
