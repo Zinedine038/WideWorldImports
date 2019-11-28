@@ -87,9 +87,13 @@
                     <?php
 
                     $gp= gerelateerdeProducten($product);
-                    $foto = sqlfoto($gp["0"]["StockitemID"]);
+                    $gerelateerdproductID= ($gp["0"]["StockitemID"]);
+                    $foto = sqlfoto($gerelateerdproductID);
+                    $gerelateerdProductNaam = sql("stockitems", "stockitemname", $gerelateerdproductID);
+
                     $fototje = $foto["0"];
-                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
+                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
                     ?>
 
                 </div>
@@ -98,20 +102,24 @@
                     <?php
 
                     $gp= gerelateerdeProducten($product);
-                    $foto = sqlfoto($gp["1"]["StockitemID"]);
+                    $gerelateerdproductID= ($gp["1"]["StockitemID"]);
+                    $gerelateerdProductNaam = sql("stockitems", "stockitemname", $gerelateerdproductID);
+                    $foto = sqlfoto($gerelateerdproductID);
                     $fototje = $foto["0"];
-                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
+                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
                     ?>
                 </div>
                 <div class="col-md-4">
 
                     <?php
-
                     $gp= gerelateerdeProducten($product);
-                    $gp= gerelateerdeProducten($product);
-                    $foto = sqlfoto($gp["2"]["StockitemID"]);
+                    $gerelateerdproductID= ($gp["2"]["StockitemID"]);
+                    $gerelateerdProductNaam = sql("stockitems", "stockitemname", $gerelateerdproductID);
+                    $foto = sqlfoto($gerelateerdproductID);
                     $fototje = $foto["0"];
-                    print ('<img src='.$fototje.' class="product-img"/><br>');
+                    print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
+                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
                     ?>
                 </div>
             </div>
