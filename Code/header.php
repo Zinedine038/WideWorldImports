@@ -257,6 +257,13 @@
                     </div>
                 </div>
                 <?php include 'livesearchbalk.php'?>
+
+                <div class="ml-auto">
+                <form action="inloggen.php">
+                <input type="submit" value="Inloggen" class="btn btn-warning">
+                </form>
+                </div>
+
                 <div class="ml-auto">
                     <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>
                     Winkelmandje: (
