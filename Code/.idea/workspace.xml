@@ -54,8 +54,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHP Script.productpage.php">
+  <component name="RunManager" selected="PHP Script.index.php">
     <configuration name="zoek.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WWItest/zoek.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
       <method v="2" />
     </configuration>
     <configuration name="productpage.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/productpage.php">
@@ -66,6 +69,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.index.php" />
         <item itemvalue="PHP Script.productpage.php" />
         <item itemvalue="PHP Script.zoekpostcode.php" />
         <item itemvalue="JavaScript Debug.zoek.php" />
@@ -88,7 +92,7 @@
       <workItem from="1573482627429" duration="4280000" />
       <workItem from="1573668265188" duration="2746000" />
       <workItem from="1573993407660" duration="249000" />
-      <workItem from="1574149920547" duration="5422000" />
+      <workItem from="1574149920547" duration="11102000" />
     </task>
     <servers />
   </component>
