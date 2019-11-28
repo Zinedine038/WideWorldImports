@@ -221,6 +221,12 @@
                 }
              }
 
+            var elements12 = document.getElementsByClassName('btn');
+            if (elements12) {
+                for (var i12 = 0; i12 < elements12.length; i12++) {
+                    elements12[i12].removeAttribute('style');
+                }
+            }
 
             document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
             document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
