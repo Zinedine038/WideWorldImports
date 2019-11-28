@@ -17,10 +17,10 @@ include 'Winkelmandje/php/Component.php';
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement); ?>
-        <font size="6"><center><?php
+        <font style="margin-left: 5.9%; padding-top: 1%; display: inline-block" size="6"><?php
                 $resie= categorieNaam($StockitemstockgroupID);
                 print($resie["0"]["stockgroupname"]);
-                ?></center> </font>
+                ?> </font>
 
         <div class="container">
         <div class="row text-center py-5"><?php
