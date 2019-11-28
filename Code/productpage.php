@@ -93,7 +93,7 @@
 
                     $fototje = $foto["0"];
                     print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
-                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
+                    print ('<img src='.$fototje.' class="product-img"/><p style="color: white;">'.$gerelateerdProductNaam.'</p></a>');
                     ?>
 
                 </div>
@@ -107,7 +107,7 @@
                     $foto = sqlfoto($gerelateerdproductID);
                     $fototje = $foto["0"];
                     print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
-                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
+                    print ('<img src='.$fototje.' class="product-img"/><p style="color: white">'.$gerelateerdProductNaam.'</p></a>');
                     ?>
                 </div>
                 <div class="col-md-4">
@@ -119,7 +119,7 @@
                     $foto = sqlfoto($gerelateerdproductID);
                     $fototje = $foto["0"];
                     print('<a href="http://localhost/wideworldimports/code/productpage.php?stockitemid='.$gerelateerdproductID.'">');
-                    print ('<img src='.$fototje.' class="product-img"/><p>'.$gerelateerdProductNaam.'</p></a>');
+                    print ('<img src='.$fototje.' class="product-img"/><p style="color: white">'.$gerelateerdProductNaam.'</p></a>');
                     ?>
                 </div>
             </div>
