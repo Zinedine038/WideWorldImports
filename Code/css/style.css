@@ -7,6 +7,11 @@ body {
     position: relative; /* <-- added declaration */
 }
 
+.header-img {
+    height: auto;
+    width: 100%;
+}
+
 .logo {
     max-height: 65px;
     margin: 8px 0px 8px 0px;

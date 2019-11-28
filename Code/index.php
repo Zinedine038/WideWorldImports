@@ -1,9 +1,7 @@
 <?php
 session_start();
-include'header.php';
-include'footer.php';
-include 'Winkelmandje\php\Component.php'?>
-<link rel="stylesheet" type="text/css" href="css/style.css"> <?php
+include 'header.php';
+include 'Winkelmandje/php/Component.php';
 
     $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
@@ -24,8 +22,8 @@ include 'Winkelmandje\php\Component.php'?>
                 print($resie["0"]["stockgroupname"]);
                 ?></center> </font>
 
-         <div class="container">
-        <div class="row text-center py-5"> <?php
+        <div class="container">
+        <div class="row text-center py-5"><?php
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $naam = $row["StockItemName"];
         $id = $row["StockItemID"];
@@ -58,9 +56,26 @@ include 'Winkelmandje\php\Component.php'?>
         }
     */
         } ?> </div>
-</div> <?php
+</div>
+<?php
 // print("<tr></tr><a href=http://localhost/wideworldimports/code/productpage.php?stockitemid=$id>$naam</a></tr><br>");
     if (isset($_GET["stockitemid"])) {
         $productnr = intval($_GET["stockitemid"]);
     }
-}?>
+}
+
+// VERANDER HIER HET THEMA
+$thema = "sinterklaas";
+
+if ($thema == "sinterklaas") {
+?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-SINTERKLAAS.jpg" class="header-img" alt="header">
+    </div>
+<?php } if ($thema == "kerst") { ?>
+    <div class="container-fluid p-0">
+        <img src="https://www.hmcdn.eu/ImageRepository/Converted/baf/baf003f5-65d2-41a5-a159-a92124ca7b7d.jpg" class="header-img" alt="header">
+    </div>
+<?php }
+
+include'footer.php'; ?>
