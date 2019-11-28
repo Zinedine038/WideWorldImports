@@ -19,7 +19,11 @@ include 'Winkelmandje\php\Component.php'?>
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement); ?>
-        <font size="6"><center>Categorie <?php print($StockitemstockgroupID)?></center> </font>
+        <font size="6"><center><?php
+                $resie= categorieNaam($StockitemstockgroupID);
+                print($resie["0"]["stockgroupname"]);
+                ?></center> </font>
+
          <div class="container">
         <div class="row text-center py-5"> <?php
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
