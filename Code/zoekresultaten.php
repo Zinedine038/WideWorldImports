@@ -1,7 +1,10 @@
 <?php
 //start session
 session_start();
-
+$page=1;
+if(isset($_GET["page"])){
+    $page = $_GET["page"];
+}
 if(isset($_POST['add']))
 {
     //print_r($_POST['product_id']);
@@ -45,7 +48,7 @@ require_once("winkelmandje/php/component.php");
     <div class="row text-center py-5">
         <?php
         $zoekterm=$_GET["zoekterm"];
-        $result = search($zoekterm);
+        $result = search($zoekterm,$page);
         foreach ($result AS $id) {
             $naam = sql("stockitems", "stockitemname", $id);
             $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
@@ -55,6 +58,13 @@ require_once("winkelmandje/php/component.php");
         }
 
         ?>
+    </div>
+    <div class="row">
+        <?php
+        $page = $page+ 1;
+        print("<a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$page'>Volgende</a>")
+        ?>
+
     </div>
 </div>
 
