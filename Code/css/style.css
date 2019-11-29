@@ -115,3 +115,12 @@ img.livefoto {
     padding-left: 8px;
     padding-right: 8px;
 }
+
+
+#volgendeknop{
+    float: right !important;
+}
+
+#pagenumber{
+    text-align: center ;
+}

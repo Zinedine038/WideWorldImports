@@ -6,6 +6,7 @@ $count = 0;
 if(isset($_GET["page"])){
     $page = $_GET["page"];
 }
+$zoekterm=$_GET["zoekterm"];
 if(isset($_POST['add']))
 {
     //print_r($_POST['product_id']);
@@ -46,9 +47,21 @@ require_once("winkelmandje/php/component.php");
 
 
 <div class="container">
+    <div class="row">
+        <form method="get">
+           Resultaten per pagina: <select name='resultsshown' onchange='if(this.value != 0) { this.form.submit(); }'>
+                <option value=16>16</option>
+                <option value=24>24</option>
+                <option value=36>26</option>
+            </select>
+            <input type="hidden" name="zoekterm" value="<?php print($zoekterm); ?>">
+            <input type="hidden" name="submit" value="Submit">
+            <input type="hidden" name="page" value="<?php print($page); ?>">
+        </form>
+    </div>
     <div class="row text-center py-5">
         <?php
-        $zoekterm=$_GET["zoekterm"];
+
         $result = search($zoekterm,$page);
         foreach ($result AS $id) {
             $naam = sql("stockitems", "stockitemname", $id);
@@ -72,10 +85,15 @@ require_once("winkelmandje/php/component.php");
         }
         ?>
         </div>
+        <div id="pagenumber" class="col-sm">
+            <?php
+            print("Pagina $page")
+            ?>
+        </div>
         <div class="col-sm">
             <?php
         if($count == 24) {
-            print("<button class=\"btn btn-outline-info\"><a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$pagenext'>Volgende</a></button>");
+            print("<button id='volgendeknop' class=\"btn btn-outline-info\"><a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$pagenext'>Volgende</a></button>");
         }
 
         ?>
