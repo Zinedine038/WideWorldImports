@@ -2,6 +2,7 @@
 //start session
 session_start();
 $page=1;
+$count = 0;
 if(isset($_GET["page"])){
     $page = $_GET["page"];
 }
@@ -55,15 +56,30 @@ require_once("winkelmandje/php/component.php");
             $commentaar = sql("stockitems", "MarketingComments", $id);
             $Itemid = sql("stockitems", "StockItemID", $id);
             component($naam,$prijs,"./upload/product1.png",$commentaar,$Itemid);
+            $count++;
         }
 
         ?>
     </div>
     <div class="row">
+        <div class="col-sm">
         <?php
-        $page = $page+ 1;
-        print("<a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$page'>Volgende</a>")
+        $pagenext = $page + 1;
+        $pageback = $page - 1;
+
+        if($page > 1) {
+            print("<button class=\"btn btn-outline-info\"><a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$pageback'>Vorige</a></button>");
+        }
         ?>
+        </div>
+        <div class="col-sm">
+            <?php
+        if($count == 24) {
+            print("<button class=\"btn btn-outline-info\"><a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$pagenext'>Volgende</a></button>");
+        }
+
+        ?>
+        </div>
 
     </div>
 </div>
