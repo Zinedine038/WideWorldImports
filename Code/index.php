@@ -67,7 +67,7 @@ include 'Winkelmandje/php/Component.php';
 }
 
 // VERANDER HIER HET THEMA
-$thema = "sinterklaas";
+$thema = "kerst";
 
 if ($thema == "sinterklaas") {
 ?>
@@ -76,7 +76,7 @@ if ($thema == "sinterklaas") {
     </div>
 <?php } if ($thema == "kerst") { ?>
     <div class="container-fluid p-0">
-        <img src="https://www.hmcdn.eu/ImageRepository/Converted/baf/baf003f5-65d2-41a5-a159-a92124ca7b7d.jpg" class="header-img" alt="header">
+        <img src="images/HEADER-KERSTMAN.jpg" class="header-img" alt="header">
     </div>
 <?php }
 
