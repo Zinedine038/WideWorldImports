@@ -11,7 +11,7 @@
 
             if(in_array(($_POST['product_id']), $item_array_id))
             {
-                print($_SESSION['cart'][$item_array_id]['amount']);
+                print($_SESSION['cart'][$_GET['stockitemid']]['amount']);
                 echo "<script>alert('product is already added to your cart')</script>";
                 echo "<script>window.location = 'index.php</script>";
             }
