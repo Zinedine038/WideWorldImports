@@ -18,9 +18,18 @@ body {
     margin: 8px 0px 8px 0px;
 }
 
+.navbar-toggler {
+    color: #ffffff;
+    border-color: #ffffff !important;
+}
+
 .content {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.fas {
+    font-size: 25px;
 }
 
 .bg {

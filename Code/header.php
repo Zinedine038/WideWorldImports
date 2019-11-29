@@ -18,6 +18,9 @@
     <!--- BOOTSTRAP --->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
@@ -241,46 +244,108 @@
 <div class="container-fluid header-bg">
     <div class="row">
         <div class="container">
-            <nav class="navbar-expand-md d-flex flex-row align-items-center">
-                <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
-                <div class="dropdown">
-                    <button class="dropbtn" style="text-align: left;">Categorieën</button>
-                    <div class="dropdown-content"> <?php
-                        $rij1 = "StockGroupName";
-                        $rij2 = "StockGroupID";
-                        $result = DatabaseCatogorie("*","stockgroups");
-                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                            $r1 = $row["$rij1"];
-                            $r2 = $row["$rij2"];
-                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
-                        } ?>
-                    </div>
-                </div>
-                <?php include 'livesearchbalk.php'?>
 
-                <div class="ml-auto">
-                <form action="inloggen.php">
-                <input type="submit" value="Inloggen" class="btn btn-warning">
-                </form>
-                </div>
+            <nav class="navbar navbar-expand-md d-flex flex-row align-items-center">
+                <a class="navbar-brand" href="#"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars hamburger-bars"></i>
+                </button>
 
-                <div class="ml-auto">
-                    <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>
-                    Winkelmandje: (
-                    <?php
-                    if(isset($_SESSION['cart']))
-                    {
-                        $count = count($_SESSION['cart']);
-                        echo "<span id=\"cart_count\">$count</span>";
-                    }
-                    else
-                    {
-                        echo "<span id=\"cart_count\">0</span>";
-                    }
-                    ?>
-                    )
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--                    <ul class="navbar-nav mr-auto d-flex flex-row">-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categorieën
+                            </a>
+
+<!--                            <div class="dropdown">-->
+<!--                                <button class="dropbtn" style="text-align: left;">Categorieën</button>-->
+                                <div class="dropdown-content">
+                                    <?php
+                                        $rij1 = "StockGroupName";
+                                        $rij2 = "StockGroupID";
+                                        $result = DatabaseCatogorie("*","stockgroups");
+                                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                            $r1 = $row["$rij1"];
+                                            $r2 = $row["$rij2"];
+                                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+                                        }
+                                    ?>
+                                </div>
+<!--                            </div>-->
+<!--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                                <a class="dropdown-item" href="#">Action</a>-->
+<!--                                <a class="dropdown-item" href="#">Another action</a>-->
+<!--                                <div class="dropdown-divider"></div>-->
+<!--                                <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                            </div>-->
+                        </li>
+                        <?php include 'livesearchbalk.php'?>
+<!--                        <li class="nav-item ml-md-auto">-->
+                            <div class="ml-md-auto">
+                                <a href="cart.php">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Winkelmandje: (
+                                    <?php
+                                    if(isset($_SESSION['cart'])) {
+                                        $count = count($_SESSION['cart']);
+                                        echo "<span id=\"cart_count\">$count</span>";
+                                    } else {
+                                        echo "<span id=\"cart_count\">0</span>";
+                                    } ?>
+                                    )
+                                </a>
+                            </div>
+<!--                        </li>-->
+<!--                    </ul>-->
                 </div>
             </nav>
+
         </div>
     </div>
+
+
+<!--    <div class="row">-->
+<!--        <div class="container">-->
+<!--            <nav class="navbar-expand-md d-flex flex-row align-items-center">-->
+<!--                <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>-->
+<!---->
+<!--                <div class="dropdown">-->
+<!--                    <button class="dropbtn" style="text-align: left;">Categorieën</button>-->
+<!--                    <div class="dropdown-content"> --><?php
+//                        $rij1 = "StockGroupName";
+//                        $rij2 = "StockGroupID";
+//                        $result = DatabaseCatogorie("*","stockgroups");
+//                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+//                            $r1 = $row["$rij1"];
+//                            $r2 = $row["$rij2"];
+//                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+//                        } ?>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                --><?php //include 'livesearchbalk.php'?>
+<!---->
+<!--                <div class="ml-auto">-->
+<!--                <form action="inloggen.php">-->
+<!--                <input type="submit" value="Inloggen" class="btn btn-warning">-->
+<!--                </form>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="ml-auto">-->
+<!--                    <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>-->
+<!--                    Winkelmandje: (-->
+<!--                    --><?php
+//                    if(isset($_SESSION['cart'])) {
+//                        $count = count($_SESSION['cart']);
+//                        echo "<span id=\"cart_count\">$count</span>";
+//                    } else {
+//                        echo "<span id=\"cart_count\">0</span>";
+//                    } ?>
+<!--                    )-->
+<!--                </div>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
