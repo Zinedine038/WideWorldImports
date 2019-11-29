@@ -33,8 +33,6 @@
             xmlhttp.send();
         }
     </script>
-</head>
-<body>
 
 <style>
     /* Dit zal later de pagina donkerder maken als de muis over het menu gaat, zodat deze beter zichtbaar is.
@@ -46,8 +44,8 @@
     }
     */
 </style>
-<form id="zoekform" method="get" action="./zoekresultaten.php">
-    <input name='zoekterm' onkeyup="showResult(this.value)" type="text" class="zoekbalk">
+<form id="zoekform" class="form-inline my-2 my-md-0" method="get" action="./zoekresultaten.php">
+    <input name='zoekterm' onkeyup="showResult(this.value)" type="text" class="zoekbalk form-control mr-sm-2">
 <!--style='width: 40%; border: initial; !important;'-->
         <div id="livesearch"></div>
     <input type="submit" name="submit" value="Submit" style="background: transparent; border: unset; font-size: 0;">
