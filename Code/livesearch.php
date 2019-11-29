@@ -6,7 +6,7 @@ $q = $_GET["q"];
 
 //Zoekt alleen als de lengte langer is dan 0
 if (strlen($q) > 0) {
-    $resultaat = search($q,1);
+    $resultaat = search($q,1,24);
     if (isset($_GET["stockitemid"])) {
         $productnr = intval($_GET["stockitemid"]);
     }

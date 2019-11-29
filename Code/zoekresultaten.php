@@ -7,6 +7,10 @@ if(isset($_GET["page"])){
     $page = $_GET["page"];
 }
 $zoekterm=$_GET["zoekterm"];
+$resultsshown = 16;
+if(isset($_GET["resultsshown"])){
+    $resultsshown=$_GET["resultsshown"];
+}
 if(isset($_POST['add']))
 {
     //print_r($_POST['product_id']);
@@ -49,20 +53,20 @@ require_once("winkelmandje/php/component.php");
 <div class="container">
     <div class="row">
         <form method="get">
-           Resultaten per pagina: <select name='resultsshown' onchange='if(this.value != 0) { this.form.submit(); }'>
-                <option value=16>16</option>
-                <option value=24>24</option>
-                <option value=36>26</option>
+           Resultaten per pagina: <select name='resultsshown' onchange="this.form.submit()"'>
+                <option value=16 <?php if($resultsshown == 16){print("selected");} ?>>16</option>
+                <option value=24 <?php if($resultsshown == 24){print("selected");} ?>>24</option>
+                <option value=36 <?php if($resultsshown == 36){print("selected");} ?>>36</option>
             </select>
             <input type="hidden" name="zoekterm" value="<?php print($zoekterm); ?>">
-            <input type="hidden" name="submit" value="Submit">
             <input type="hidden" name="page" value="<?php print($page); ?>">
+
         </form>
     </div>
     <div class="row text-center py-5">
         <?php
 
-        $result = search($zoekterm,$page);
+        $result = search($zoekterm,$page, $resultsshown);
         foreach ($result AS $id) {
             $naam = sql("stockitems", "stockitemname", $id);
             $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
@@ -92,7 +96,7 @@ require_once("winkelmandje/php/component.php");
         </div>
         <div class="col-sm">
             <?php
-        if($count == 24) {
+        if($count == $resultsshown) {
             print("<button id='volgendeknop' class=\"btn btn-outline-info\"><a href='zoekresultaten.php?zoekterm=$zoekterm&submit=Submit&page=$pagenext'>Volgende</a></button>");
         }
 
