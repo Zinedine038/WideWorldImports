@@ -20,6 +20,9 @@
             }
         }
     }
+    print_r($_SESSION['cart']);
+    print($_SESSION['cart'][0]['amount']);
+
 ?>
 <!doctype html>
 <html lang="en">
