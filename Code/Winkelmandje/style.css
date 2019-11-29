@@ -26,3 +26,8 @@ img{
 .price-details h6{
     padding: 3% 2%;
 }
+
+.plaatjescomponent {
+    height: 140px;
+    width: auto;
+}

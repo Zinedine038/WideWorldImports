@@ -10,7 +10,7 @@ function component($productname, $productprice, $productimg, $productDescription
         $fotoPath = sqlfoto($productID)[0];
     }
     $element = "            
-            <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+            <div class=\"col-md-3 col-sm-6 my-3\">
                 <form action=$currentLink method=\"post\">
                     <div class=\"card shadow\">
                         <div>
