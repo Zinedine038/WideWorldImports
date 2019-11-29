@@ -27,7 +27,7 @@ function sql($tabel, $veld, $productnr)
 
 
 ///Neemt een zoekterm en geeft product ID's terug
-function search($zoekterm)
+function search($zoekterm, $page)
 {
     $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
     $databasename = "wideworldimporters";
@@ -37,6 +37,12 @@ function search($zoekterm)
 
     ///maakt lege array aan waar zo de product IDs in komen
     $IDs = array();
+    $resultsperpage = 24;
+    $limitmax = $resultsperpage * $page ;
+    $limitmin = $resultsperpage * ($page-1);
+
+
+
 
     $zoektermem = explode(" ", $zoekterm);
     $aantalzoektermen = count($zoektermem);
@@ -44,10 +50,10 @@ function search($zoekterm)
     foreach ($zoektermem as $term) {
         ///SQL maakt statement, voert het uit en zet het in $result
         $likestring = "%" . $term . "%";
-        $sql = "SELECT StockItemID FROM stockitems WHERE SearchDetails LIKE ? OR Tags LIKE ? OR StockItemID LIKE ?";
+        $sql = "SELECT StockItemID FROM stockitems WHERE SearchDetails LIKE ? OR Tags LIKE ? OR StockItemID LIKE ? LIMIT ?, ?";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $statement = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($statement, "sss", $likestring, $likestring, $likestring);
+        mysqli_stmt_bind_param($statement, "sssii", $likestring, $likestring, $likestring, $limitmin, $limitmax);
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement);
