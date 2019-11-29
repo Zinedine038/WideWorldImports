@@ -9,10 +9,12 @@
 include "header.php";
 ?>
 
+<div class="container">
 <h2>Account aanmaken</h2>
 
 <form action="inloggen.php" method="post">
-    <div class="row" style="width: 100%">
+    <div class="row" style="width: 90%; padding: 5%">
+
         <div class="col-md-6">
 
             <div class="form-group">
@@ -52,26 +54,27 @@ include "header.php";
 
             <div class="col-md-6">
             Straatnaam
-            <div class="form-group2">
+            <div class="form-group">
                 <input type="text" name="straatnaam" placeholder="Typ hier je Straatnaam" class="form-control input-lg">
             </div>
 
             Huisnummer
-            <div class="form-group2">
+            <div class="form-group">
                 <input type="text" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg">
             </div>
 
             Postcode
-            <div class="form-group2">
+            <div class="form-group">
                 <input type="text" name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg">
             </div>
-            <div class="form-group2">
+            <div class="form-group">
             Wil je platgegooit worden met spam?
             <input type="checkbox" name="Spam">
             </div>
         </div>
     </div>
 </form>
+</div>
 
 
 
