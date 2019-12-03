@@ -46,30 +46,7 @@ include_once '../config.php';
     mysqli_stmt_bind_param($statement, "iii", $StockitemstockgroupID);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
-    mysqli_stmt_close($statement);
-    if (isset($_POST['add'])) {
-        //print_r($_POST['product_id']);
-        if (isset($_SESSION['cart'])) {
-            $item_array_id = array_column($_SESSION['cart'], "product_id");
-
-            if (in_array(($_POST['product_id']), $item_array_id)) {
-                echo "<script>alert('product is already added to your cart')</script>";
-                echo "<script>window.location = 'zoekresultaten.php</script>";
-            } else {
-                $count = count($_SESSION['cart']);
-                $item_array = array('product_id' => $_POST['product_id'],
-                    'amount' => 1);
-                $_SESSION['cart'][$count] = $item_array;
-            }
-        } else {
-            $item_array = array('product_id' => $_POST['product_id'],
-                'amount' => 1);
-            //Create new session variable
-            $_SESSION['cart'][0] = $item_array;
-        }
-    } ?>
-
-
+    mysqli_stmt_close($statement); ?>
     <div class="container">
         <font style="padding-top: 1%; display: inline-block" size="6"><?php
             $resie = categorieNaam($StockitemstockgroupID);
