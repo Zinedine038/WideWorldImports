@@ -255,25 +255,40 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <!--                    <ul class="navbar-nav mr-auto d-flex flex-row">-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Categorieën
-                            </a>
+
+                    <div class="dropdown">
+                        <button class="dropbtn" style="text-align: left;">Categorieën</button>
+                        <div class="dropdown-content"> <?php
+                            $rij1 = "StockGroupName";
+                            $rij2 = "StockGroupID";
+                            $result = DatabaseCatogorie("*","stockgroups");
+                            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                $r1 = $row["$rij1"];
+                                $r2 = $row["$rij2"];
+                                print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+                            } ?>
+                        </div>
+                    </div>
+
+<!--                        <li class="nav-item dropdown">-->
+<!--                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                Categorieën-->
+<!--                            </a>-->
 
 <!--                            <div class="dropdown">-->
 <!--                                <button class="dropbtn" style="text-align: left;">Categorieën</button>-->
-                                <div class="dropdown-content">
-                                    <?php
-                                        $rij1 = "StockGroupName";
-                                        $rij2 = "StockGroupID";
-                                        $result = DatabaseCatogorie("*","stockgroups");
-                                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                                            $r1 = $row["$rij1"];
-                                            $r2 = $row["$rij2"];
-                                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
-                                        }
-                                    ?>
-                                </div>
+<!--                                <div class="dropdown-content">-->
+<!--                                    --><?php
+//                                        $rij1 = "StockGroupName";
+//                                        $rij2 = "StockGroupID";
+//                                        $result = DatabaseCatogorie("*","stockgroups");
+//                                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+//                                            $r1 = $row["$rij1"];
+//                                            $r2 = $row["$rij2"];
+//                                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+//                                        }
+//                                    ?>
+<!--                                </div>-->
 <!--                            </div>-->
 <!--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
 <!--                                <a class="dropdown-item" href="#">Action</a>-->
@@ -281,11 +296,18 @@
 <!--                                <div class="dropdown-divider"></div>-->
 <!--                                <a class="dropdown-item" href="#">Something else here</a>-->
 <!--                            </div>-->
-                        </li>
+<!--                        </li>-->
                         <?php include 'livesearchbalk.php'?>
+
+                        <div class="ml-auto">
+<!--                            <form action="inloggen.php">-->
+<!--                                <input type="submit" value="Inloggen"><i class="fas fa-running"></i><i class="fab fa-accessible-icon"></i>-->
+<!--                            </form>-->
+                            <a class ="wit" href="inloggen.php"><i class="fas fa-running"></i><i class="fab fa-accessible-icon"></i></a>
+                        </div>
 <!--                        <li class="nav-item ml-md-auto">-->
                             <div class="ml-md-auto">
-                                <a href="cart.php">
+                                <a class="wit" href="cart.php">
                                     <i class="fas fa-shopping-cart"></i>
                                     Winkelmandje: (
                                     <?php
@@ -307,45 +329,45 @@
     </div>
 
 
-<!--    <div class="row">-->
-<!--        <div class="container">-->
-<!--            <nav class="navbar-expand-md d-flex flex-row align-items-center">-->
-<!--                <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>-->
-<!---->
-<!--                <div class="dropdown">-->
-<!--                    <button class="dropbtn" style="text-align: left;">Categorieën</button>-->
-<!--                    <div class="dropdown-content"> --><?php
-//                        $rij1 = "StockGroupName";
-//                        $rij2 = "StockGroupID";
-//                        $result = DatabaseCatogorie("*","stockgroups");
-//                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-//                            $r1 = $row["$rij1"];
-//                            $r2 = $row["$rij2"];
-//                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
-//                        } ?>
-<!--                    </div>-->
-<!--                </div>-->
-<!--                --><?php //include 'livesearchbalk.php'?>
-<!---->
-<!--                <div class="ml-auto">-->
-<!--                <form action="inloggen.php">-->
-<!--                <input type="submit" value="Inloggen" class="btn btn-warning">-->
-<!--                </form>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="ml-auto">-->
-<!--                    <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>-->
-<!--                    Winkelmandje: (-->
-<!--                    --><?php
-//                    if(isset($_SESSION['cart'])) {
-//                        $count = count($_SESSION['cart']);
-//                        echo "<span id=\"cart_count\">$count</span>";
-//                    } else {
-//                        echo "<span id=\"cart_count\">0</span>";
-//                    } ?>
-<!--                    )-->
-<!--                </div>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="row">
+        <div class="container">
+            <nav class="navbar-expand-md d-flex flex-row align-items-center">
+                <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
+
+                <div class="dropdown">
+                    <button class="dropbtn" style="text-align: left;">Categorieën</button>
+                    <div class="dropdown-content"> <?php
+                        $rij1 = "StockGroupName";
+                        $rij2 = "StockGroupID";
+                        $result = DatabaseCatogorie("*","stockgroups");
+                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                            $r1 = $row["$rij1"];
+                            $r2 = $row["$rij2"];
+                            print("<a href=http://localhost/wideworldimports/code/Index.php?stockitemgroupid=$r2>$r2. $r1</a><br>");
+                        } ?>
+                    </div>
+                </div>
+                <?php include 'livesearchbalk.php'?>
+
+                <div class="ml-auto">
+                <form action="inloggen.php">
+                <input type="submit" value="Inloggen" class="btn btn-warning">
+                </form>
+                </div>
+
+                <div class="ml-auto">
+                    <a class="navbar-brand" href="cart.php"><img src="winkelmand.png" class="logo" alt="logo" /></a>
+                    Winkelmandje: (
+                    <?php
+                    if(isset($_SESSION['cart'])) {
+                        $count = count($_SESSION['cart']);
+                        echo "<span id=\"cart_count\">$count</span>";
+                    } else {
+                        echo "<span id=\"cart_count\">0</span>";
+                    } ?>
+                    )
+                </div>
+            </nav>
+        </div>
+    </div>
 </div>
