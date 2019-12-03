@@ -253,11 +253,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ml-md-auto order-last">
-                        <div class="order-1">
+                        <div class="order-1 p-2">
                             <a class="wit pr-3" href="inloggen.php"><i class="fas fa-running"></i><i
                                         class="fab fa-accessible-icon"></i></a>
                         </div>
-                        <div class="order-2">
+                        <div class="order-2 p-2">
                             <a class="wit" href="cart.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Winkelmandje: (
