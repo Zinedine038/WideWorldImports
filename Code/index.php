@@ -32,12 +32,18 @@ include_once '../config.php';
     $port = getPort();
     $user = getUser();
     $pass = getPass();
+
+    $resultsperpage = 16;
+    if(isset($_GET["resultsperpage"])){
+    $resultsperpage = $_GET["resultsperpage"]; }
+    $limitmin = $resultsperpage * ($page-1);
+
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     if (isset($_GET["stockitemgroupid"])) {
     $StockitemstockgroupID = $_GET["stockitemgroupid"];
-    $sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ?";
+    $sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ? LIMIT ?, ?";
     $statement = mysqli_prepare($connection, $sql);
-    mysqli_stmt_bind_param($statement, "i", $StockitemstockgroupID);
+    mysqli_stmt_bind_param($statement, "iii", $StockitemstockgroupID);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     mysqli_stmt_close($statement);
