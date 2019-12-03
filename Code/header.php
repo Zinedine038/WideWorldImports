@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
     <?php
-    include("functions.php");
+    include_once("functions.php");
 
     ///Haalt productnummer uit GET, standaard is 1 om te kunnen testen
     $productnr=1;
