@@ -228,10 +228,11 @@ function categorieNaam($productnr)
 }
 function MaakVerbinding()
 {
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '';
-    $databasename = "Klantenservice";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
     $connection = mysqli_connect($host, $user, $pass, $databasename);
     return $connection;
 }
