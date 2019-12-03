@@ -29,7 +29,7 @@ function sql($tabel, $veld, $productnr)
 
 
 ///Neemt een zoekterm en geeft product ID's terug
-function search($zoekterm, $page)
+function search($zoekterm, $page, $resultsperpage)
 {
     $host = getHost();
     $databasename = getDatabasename();
@@ -39,7 +39,6 @@ function search($zoekterm, $page)
 
     ///maakt lege array aan waar zo de product IDs in komen
     $IDs = array();
-    $resultsperpage = 24;
     $limitmin = $resultsperpage * ($page-1);
 
 
