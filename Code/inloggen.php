@@ -1,13 +1,35 @@
+<!--
+MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
+-->
 
-    <?php
+<?php
     include "header.php";
+    $postcode = "";
+    $huisnummer="";
+    $plaats="";
+    /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
+    if (isset($_GET["submit"])) {
+        $postcode =  strtoupper(str_replace(" ","",$_GET["postcode"]));
+        $huisnummer = trim($_GET["huisnummer"]);
+        $plaats = trim($_GET["gemeentenaam"]);
+    }
+
+    if(isset($_GET["postcode"]) AND isset($_GET["huisnummer"])) {
+        $resultaten = zoekadres($postcode,$huisnummer);
+/// Controleerd of er resultaten gevonden zijn
+        if($resultaten!=0) {
+            $straat = $resultaten["straatnaam"];
+            $plaats = $resultaten["gemeentenaam"];
+        }
+        else{
+            print("Deze deze combinatie is niet gevonden!");
+        }}
     ?>
-
-
     <div class="container">
     <h2>Account aanmaken</h2>
 
     <form action="inloggen.php" method="post">
+        <form method="get" action="productpage.php">
         <div class="row" style="width: 90%; padding: 5%">
 
             <div class="col-md-6">
@@ -17,7 +39,9 @@
                     Voornaam
                     <input type="text" name="voornaam" placeholder="Typ hier je voornaam" class="form-control input-lg">
                 </div>
-
+                    <?php
+                    print ($_GET["postcode"]);
+                    ?>
                     <div class="form-group">
                         Tussenvoegsel
                         <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel"
@@ -50,18 +74,31 @@
                 <div class="col-md-6">
                 Straatnaam
                 <div class="form-group">
-                    <input type="text" name="straatnaam" placeholder="Typ hier je Straatnaam" class="form-control input-lg">
+                    <input type="text" value="<?php print $plaats ?>" name="straatnaam" placeholder="Typ hier je Straatnaam" class="form-control input-lg">
                 </div>
+
+
 
                 Huisnummer
                 <div class="form-group">
-                    <input type="text" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg">
+                    <input type="number" value="<?php print $huisnummer ?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg">
                 </div>
+
 
                 Postcode
                 <div class="form-group">
-                    <input type="text" name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg">
+                    <input type="text" value="<?php print $postcode ?>"
+                           name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg">
                 </div>
+                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary"><br>
+
+
+
+                    Plaats
+                    <div class="form-group">
+                        <input type="text" value="<?php if(isset($plaats)) {print($plaats);}?>"
+                               name="gemeentenaam" placeholder="Typ hier je Plaats" class="form-control input-lg">
+                    </div>
 
 
                 <div class="form-group checkbox custom-control custom-checkbox">
@@ -71,19 +108,15 @@
                         Wil je platgegooit worden met spam?
                     </label>
                 </div>
-
-                <div>
-                    <input type="submit" name="verzenden" class="btn btn-primary">
-                </div>
-
-
-
-
-
-
+                    <div>
+                        <input type="submit" name="verzenden" class="btn btn-primary">
+                    </div>
+        </form>
+    </form>
             </div>
         </div>
-    </form>
+
+
     </div>
 
 
