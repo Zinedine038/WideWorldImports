@@ -50,7 +50,7 @@ function component($productname, $productprice, $productimg, $productDescription
 
 function cartElement($productname, $productprice, $productimg, $productID)
 {
-    include_once "functions.php";
+    include_once "../../functions.php";
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
     $foto = $productimg;
     if(sqlfoto($productID)[0]!=null)

@@ -1,13 +1,15 @@
 <?php
 
+include "../config.php";
+
 ///Geeft de waarde van 1 veld terug uit de database aan de hand van het productnummer
 function sql($tabel, $veld, $productnr)
 {
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT " . $veld . " FROM " . $tabel . " WHERE stockitemid = ?";
@@ -29,11 +31,11 @@ function sql($tabel, $veld, $productnr)
 ///Neemt een zoekterm en geeft product ID's terug
 function search($zoekterm, $page)
 {
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
     ///maakt lege array aan waar zo de product IDs in komen
     $IDs = array();
@@ -100,11 +102,11 @@ function zoekadres($postcode, $huisnummer){
 function sqlfoto($productnr)
 {
     ///Database connectie info
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
 
     ///SQL maakt statement, voert het uit en zet het in $result
@@ -142,11 +144,11 @@ function sqlfoto($productnr)
 function sqltemp($productnr)
 {
     ///Database connectie info
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT temperature FROM coldroomtemperatures WHERE coldroomsensornumber = (SELECT ischillerstock FROM stockitems WHERE stockitemid = ?)";
@@ -167,11 +169,11 @@ function sqltemp($productnr)
 function DatabaseCatogorie($kolom, $tabel)
 {
 ///Database connectie info
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 ///SQL maakt statement, voert het uit en zet het in $result
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
 $sql = "SELECT $kolom FROM $tabel";
@@ -187,11 +189,11 @@ return ($result);
 
 
 function gerelateerdeProducten ($stockid){
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
     $sql = "SELECT StockitemID FROM stockitemstockgroups WHERE StockGroupID IN
 (SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ? AND StockGroupID != 1)
 ORDER BY rand() LIMIT 3";
@@ -207,11 +209,11 @@ ORDER BY rand() LIMIT 3";
 
 function categorieNaam($productnr)
 {
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019";
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT stockgroupname FROM stockgroups where stockgroupid = ?";
@@ -225,6 +227,31 @@ function categorieNaam($productnr)
     mysqli_stmt_close($statement);
     return ($result);
 }
+
+class CreateDb
+{
+    public function __construct($msg)
+    {
+        print($msg);
+    }
+
+    public function getData()
+    {
+        $host = getHost();
+        $databasename = getDatabasename();
+        $port = getPort();
+        $user = getUser();
+        $pass = getPass();
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails FROM stockitems";
+        $result = mysqli_query($connection,$sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            return $result;
+        }
+    }
+}
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once("./Winkelmandje/php/databasefunctions.php");
+    require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");
     $db = new CreateDb("");
 

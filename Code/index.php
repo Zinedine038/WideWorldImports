@@ -2,12 +2,13 @@
 session_start();
 include 'header.php';
 include 'Winkelmandje/php/Component.php';
+include_once '../config.php';
 
-    $host = "worldwide.cok6cy6n9dfy.eu-central-1.rds.amazonaws.com";
-    $databasename = "wideworldimporters";
-    $port = 3306;
-    $user = "ICTM1n3";
-    $pass = "Windesheim2019"; //eigen password invullen
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     if (isset($_GET["stockitemgroupid"])) {
     $StockitemstockgroupID = $_GET["stockitemgroupid"];
