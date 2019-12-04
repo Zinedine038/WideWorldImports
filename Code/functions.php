@@ -242,17 +242,17 @@ function Sluitverbinding($connection)
 {
     mysqli_close($connection);
 }
-function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex ,$PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
+function VoegKlantToe($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex ,$PostalCode, $City, $Email, $Password, $NewsLetter)
 {
     $Password = password_hash($Password, PASSWORD_DEFAULT);
-    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber,Annex ,PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, 'ssssisssssbs', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
+    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber, Annex , PostalCode, City, Email, Password, NewsLetter) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($statement, 'ssssisssssb', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter);
     mysqli_stmt_execute($statement);
     return mysqli_stmt_affected_rows($statement) == 1;
 }
 function KlantGegevensToevoegen($gegevens) {
     $connection = MaakVerbinding();
-    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"], $gegevens["DateCreated"]) == 1)
+    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"]) == 1)
         $gegevens["melding"] = "De klant is toegevoegd";
     else $gegevens["melding"] = "Het toevoegen is mislukt";
     SluitVerbinding($connection);
