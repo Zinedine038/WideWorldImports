@@ -242,11 +242,11 @@ function Sluitverbinding($connection)
 {
     mysqli_close($connection);
 }
-function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
+function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex ,$PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
 {
     $Password = password_hash($Password, PASSWORD_DEFAULT);
-    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber, PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, 'sssssssssbs', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
+    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber,Annex ,PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($statement, 'ssssisssssbs', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
     mysqli_stmt_execute($statement);
     return mysqli_stmt_affected_rows($statement) == 1;
 }
