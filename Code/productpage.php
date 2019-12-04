@@ -39,11 +39,6 @@
                 'name' => $name);
             $_SESSION['cart'][0] = $item_array;
         }
-    } else {
-        $item_array = array('product_id' => $_POST['product_id'],
-            'amount' => 1);
-        //Create new session variable
-        $_SESSION['cart'][0] = $item_array;
     }
 
 include 'header.php';

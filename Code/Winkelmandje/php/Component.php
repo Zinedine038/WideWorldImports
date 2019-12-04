@@ -49,7 +49,7 @@ function component($productname, $productprice, $productimg, $productDescription
 }
 
 
-function cartElement($productname, $productprice, $productimg, $productID)
+function cartElement($productname, $productprice, $productimg, $productID, $amount)
 {
     include_once 'functions.php';
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
@@ -77,9 +77,9 @@ function cartElement($productname, $productprice, $productimg, $productID)
                         </div>
                         <div class=\"col md-3 py-5\">
                         <div>
-                            <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
-                            <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
-                            <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
+                            <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"removeOne\"><i class=\"fas fa-minus\"></i></button>
+                            <input type=\"text\" value=$amount class=\"form-control w-25 d-inline\">
+                            <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"addOne\"><i class=\"fas fa-plus\"></i></button>
                         </div>
                         </div>
                     </div>

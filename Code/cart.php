@@ -6,6 +6,7 @@
     $db = new CreateDb("");
     $_SESSION['cart'] = array_values($_SESSION['cart']);
     print(getTotalItems($_SESSION['cart']));
+
     if(isset($_POST['remove']))
     {
         if($_GET['action']=='remove')
@@ -21,6 +22,29 @@
             }
         }
     }
+    if(isset($_POST['addOne']))
+    {
+        foreach($_SESSION['cart'] as $key => $value)
+        {
+            if($value["product_id"] == $_GET['id'])
+            {
+                $_SESSION['cart'][$key]['amount']+=1;
+            }
+        }
+        echo "addedOne";
+    }
+    if(isset($_POST['removeOne']))
+    {
+        foreach($_SESSION['cart'] as $key => $value)
+        {
+            if($value["product_id"] == $_GET['id'])
+            {
+                $_SESSION['cart'][$key]['amount']-=1;
+            }
+        }
+        echo "removeOne";
+    }
+
     print_r($_SESSION['cart']);
     print($_SESSION['cart'][0]['amount']);
     print($_SESSION['cart'][0]['product']);
@@ -54,8 +78,7 @@
             <hr>
             <?php
 
-
-            $total = 0;
+            $total=0;
             if(isset($_SESSION['cart']))
             {
                 $product_id=array_column($_SESSION['cart'],'product_id');
@@ -66,8 +89,9 @@
                     {
                         if($row['StockItemID']==$id)
                         {
-                            cartElement($row["StockItemName"],$row["RecommendedRetailPrice"],"./upload/product1.png",$row["StockItemID"]);
-                            $total+=(int)$row["RecommendedRetailPrice"];
+                            $amountOfProduct = $_SESSION['cart'][getparent($_SESSION['cart'],$row["StockItemName"])]['amount'];
+                            cartElement($row["StockItemName"],$row["RecommendedRetailPrice"],"./upload/product1.png",$row["StockItemID"],$amountOfProduct);
+                            $total+=(int)$row["RecommendedRetailPrice"]*$amountOfProduct;
                         }
                     }
                 }
@@ -87,7 +111,7 @@
                         <?php
                         if(isset($_SESSION['cart']))
                         {
-                            $count=count($_SESSION['cart']);
+                            $count=getTotalItems($_SESSION['cart']);
                             if($count==1)
                             {
                                 echo "<h6>Prijs ($count artikel)</h6>";
