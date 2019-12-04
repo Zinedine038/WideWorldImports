@@ -244,31 +244,33 @@
 <div class="container-fluid header-bg">
     <div class="row">
         <div class="container">
-            <nav class="navbar navbar-expand-md d-flex flex-row align-items-center">
-                <a class="navbar-brand" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
+            <nav class="navbar navbar-expand-lg d-flex flex-row align-items-center">
+                <a class="navbar-brand py-0" href="index.php"><img src="logo-wwi.png" class="logo" alt="logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars hamburger-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="ml-md-auto order-last">
-                        <div class="order-1 p-2">
-                            <a class="wit pr-3" href="inloggen.php"><i class="fas fa-running"></i><i
-                                        class="fab fa-accessible-icon"></i></a>
+                    <div class="ml-md-auto order-last d-flex">
+                        <div class="order-1 py-2">
+                            <a class="wit pr-3" href="inloggen.php">
+                                <i class="fas fa-running order-first"></i>
+                                <i class="fab fa-accessible-icon order-last"></i>
+                            </a>
                         </div>
-                        <div class="order-2 p-2">
+                        <div class="order-2 py-2">
                             <a class="wit" href="cart.php">
                                 <i class="fas fa-shopping-cart"></i>
-                                Winkelmandje: (
-                                <?php
-                                if (isset($_SESSION['cart'])) {
-                                    $count = count($_SESSION['cart']);
-                                    echo "<span id=\"cart_count\">$count</span>";
-                                } else {
-                                    echo "<span id=\"cart_count\">0</span>";
-                                } ?>
-                                )
+                                <span class='badge badge-warning' id='lblCartCount'>
+                                    <?php
+                                    if (isset($_SESSION['cart'])) {
+                                        $count = count($_SESSION['cart']);
+                                        echo "<span id=\"cart_count\">$count</span>";
+                                    } else {
+                                        echo "<span id=\"cart_count\">0</span>";
+                                    } ?>
+                                </span>
                             </a>
                         </div>
                     </div>
