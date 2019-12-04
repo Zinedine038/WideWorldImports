@@ -227,6 +227,12 @@ function categorieNaam($productnr)
     return ($result);
 }
 
+function getparent($array, $needle) {
+    foreach($array as $key => $value) {
+        if(in_array($needle, $value)) return $key;
+    }
+}
+
 class CreateDb
 {
     public function __construct($msg)

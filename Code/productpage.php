@@ -2,6 +2,10 @@
     //Sessie starten voor karretje
     session_start();
     //Kar behaviour
+    include_once "functions.php";
+
+
+
     if(isset($_POST['add']))
     {
         //print_r($_POST['product_id']);
@@ -11,23 +15,28 @@
 
             if(in_array(($_POST['product_id']), $item_array_id))
             {
-                print($_SESSION['cart'][$_GET['stockitemid']]['amount']);
+                $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+                $keyIndex = getparent($_SESSION['cart'],$name);
+                $_SESSION['cart'][$keyIndex]['amount']+=1;
                 echo "<script>alert('product is already added to your cart')</script>";
                 echo "<script>window.location = 'index.php</script>";
             }
             else
             {
                 $count=count($_SESSION['cart']);
+                $name = sql("stockitems","stockitemname",$_POST["product_id"]);
                 $item_array=array('product_id' => $_POST['product_id'],
-                                  'amount' => 1);
+                                  'amount' => 1,
+                                  'name' => $name  );
                 $_SESSION['cart'][$count]=$item_array;
             }
         }
         else
         {
+            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
             $item_array=array('product_id' => $_POST['product_id'],
-                              'amount' => 1);
-            //Create new session variable
+                'amount' => 1,
+                'name' => $name);
             $_SESSION['cart'][0] = $item_array;
         }
     }
