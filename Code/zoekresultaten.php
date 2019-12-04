@@ -16,8 +16,8 @@ if(isset($_POST['add']))
     //print_r($_POST['product_id']);
     if(isset($_SESSION['cart']))
     {
+        $_SESSION['cart'] = array_values($_SESSION['cart']);
         $item_array_id = array_column($_SESSION['cart'],"product_id");
-
         if(in_array(($_POST['product_id']), $item_array_id))
         {
             echo "<script>alert('product is already added to your cart')</script>";

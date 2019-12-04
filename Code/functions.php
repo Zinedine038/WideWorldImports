@@ -242,20 +242,37 @@ function Sluitverbinding($connection)
 {
     mysqli_close($connection);
 }
-function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
+function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex ,$PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
 {
-    $statement = mysqli_prepare($connection, "INSERT INTO user (UserID, FirstName, LastName, Infix, Streetname, HouseNumber, PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, 'ssssssssssbs', $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
+    $Password = password_hash($Password, PASSWORD_DEFAULT);
+    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber,Annex ,PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($statement, 'ssssisssssbs', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
     mysqli_stmt_execute($statement);
     return mysqli_stmt_affected_rows($statement) == 1;
 }
 function KlantGegevensToevoegen($gegevens) {
     $connection = MaakVerbinding();
-    if (VoegKlantToe($connection, $gegevens["UserID"], $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Infix"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"], $gegevens["DateCreated"]) == 1)
+    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"], $gegevens["DateCreated"]) == 1)
         $gegevens["melding"] = "De klant is toegevoegd";
     else $gegevens["melding"] = "Het toevoegen is mislukt";
     SluitVerbinding($connection);
     return $gegevens;
+}
+
+function getparent($array, $needle) {
+    foreach($array as $key => $value) {
+        if(in_array($needle, $value)) return $key;
+    }
+}
+
+function getTotalItems($array)
+{
+    $total = 0;
+    for($i = 0; $i<count($array); $i++)
+    {
+        $total+=$array[$i]['amount'];
+    }
+    return $total;
 }
 
 class CreateDb

@@ -39,6 +39,7 @@ function component($productname, $productprice, $productimg, $productDescription
                             </h5>
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Voeg toe aan Winkelmandje<i class=\"fas fa-shopping-cart\"></i></button>
                             <input type='hidden' name='product_id' value='$productID'>
+                            <input type='hidden' name='product_name' value='$productname'>
                         </div>
                     </div>
                 </form>
@@ -50,7 +51,7 @@ function component($productname, $productprice, $productimg, $productDescription
 
 function cartElement($productname, $productprice, $productimg, $productID)
 {
-    include_once "../../functions.php";
+    include_once 'functions.php';
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
     $foto = $productimg;
     if(sqlfoto($productID)[0]!=null)

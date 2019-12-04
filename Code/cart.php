@@ -4,7 +4,8 @@
     require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");
     $db = new CreateDb("");
-
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
+    print(getTotalItems($_SESSION['cart']));
     if(isset($_POST['remove']))
     {
         if($_GET['action']=='remove')
@@ -22,7 +23,7 @@
     }
     print_r($_SESSION['cart']);
     print($_SESSION['cart'][0]['amount']);
-
+    print($_SESSION['cart'][0]['product']);
 ?>
 <!doctype html>
 <html lang="en">

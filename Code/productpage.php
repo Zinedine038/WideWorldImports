@@ -1,21 +1,43 @@
 <?php
-//Sessie starten voor karretje
-session_start();
-//Kar behaviour
-if (isset($_POST['add'])) {
-    //print_r($_POST['product_id']);
-    if (isset($_SESSION['cart'])) {
-        $item_array_id = array_column($_SESSION['cart'], "product_id");
+    //Sessie starten voor karretje
+    session_start();
+    //Kar behaviour
+    include_once "functions.php";
 
-        if (in_array(($_POST['product_id']), $item_array_id)) {
-            print($_SESSION['cart'][$_GET['stockitemid']]['amount']);
-            echo "<script>alert('product is already added to your cart')</script>";
-            echo "<script>window.location = 'index.php</script>";
-        } else {
-            $count = count($_SESSION['cart']);
-            $item_array = array('product_id' => $_POST['product_id'],
-                'amount' => 1);
-            $_SESSION['cart'][$count] = $item_array;
+
+
+    if(isset($_POST['add']))
+    {
+        //print_r($_POST['product_id']);
+        if(isset($_SESSION['cart']))
+        {
+            $item_array_id = array_column($_SESSION['cart'],"product_id");
+
+            if(in_array(($_POST['product_id']), $item_array_id))
+            {
+                $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+                $keyIndex = getparent($_SESSION['cart'],$name);
+                $_SESSION['cart'][$keyIndex]['amount']+=1;
+                echo "<script>alert('product is already added to your cart')</script>";
+                echo "<script>window.location = 'index.php</script>";
+            }
+            else
+            {
+                $count=count($_SESSION['cart']);
+                $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+                $item_array=array('product_id' => $_POST['product_id'],
+                                  'amount' => 1,
+                                  'name' => $name  );
+                $_SESSION['cart'][$count]=$item_array;
+            }
+        }
+        else
+        {
+            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+            $item_array=array('product_id' => $_POST['product_id'],
+                'amount' => 1,
+                'name' => $name);
+            $_SESSION['cart'][0] = $item_array;
         }
     } else {
         $item_array = array('product_id' => $_POST['product_id'],
@@ -23,7 +45,7 @@ if (isset($_POST['add'])) {
         //Create new session variable
         $_SESSION['cart'][0] = $item_array;
     }
-}
+
 include 'header.php';
 ?>
 
