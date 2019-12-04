@@ -107,6 +107,7 @@ function sqlfoto($productnr)
     $user = getUser();
     $pass = getPass();
 
+    $foto = array();
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockitemstockimages WHERE StockItemID = ?)";
@@ -119,7 +120,8 @@ function sqlfoto($productnr)
 
     ///Haalt de foto op en stuurt hem terug
 
-    $foto = mysqli_fetch_array($result);
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        array_push($foto,$row["imagepath"]);}
 
     if (!isset($foto["0"])) {
 
@@ -225,6 +227,36 @@ function categorieNaam($productnr)
     $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_stmt_close($statement);
     return ($result);
+}
+function MaakVerbinding()
+{
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
+    $connection = mysqli_connect($host, $user, $pass, $databasename);
+    return $connection;
+}
+function Sluitverbinding($connection)
+{
+    mysqli_close($connection);
+}
+function VoegKlantToe($connection, $UserID, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated)
+{
+    $Password = password_hash($Password, PASSWORD_DEFAULT);
+    $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber, PostalCode, City, Email, Password, NewsLetter, DateCreated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($statement, 'sssssssssbs', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $PostalCode, $City, $Email, $Password, $NewsLetter, $DateCreated);
+    mysqli_stmt_execute($statement);
+    return mysqli_stmt_affected_rows($statement) == 1;
+}
+function KlantGegevensToevoegen($gegevens) {
+    $connection = MaakVerbinding();
+    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"], $gegevens["DateCreated"]) == 1)
+        $gegevens["melding"] = "De klant is toegevoegd";
+    else $gegevens["melding"] = "Het toevoegen is mislukt";
+    SluitVerbinding($connection);
+    return $gegevens;
 }
 
 function getparent($array, $needle) {
