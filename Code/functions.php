@@ -107,6 +107,7 @@ function sqlfoto($productnr)
     $user = getUser();
     $pass = getPass();
 
+    $foto = array();
 
     ///SQL maakt statement, voert het uit en zet het in $result
     $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockitemstockimages WHERE StockItemID = ?)";
@@ -119,7 +120,8 @@ function sqlfoto($productnr)
 
     ///Haalt de foto op en stuurt hem terug
 
-    $foto = mysqli_fetch_array($result);
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        array_push($foto,$row["imagepath"]);}
 
     if (!isset($foto["0"])) {
 
