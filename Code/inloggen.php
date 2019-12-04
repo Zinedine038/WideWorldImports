@@ -71,7 +71,7 @@ if  ($postcode!="" && $huisnummer!="") {
 
                     <div class="form-group">
                         Tussenvoegsel
-                        <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" required
+                        <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel"
                                class="form-control input-lg">
                     </div>
 
