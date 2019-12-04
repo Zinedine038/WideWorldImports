@@ -2,12 +2,14 @@
 MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
 -->
 
+
+
 <?php
     include "header.php";
     $postcode="";
     $huisnummer="";
     $plaats="";
-
+    $straat="";
  if (isset($_GET["huisnummer"]) || isset($_GET["postcode"])) {
         /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
         $postcode = strtoupper(str_replace(" ", "", $_GET["postcode"]));
@@ -25,7 +27,6 @@ if  ($postcode!="" && $huisnummer!="") {
 /// Controleerd of er resultaten gevonden zijn
     if($resultaten!=0) {
         $straat = $resultaten["straatnaam"];
-        $straat="$straat $huisnummer";
         $plaats = $resultaten["gemeentenaam"];
     }
     else{
@@ -38,31 +39,52 @@ if  ($postcode!="" && $huisnummer!="") {
 
 
     ?>
+
+<script>
+
+    function autoinvul(){
+
+        document.getElementById("straatnaam2").value="<?php print($straat);?>";
+        document.getElementById("plaats2").value="<?php print($plaats);?>";
+
+    }
+    
+    function formKlopt() {
+        var huisnummerbestaat = document.getElementById("huisnummer2").value;
+        var postcodebestaat = document.getElementById("postcode2").value;
+        var straatbestaat = document.getElementById("straatnaam2").value;
+        var plaatsbestaat = document.getElementById("plaats2").value;
+
+
+        if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat) {
+            return true;
+        } else {
+            alert("Vul de postcode en huisnummer eerst in!");
+            return false;
+
+        }
+
+    }
+
+</script>
+
     <div class="container">
     <h2>Account aanmaken</h2>
 
-        <form action="inloggen.php" method="get">
-            Huisnummer
-            <div class="form-group">
-                <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
-            </div>
-
-
-            Postcode
-            <div class="form-group">
-                <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
-                       name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
-            </div>
-            <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
-        <br>
-        </form>
-    <form action="verzenden.php" method="get">
-        <form method="get" action="productpage.php">
         <div class="row" style="width: 90%; padding: 5%">
 
             <div class="col-md-6">
 
-                <div class="form-group">
+
+
+
+
+    <form action="verzenden.php" method="get" onsubmit="return formKlopt();">
+
+
+
+
+
                 <div class="form-group">
                     Voornaam
                     <input type="text" name="voornaam" placeholder="Typ hier je voornaam"
@@ -94,44 +116,86 @@ if  ($postcode!="" && $huisnummer!="") {
                         <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                class="form-control input-lg">
                     </div>
-                </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group checkbox custom-control custom-checkbox">
+
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="Spam">
+            <label class="custom-control-label" for="defaultUnchecked">
+                Wil je platgegooit worden met spam?
+            </label>
+        </div>
+        <input name="huisnummer2" type="hidden" id="huisnummer2">
+        <input name="postcode2" type="hidden" id="postcode2">
+        <input name="huisnummertoe" type="hidden" id="huisnummertoe2">
+        <input name="straatnaam2" type="hidden" id="straatnaam2">
+        <input name="plaats2" type="hidden" id="plaats2">
+        <div>
+            <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
+        </div>
+    </form>
             </div>
 
 
 
                 <div class="col-md-6">
-                Straatnaam
-                <div class="form-group">
-                    <input type="text" value="<?php if (isset ($straat)) {print $straat;}?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
-                           class="form-control input-lg">
+
+
+
+                    <form action="inloggen.php" method="get">
+                        Huisnummer
+                        <div class="form-group">
+                            <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
+                        </div>
+
+
+                        Huisnummertoevoegingen
+                        <div class="form-group">
+                            <input type="text" maxlength="3" value="<?php if (isset ($huisnummertoe)) {print $huisnummertoe;}?>" name="huisnummertoe" placeholder="Typ hier je Huisnummer toevoeging" class="form-control input-lg">
+                        </div>
+
+                        Postcode
+                        <div class="form-group">
+                            <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
+                                   name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
+                        </div>
+                            Straatnaam
+                            <div class="form-group">
+                                <input type="text" value="<?php if (isset ($straat)) {print $straat;}?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
+                                       class="form-control input-lg">
+                            </div>
+
+
+                            Plaats
+                            <div class="form-group">
+                                <input type="text" value="<?php if(isset($plaats)) {print($plaats);}?>"
+                                       name="gemeentenaam" placeholder="Typ hier je Plaats" readonly
+                                       class="form-control input-lg">
+                            </div>
+                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
+                        </div>
+
+                        <br>
+
+
+                    </form>
+
+
                 </div>
 
-
-                    Plaats
-                    <div class="form-group">
-                        <input type="text" value="<?php if(isset($plaats)) {print($plaats);}?>"
-                               name="gemeentenaam" placeholder="Typ hier je Plaats" readonly
-                               class="form-control input-lg">
-                    </div>
-
-
-                <div class="form-group checkbox custom-control custom-checkbox">
-
-                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="Spam">
-                    <label class="custom-control-label" for="defaultUnchecked">
-                        Wil je platgegooit worden met spam?
-                    </label>
-                </div>
-                    <div>
-                        <input type="submit" name="verzenden" class="btn btn-primary">
-                    </div>
-        </form>
-    </form>
             </div>
+
         </div>
 
 
-    </div>
+
 
 
 
