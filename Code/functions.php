@@ -265,6 +265,16 @@ function getparent($array, $needle) {
     }
 }
 
+function getTotalItems($array)
+{
+    $total = 0;
+    for($i = 0; $i<count($array); $i++)
+    {
+        $total+=$array[$i]['amount'];
+    }
+    return $total;
+}
+
 class CreateDb
 {
     public function __construct($msg)

@@ -45,7 +45,7 @@
         //Create new session variable
         $_SESSION['cart'][0] = $item_array;
     }
-}
+
 include 'header.php';
 ?>
 

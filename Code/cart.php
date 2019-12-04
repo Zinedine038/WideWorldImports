@@ -5,6 +5,7 @@
     require_once("./Winkelmandje/php/Component.php");
     $db = new CreateDb("");
     $_SESSION['cart'] = array_values($_SESSION['cart']);
+    print(getTotalItems($_SESSION['cart']));
     if(isset($_POST['remove']))
     {
         if($_GET['action']=='remove')
