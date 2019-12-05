@@ -47,6 +47,11 @@ body {
     margin: auto;
 }
 
+.gerel-prod-img {
+    width: 100%;
+    height: auto;
+}
+
 .carousel-img {
     max-height: 300px;
 }
