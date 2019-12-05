@@ -43,7 +43,7 @@ if (strlen($q) > 0) {
 
                                  <p class='mb-0' style='display:inline-block;'>$naam</p>
                                 </td>
-                                 <td><strong>$prijs</strong>
+                                 <td><strong><strike>€$oudePrijs</strike> $prijs</strong>
                                  </td>
                                 </tr>");
                     } else {
@@ -52,7 +52,7 @@ if (strlen($q) > 0) {
                                  <img class='livefoto justify-content-center align-self-center' src='../placeholder.jpg' style='mix-blend-mode: multiply; vertical-align: middle;'>
                                  <p class='mb-0' style='display: inline-block;'>$naam</p>
                                 </td>
-                                <td><strong>$prijs</strong>
+                                <td><strong><strike>€$oudePrijs</strike> $prijs</strong>
                                 </td>
                                </tr>");
                     }
@@ -66,7 +66,7 @@ if (strlen($q) > 0) {
                                  <p class='mb-0' style='display: inline-block;'>$naam</p>
                                  </td>
                                  <td>
-                                 <strong>$prijs</strong>
+                                 <strong><strike>€$oudePrijs</strike> $prijs</strong>
                                 </td>
                                </tr>");
                     } else {
@@ -76,7 +76,7 @@ if (strlen($q) > 0) {
                                  <img class='livefoto justify-content-center align-self-center' src='../placeholder.jpg' style='mix-blend-mode: multiply; vertical-align: middle;'>
                                  <p class='mb-0' style='display: inline-block;'>$naam</p>
                                 </td>
-                               <td><strong>$prijs</strong></td>
+                               <td><strong><strike>€$oudePrijs</strike> $prijs</strong></td>
                                </tr>");
                     }
                     $omEnOmKleur = 0;

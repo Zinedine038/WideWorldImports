@@ -95,19 +95,20 @@ strong {
 
 #resultaattabel {
     position: absolute;
+    left: 350px;
     list-style-type: none;
     height: 0px;
     /*overflow: hidden;*/
-    top: 100%; /*     here               */
+    top: 70%; /*     here               */
     transition: height 1s ease;
-    left: 1px;
+    text-align: center;
     z-index: 99;
     background-color: #f9f9f9;
     border-radius: 0px 0px 10px 10px;
 }
 
 table {
-    width: 35%;
+    width: 38%;
 }
 
 a:hover {
