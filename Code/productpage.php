@@ -12,14 +12,11 @@
         if(isset($_SESSION['cart']))
         {
             $item_array_id = array_column($_SESSION['cart'],"product_id");
-
             if(in_array(($_POST['product_id']), $item_array_id))
             {
                 $name = sql("stockitems","stockitemname",$_POST["product_id"]);
                 $keyIndex = getparent($_SESSION['cart'],$name);
                 $_SESSION['cart'][$keyIndex]['amount']+=1;
-                echo "<script>alert('product is already added to your cart')</script>";
-                echo "<script>window.location = 'index.php</script>";
             }
             else
             {

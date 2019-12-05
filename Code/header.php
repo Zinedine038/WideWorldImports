@@ -265,7 +265,7 @@
                                 <span class='badge badge-warning' id='lblCartCount'>
                                     <?php
                                     if (isset($_SESSION['cart'])) {
-                                        $count = count($_SESSION['cart']);
+                                        $count = getTotalItems($_SESSION['cart']);
                                         echo "<span id=\"cart_count\">$count</span>";
                                     } else {
                                         echo "<span id=\"cart_count\">0</span>";

@@ -5,7 +5,6 @@
     require_once("./Winkelmandje/php/Component.php");
     $db = new CreateDb("");
     $_SESSION['cart'] = array_values($_SESSION['cart']);
-    print(getTotalItems($_SESSION['cart']));
 
     if(isset($_POST['remove']))
     {
@@ -16,8 +15,6 @@
                 if($value["product_id"] == $_GET['id'])
                 {
                     unset($_SESSION['cart'][$key]);
-                    echo "<script>alert('Product has been removed')</script>";
-                    echo "<script>window.location='cart.php'</script>";
                 }
             }
         }
@@ -44,10 +41,9 @@
         }
         echo "removeOne";
     }
-
     print_r($_SESSION['cart']);
-    print($_SESSION['cart'][0]['amount']);
-    print($_SESSION['cart'][0]['product']);
+    print("    Total items: " . getTotalItems($_SESSION['cart']));
+
 ?>
 <!doctype html>
 <html lang="en">
