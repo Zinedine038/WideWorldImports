@@ -85,7 +85,7 @@
                         if($row['StockItemID']==$id)
                         {
                             $amountOfProduct = $_SESSION['cart'][getparent($_SESSION['cart'],$row["StockItemName"])]['amount'];
-                            cartElement($row["StockItemName"],$row["RecommendedRetailPrice"],"./upload/product1.png",$row["StockItemID"],$amountOfProduct);
+                            cartElement($row["StockItemName"],$row["UnitPrice"],"./upload/product1.png",$row["StockItemID"],$amountOfProduct,$row["RecommendedRetailPrice"]);
                             $total+=(int)$row["RecommendedRetailPrice"]*$amountOfProduct;
                         }
                     }

@@ -51,7 +51,7 @@ include_once '../config.php';
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     if (isset($_GET["stockitemgroupid"])) {
     $StockitemstockgroupID = $_GET["stockitemgroupid"];
-    $sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ? LIMIT ?, ?";
+    $sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments, UnitPrice FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ? LIMIT ?, ?";
     $statement = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($statement, "iii", $StockitemstockgroupID,$limitmin,$resultsperpage);
     mysqli_stmt_execute($statement);
@@ -78,11 +78,12 @@ include_once '../config.php';
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $naam = $row["StockItemName"];
                 $id = $row["StockItemID"];
-                $prijs = $row["RecommendedRetailPrice"];
+                $prijs = $row["UnitPrice"];
+                $oudePrijs = $row["RecommendedRetailPrice"];
                 $Beschrijving = $row["MarketingComments"];
                 $foto = sqlfoto($id);
                 $fotoo = $foto["0"];
-                component($naam, $prijs, $fotoo, $Beschrijving, $id);
+                component($naam, $prijs, $fotoo, $Beschrijving, $id, $oudePrijs);
                 $i++;
 
             } ?> </div>

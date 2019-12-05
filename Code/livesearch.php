@@ -23,7 +23,8 @@ if (strlen($q) > 0) {
         foreach ($resultaat as $id) {
             //Haal de naam en de prijs van het product uit de database op.
             $naam = sql("stockitems", "stockitemname", $id);
-            $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
+            $prijs = sql("stockitems", "UnitPrice", $id);
+            $oudePrijs = sql("stockitems", "RecommendedRetailPrice", $id);
             // Geef de prijs weer met een komma, in plaats van een punt en zet er een euroteken voor.
             $prijs="€".str_replace(".",",", $prijs);
             // Limiteert de weergegeven resultaten tot 8.

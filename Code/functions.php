@@ -290,7 +290,7 @@ class CreateDb
         $user = getUser();
         $pass = getPass();
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
-        $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails FROM stockitems";
+        $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails, UnitPrice FROM stockitems";
         $result = mysqli_query($connection,$sql);
         if(mysqli_num_rows($result)>0)
         {

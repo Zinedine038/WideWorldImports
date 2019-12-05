@@ -74,10 +74,11 @@ require_once("winkelmandje/php/component.php");
         $result = search($zoekterm,$page, $resultsshown);
         foreach ($result AS $id) {
             $naam = sql("stockitems", "stockitemname", $id);
-            $prijs = sql("stockitems", "RecommendedRetailPrice", $id);
+            $prijs = sql("stockitems", "UnitPrice", $id);
             $commentaar = sql("stockitems", "MarketingComments", $id);
             $Itemid = sql("stockitems", "StockItemID", $id);
-            component($naam,$prijs,"./upload/product1.png",$commentaar,$Itemid);
+            $oudePrijs = sql("stockitems", "RecommendedRetailPrice", $id);
+            component($naam,$prijs,"./upload/product1.png",$commentaar,$Itemid,$oudePrijs);
             $count++;
         }
 

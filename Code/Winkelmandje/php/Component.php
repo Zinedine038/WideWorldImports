@@ -1,6 +1,6 @@
 <?php
 
-function component($productname, $productprice, $productimg, $productDescription, $productID)
+function component($productname, $productprice, $productimg, $productDescription, $productID, $reccomendedPrice = 699)
 {
     $fotoPath = $productimg;
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
@@ -33,7 +33,7 @@ function component($productname, $productprice, $productimg, $productDescription
                                 $productDescription
                             </p>
                             <h5>
-                                <small><s class=\"text-secondary\">€699</s></small>
+                                <small><s class=\"text-secondary\">€$reccomendedPrice</s></small>
                                 <span class=\"price\">€$productprice
                             </span>
                             </h5>
@@ -49,7 +49,7 @@ function component($productname, $productprice, $productimg, $productDescription
 }
 
 
-function cartElement($productname, $productprice, $productimg, $productID, $amount)
+function cartElement($productname, $productprice, $productimg, $productID, $amount, $reccomendedPrice = 699)
 {
     include_once 'functions.php';
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
@@ -71,7 +71,8 @@ function cartElement($productname, $productprice, $productimg, $productID, $amou
                             <a href=$productPageLink>
                                 <h5 class=\"pt-2\">$productname</h5>
                             </a>
-                            <small class=\"text-secondary\">Verkoper: WWI</small>
+                            <small class=\"text-secondary\">Verkoper: WWI</small><br>
+                            <small><s class=\"col-md-3\">€$reccomendedPrice</s></small>
                             <h5 class=\"col-md-3\">€$productprice</h5>
                             <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Verwijderen</button>
                         </div>
