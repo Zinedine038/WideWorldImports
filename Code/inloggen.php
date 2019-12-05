@@ -10,6 +10,14 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
     $huisnummer="";
     $plaats="";
     $straat="";
+    $voornaam="";
+    $achternaam="";
+    $email="";
+    $wachtwoord="";
+
+
+
+
  if (isset($_GET["huisnummer"]) || isset($_GET["postcode"])) {
         /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
         $postcode = strtoupper(str_replace(" ", "", $_GET["postcode"]));
@@ -64,7 +72,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
     }
 
 
-    VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam2"], $_GET["huisnummer2"], $huisnummertoevoeg ,$_GET["postcode2"], $_GET["plaats2"], $_GET["email"], $_GET["wachtwoord"], $spam);
+    VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam"], $_GET["huisnummer"], $huisnummertoevoeg ,$_GET["postcode"], $_GET["plaats"], $_GET["email"], $_GET["wachtwoord"], $spam);
 }
 
 ?>
@@ -88,34 +96,34 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
                 <div class="form-group">
                     Voornaam
-                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" required
+                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" required id="voornaam"
                            class="form-control input-lg">
                 </div>
 
                     <div class="form-group">
                         Tussenvoegsel
-                        <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel"
+                        <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" id="tussenvoegsel"
                                class="form-control input-lg">
                     </div>
 
 
                     <div class="form-group">
                         Achternaam
-                        <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required
+                        <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required id="achternaam"
                                class="form-control input-lg">
                     </div>
 
 
                     <div class="form-group">
                         Email
-                        <input type="text" name="email" placeholder="Typ hier je email-adres" required
+                        <input type="text" name="email" placeholder="Typ hier je email-adres" required id="email"
                                class="form-control input-lg">
                     </div>
 
                     Wachtwoord
                     <div class="form-group">
                         <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               class="form-control input-lg">
+                               class="form-control input-lg" id="wachtwoord">
                     </div>
 
         <div class="form-group checkbox custom-control custom-checkbox">
@@ -127,11 +135,11 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         </div>
 
 
-        <input name="huisnummer2" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
-        <input name="postcode2" type="text" id="postcode2" value="<?php print($postcode); ?>">
+        <input name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
+        <input name="postcode" type="text" id="postcode2" value="<?php print($postcode); ?>">
         <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php if (isset($huisnummertoe)) { print($huisnummertoe);} ?>">
-        <input name="straatnaam2" type="text" id="straatnaam2" value="<?php print($straat); ?>">
-        <input name="plaats2" type="text" id="plaats2" value="<?php print($plaats); ?>">
+        <input name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
+        <input name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
         <div>
             <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
         </div>
@@ -146,7 +154,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
 
 
-                    <form action="inloggen.php" method="get">
+                    <form onsubmit="formVul()" action="inloggen.php" method="get">
                         Huisnummer
                         <div class="form-group">
                             <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
@@ -176,10 +184,22 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
                                        name="plaats" placeholder="Typ hier je Plaats" readonly
                                        class="form-control input-lg">
                             </div>
-                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary" onclick="autoinvul()">
-                        </div>
+                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
 
                         <br>
+
+                        <input name="voornaam" type="text" id="voornaam2" value="<?php print($voornaam); ?>">
+                        <input name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
+                        <input name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
+                        <input name="email" type="text" id="email2" value="<?php print($email); ?>">
+                        <input name="wachtwoord" type="text" id="wachtwoord2" value="<?php print($wachtwoord); ?>">
+                        <input name="spam" type="text" id="spam2" value="<?php if (isset($spam)) {print($spam);} ?>">
+
+
+
+                </div>
+
+
 
 
                     </form>
