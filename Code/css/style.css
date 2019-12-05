@@ -40,8 +40,15 @@ body {
 }
 
 .product-img {
-    width: 100% !important;
     outline-offset: -318px; /*om later een overlay te geven voor livesearch donker maken*/
+    min-height: 300px;
+    max-height: 300px;
+    width: auto;
+    margin: auto;
+}
+
+.carousel-img {
+    max-height: 300px;
 }
 
 .btn-primary {

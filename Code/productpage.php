@@ -56,10 +56,10 @@ if (!isset($foto["1"])) {
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="<?php print($foto["0"]);?>" alt="First slide">
+                <img class="d-block product-img" src="<?php print($foto["0"]);?>" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="<?php print($foto["1"]);?>" alt="Second slide">
+                <img class="d-block product-img" src="<?php print($foto["1"]);?>" alt="Second slide">
             </div>
             </div>
         </div>
