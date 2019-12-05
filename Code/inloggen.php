@@ -57,7 +57,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         $tussenvoegseltoevoeg="";
     }
 
-    if ($_GET["Spam"] == "on") {
+    if (isset($_GET["Spam"])) {
         $spam=true;
     } else {
         $spam=false;
