@@ -78,7 +78,7 @@ function cartElement($productname, $productprice, $productimg, $productID, $amou
                         <div class=\"col md-3 py-5\">
                         <div>
                             <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"removeOne\"><i class=\"fas fa-minus\"></i></button>
-                            <input type=\"text\" value=$amount class=\"form-control w-25 d-inline\">
+                            <input type=\"text\" value=$amount name=\"newAmount\" class=\"form-control w-25 d-inline\">
                             <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"addOne\"><i class=\"fas fa-plus\"></i></button>
                         </div>
                         </div>

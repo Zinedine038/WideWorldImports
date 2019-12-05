@@ -9,6 +9,8 @@ $database = new CreateDb("");
 
 if(isset($_POST['add']))
 {
+    include_once("../functions.php");
+    print($name = sql("stockitems","stockitemname",$_POST["product_id"]));
     //print_r($_POST['product_id']);
     if(isset($_SESSION['cart']))
     {
@@ -16,20 +18,26 @@ if(isset($_POST['add']))
 
         if(in_array(($_POST['product_id']), $item_array_id))
         {
-            echo "<script>alert('product is already added to your cart')</script>";
-            echo "<script>window.location = 'index.php</script>";
+            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+            $keyIndex = getparent($_SESSION['cart'],$name);
+            $_SESSION['cart'][$keyIndex]['amount']+=1;
         }
         else
         {
             $count=count($_SESSION['cart']);
-            $item_array=array('product_id' => $_POST['product_id']);
+            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+            $item_array=array('product_id' => $_POST['product_id'],
+                'amount' => 1,
+                'name' => $name  );
             $_SESSION['cart'][$count]=$item_array;
         }
     }
     else
     {
-        $item_array=array('product_id' => $_POST['product_id']);
-        //Create new session variable
+        $name = sql("stockitems","stockitemname",$_POST["product_id"]);
+        $item_array=array('product_id' => $_POST['product_id'],
+            'amount' => 1,
+            'name' => $name);
         $_SESSION['cart'][0] = $item_array;
     }
 }
