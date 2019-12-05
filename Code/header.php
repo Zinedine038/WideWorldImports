@@ -34,10 +34,11 @@
     }
     ///Haalt de informatie op uit de database
     $productnaam = sql("stockitems", "stockitemname", $productnr);
-    $prijs = sql("stockitems", "RecommendedRetailPrice", $productnr);
+    $prijs = sql("stockitems", "UnitPrice", $productnr);
     $marketing = sql("stockitems", "MarketingComments", $productnr);
     $voorraad = sql("stockitemholdings", "QuantityOnHand", $productnr);
     $gekoeld = sql("stockitems","ischillerstock",$productnr);
+    $oudePrijs = sql("stockitems","RecommendedRetailPrice",$productnr);
     $foto = sqlfoto($productnr);
     ?>
     <title>Wide World Importers - <?php print($productnaam);?></title>

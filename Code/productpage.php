@@ -77,6 +77,7 @@ if (!isset($foto["1"])) {
     </div>
     <div class="col-md-5">
         <?php
+        print (" <s><h3 class='inh'>€$oudePrijs </h3></s><br>");
         print ("<h3 class='inh'>€$prijs</h3><br>");
         print ("Voorraad: $voorraad<br>");
         if ($marketing) {

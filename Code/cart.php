@@ -74,6 +74,7 @@
             <?php
 
             $total=0;
+            $totaleKorting=0;
             if(isset($_SESSION['cart']))
             {
                 $product_id=array_column($_SESSION['cart'],'product_id');
@@ -86,7 +87,8 @@
                         {
                             $amountOfProduct = $_SESSION['cart'][getparent($_SESSION['cart'],$row["StockItemName"])]['amount'];
                             cartElement($row["StockItemName"],$row["UnitPrice"],"./upload/product1.png",$row["StockItemID"],$amountOfProduct,$row["RecommendedRetailPrice"]);
-                            $total+=(int)$row["RecommendedRetailPrice"]*$amountOfProduct;
+                            $total+=$row["UnitPrice"]*$amountOfProduct;
+                            $totaleKorting+=($row["RecommendedRetailPrice"]-$row["UnitPrice"])*$amountOfProduct;
                         }
                     }
                 }
@@ -122,12 +124,14 @@
 
                         }
                         ?>
+                        <h6>Totale Korting:</h6>
                         <h6>Bezorgkosten</h6>
                         <hr>
                         <h6>Totaal</h6>
                     </div>
                     <div class="col-md-6">
                         <h6>€<?php echo $total; ?></h6>
+                        <h6 class="text-success"> €<?php echo $totaleKorting ?></h6>
                         <h6 class="text-success">GRATIS</h6>
                         <hr>
                         <h6>€<?php
