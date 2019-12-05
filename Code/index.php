@@ -33,6 +33,25 @@ include 'header.php';
 include 'Winkelmandje/php/Component.php';
 include_once '../config.php';
 
+// VERANDER HIER HET THEMA
+$thema = "neutraal";
+
+if ($thema == "sinterklaas") {
+    ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-SINTERKLAAS.jpg" class="header-img" alt="header">
+    </div>
+<?php }
+if ($thema == "kerst") { ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-KERSTMAN.jpg" class="header-img" alt="header">
+    </div>
+<?php }
+if ($thema == "neutraal") { ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-NEUTRAAL.jpg" class="header-img" alt="header">
+    </div>
+<?php }
     $host = getHost();
     $databasename = getDatabasename();
     $port = getPort();
@@ -70,10 +89,9 @@ include_once '../config.php';
 
             </form>
         </div>
-        <font style="padding-top: 1%; display: inline-block" size="6"><?php
-            $resie = categorieNaam($StockitemstockgroupID);
-            print($resie["0"]["stockgroupname"]);
-            ?> </font>
+        <h2><?php $resie = categorieNaam($StockitemstockgroupID);
+            print($resie["0"]["stockgroupname"]); ?>
+        </h2>
         <div class="row text-center py-5"><?php
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                 $naam = $row["StockItemName"];
@@ -85,25 +103,24 @@ include_once '../config.php';
                 $fotoo = $foto["0"];
                 component($naam, $prijs, $fotoo, $Beschrijving, $id, $oudePrijs);
                 $i++;
-
-            } ?> </div>
-    </div>
+            } ?>
+        </div>
     <?php
 
     if (isset($_GET["stockitemid"])) {
         $productnr = intval($_GET["stockitemid"]);
     }
 }?>
-        <div class="row">
+    <div class="row">
         <div class="col-sm">
-        <?php
-        $pagenext = $page + 1;
-        $pageback = $page - 1;
+            <?php
+            $pagenext = $page + 1;
+            $pageback = $page - 1;
 
-        if($page > 1) {
-            print("<button class=\"btn btn-outline-info\"><a href='index.php?stockitemgroupid=$StockitemstockgroupID&page=$pageback'>Vorige</a></button>");
-        }
-        ?>
+            if ($page > 1) {
+                print("<button class=\"btn btn-outline-info\"><a href='index.php?stockitemgroupid=$StockitemstockgroupID&page=$pageback'>Vorige</a></button>");
+            }
+            ?>
         </div>
         <div id="pagenumber" class="col-sm">
             <?php
@@ -112,33 +129,11 @@ include_once '../config.php';
         </div>
         <div class="col-sm">
             <?php
-        if($i == $resultsperpage) {
-            print("<button id='volgendeknop' class=\"btn btn-outline-info\"><a href='index.php?stockitemgroupid=$StockitemstockgroupID&page=$pagenext'>Volgende</a></button>");
-        }
-
-        ?>
+            if ($i == $resultsperpage) {
+                print("<button id='volgendeknop' class=\"btn btn-outline-info\"><a href='index.php?stockitemgroupid=$StockitemstockgroupID&page=$pagenext'>Volgende</a></button>");
+            } ?>
         </div>
+    </div>
 
     </div>
-<?php
-// VERANDER HIER HET THEMA
-$thema = "neutraal";
-
-if ($thema == "sinterklaas") {
-    ?>
-    <div class="container-fluid p-0">
-        <img src="images/HEADER-SINTERKLAAS.jpg" class="header-img" alt="header">
-    </div>
-<?php }
-if ($thema == "kerst") { ?>
-    <div class="container-fluid p-0">
-        <img src="images/HEADER-KERSTMAN.jpg" class="header-img" alt="header">
-    </div>
-<?php }
-if ($thema == "neutraal") { ?>
-    <div class="container-fluid p-0">
-        <img src="images/HEADER-NEUTRAAL.jpg" class="header-img" alt="header">
-    </div>
-<?php }
-
-include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
