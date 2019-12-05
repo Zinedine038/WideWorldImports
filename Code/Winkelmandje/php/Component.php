@@ -82,17 +82,23 @@ function cartElement($productname, $productprice, $productimg, $productID, $amou
                             <small><s class=\"col-md-3\">€$reccomendedPrice</s></small>
                             <h5 class=\"col-md-3\">€$productprice</h5>
                             <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Verwijderen</button>
+                            </form>
                         </div>
                         <div class=\"col md-3 py-5\">
                         <div>
-                            <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"removeOne\"><i class=\"fas fa-minus\"></i></button>
-                            <input type=\"text\" value=$amount name=\"newAmount\" class=\"form-control w-25 d-inline\">
-                            <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"addOne\"><i class=\"fas fa-plus\"></i></button>
+                        <form action=\"cart.php?action=addOne&id=$productID\" method=\"post\" class=\"cart-items\">
+                             <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"addOne\"><i class=\"fas fa-plus\"></i></button>
+                        </form> 
+                        <form action=\"cart.php?action=changeAmount&id=$productID\" method=\"post\" class=\"cart-items\">
+                             <input type=\"text\" value=$amount name=\"newAmount\" class=\"form-control w-25 d-inline\">
+                        </form>
+                        <form action=\"cart.php?action=removeOne&id=$productID\" method=\"post\" class=\"cart-items\">
+                             <button type=\"submit\" class=\"btn bg-light border rounded-circle\" name=\"removeOne\"><i class=\"fas fa-minus\"></i></button>
+                        </form>
                         </div>
                         </div>
                     </div>
                 </div>
-            </form>
 
     
     ";

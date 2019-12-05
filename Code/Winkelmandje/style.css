@@ -31,3 +31,9 @@ img{
     height: 140px;
     width: auto;
 }
+
+.errorMSG{
+    text-align: center;
+    color: red;
+    font-size: 25px;
+}

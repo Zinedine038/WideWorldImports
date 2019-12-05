@@ -7,9 +7,15 @@
     require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");
 
+    $errorMSG="";
+
     //creates an object database
     $db = new CreateDb("");
-    $_SESSION['cart'] = array_values($_SESSION['cart']);
+    if(isset($_SESSION['cart']))
+    {
+        //updates the array
+        $_SESSION['cart'] = array_values($_SESSION['cart']);
+    }
 
     //Remove an item
     if(isset($_POST['remove']))
@@ -51,6 +57,29 @@
         }
     }
 
+    if(isset($_POST['newAmount']))
+    {
+        if(preg_match("/[a-z]/i", $_POST['newAmount']))
+        {
+            $errorMSG="Voer alstublieft een correct getal in";
+        }
+        elseif($_POST['newAmount']<=0)
+        {
+            $errorMSG="Voer alstublieft een getal hoger dan 1 in";
+        }
+        else
+        {
+            foreach($_SESSION['cart'] as $key => $value)
+            {
+                if($value["product_id"] == $_GET['id'])
+                {
+                    $_SESSION['cart'][$key]['amount']=$_POST['newAmount'];
+                }
+            }
+        }
+
+    }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -69,10 +98,15 @@
 </head>
 <body class ="bg-light">
 
+
 <?php
     //Creates the header
     require_once('./header.php');
 ?>
+
+<div class="errorMSG">
+    <?php echo $errorMSG ?>
+</div>
 
 <div class="container-fluid">
     <div class="row px5">
