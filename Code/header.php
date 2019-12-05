@@ -45,20 +45,37 @@
 
     <script>
         //scripts voor inlogpagina
-        function autoinvul(){
-            var voornaam = document.getElementById("voornaam").value;
-            alert(voornaam);
+        function formVul(){
+            var voornaam2 = document.getElementById("voornaam").value;
+            alert(voornaam2);
+            if (document.getElementById("voornaam") != null) {
+                var voornaam = document.getElementById("voornaam").value;
 
-            // var tussenvoegsel = document.getElementById("tussenvoegsel").value;
-            // var achternaam =document.getElementById("achternaam").value;
-            // var email = document.getElementById("email").value;
-            // var wachtwoord = document.getElementById("wachtwoord").value;
-            // var spam = document.getElementById("spam").value;
+            }
 
-            //window.location.href = "inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + spam + "&spam3";
+             if (document.getElementById("tussenvoegsel") != null) {
+                 var tussenvoegsel = document.getElementById("tussenvoegsel").value;
+             }
+             if (document.getElementById("achternaam") != null) {
+                 var achternaam = document.getElementById("achternaam").value;
+             }
+             if (document.getElementById("email") != null) {
+                 var email = document.getElementById("email").value;
+             }
+             if (document.getElementById("wachtwoord") != null) {
+                 var wachtwoord = document.getElementById("wachtwoord").value;
+             }
+             if (document.getElementById("spam") != null) {
+                 var spam = document.getElementById("spam").value;
+             }
+
+        alert('hi');
+            window.location.href = "http://localhost/wideworldimports/code/inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + "&spam3" + spam;
         }
 
         function formKlopt() {
+
+
             var huisnummerbestaat = document.getElementById("huisnummer2").value;
             var postcodebestaat = document.getElementById("postcode2").value;
             var straatbestaat = document.getElementById("straatnaam2").value;
@@ -66,16 +83,17 @@
             var huisnummertoe = document.getElementById("huisnummertoe").value;
 
             <?php
-                if (isset($_GET["postcode2"])) {
-                    $postcode = $_GET["postcode2"];
-                }
-                if (isset($_GET["huisnummer2"])) {
-                    $huisnummer = $_GET["huisnummer2"];
-                }
-                if (isset($_GET["huisnummertoe"])) {
-                    $huisnummertoe = $_GET["huisnummertoe"];
-                }
+            if (isset($_GET["postcode2"])) {
+                $postcode = $_GET["postcode2"];
+            }
+            if (isset($_GET["huisnummer2"])) {
+                $huisnummer = $_GET["huisnummer2"];
+            }
+            if (isset($_GET["huisnummertoe"])) {
+                $huisnummertoe = $_GET["huisnummertoe"];
+            }
             ?>
+
             if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat, huisnummertoe) {
                 document.getElementById("straatnaam2").value="<?php if (isset($straat)) {print($straat);}?>";
                 document.getElementById("plaats2").value="<?php if (isset($plaats)) {print($plaats);}?>";
