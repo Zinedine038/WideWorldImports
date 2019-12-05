@@ -2,6 +2,14 @@
 MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
 -->
 
+<?php
+
+    if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
+    {
+        print("JESQLSHIT");
+    }
+
+?>
 
 
 <?php
@@ -14,6 +22,7 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
         /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
         $postcode = strtoupper(str_replace(" ", "", $_GET["postcode"]));
         $huisnummer = trim($_GET["huisnummer"]);
+        $huisnummertoe=strtoupper($_GET["huisnummertoe"]);
     }
 
 if (isset($_GET["submit"])) {
@@ -43,20 +52,34 @@ if  ($postcode!="" && $huisnummer!="") {
 <script>
 
     function autoinvul(){
-
+        <?php $huisnummertoe= $_GET["huisnummertoe"];?>
         document.getElementById("straatnaam2").value="<?php print($straat);?>";
         document.getElementById("plaats2").value="<?php print($plaats);?>";
-
+        //document.getElementById("huisnummertoe").value="<?php print($huisnummertoe);?>";
     }
     
     function formKlopt() {
+        <?php
+            $postcode=$_GET["postcode"];
+            $huisnummer=$_GET["huisnummer"];
+            $huisnummertoe=$_GET["huisnummertoe"];
+
+
+
+        ?>
         var huisnummerbestaat = document.getElementById("huisnummer2").value;
         var postcodebestaat = document.getElementById("postcode2").value;
         var straatbestaat = document.getElementById("straatnaam2").value;
         var plaatsbestaat = document.getElementById("plaats2").value;
+        var huisnummertoe = document.getElementById("huisnummertoe").value;
 
 
-        if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat) {
+        if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat, huisnummertoe) {
+            document.getElementById("straatnaam2").value="<?php print($straat);?>";
+            document.getElementById("plaats2").value="<?php print($plaats);?>";
+            document.getElementById("postcode").value="<?php print($postcode);?>";
+            document.getElementById("huisnummer2").value="<?php print($huisnummer);?>";
+            document.getElementById("huisnummertoe2").value="<?php print($huisnummertoe);?>";
             return true;
         } else {
             alert("Vul de postcode en huisnummer eerst in!");
@@ -79,7 +102,7 @@ if  ($postcode!="" && $huisnummer!="") {
 
 
 
-    <form action="verzenden.php" method="get" onsubmit="return formKlopt();">
+    <form action="inloggen.php" method="get" onsubmit="return formKlopt();">
 
 
 
@@ -132,11 +155,11 @@ if  ($postcode!="" && $huisnummer!="") {
                 Wil je platgegooit worden met spam?
             </label>
         </div>
-        <input name="huisnummer2" type="hidden" id="huisnummer2">
-        <input name="postcode2" type="hidden" id="postcode2">
-        <input name="huisnummertoe" type="hidden" id="huisnummertoe2">
-        <input name="straatnaam2" type="hidden" id="straatnaam2">
-        <input name="plaats2" type="hidden" id="plaats2">
+        <input name="huisnummer2" type="text" id="huisnummer2" value="<?php print($huisnummer) ?>">
+        <input name="postcode2" type="text" id="postcode2" value="<?php print($postcode) ?>">
+        <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php print($huisnummertoe) ?>">
+        <input name="straatnaam2" type="text" id="straatnaam2" value="<?php print($straat) ?>">
+        <input name="plaats2" type="text" id="plaats2" value="<?php print($plaats); ?>">
         <div>
             <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
         </div>
@@ -176,10 +199,10 @@ if  ($postcode!="" && $huisnummer!="") {
                             Plaats
                             <div class="form-group">
                                 <input type="text" value="<?php if(isset($plaats)) {print($plaats);}?>"
-                                       name="gemeentenaam" placeholder="Typ hier je Plaats" readonly
+                                       name="plaats" placeholder="Typ hier je Plaats" readonly
                                        class="form-control input-lg">
                             </div>
-                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
+                        <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary" onclick="autoinvul()">
                         </div>
 
                         <br>
