@@ -17,7 +17,7 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
         $huisnummertoe=strtoupper($_GET["huisnummertoe"]);
     }
 
-if (isset($_GET["verzenden"])) {
+if (isset($_GET["submit"])) {
     if ($postcode == "" || $huisnummer == "") {
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Geef je huisnummer en postcode!</h1>");
     }
