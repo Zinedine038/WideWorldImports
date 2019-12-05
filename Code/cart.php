@@ -27,7 +27,6 @@
                 $_SESSION['cart'][$key]['amount']+=1;
             }
         }
-        echo "addedOne";
     }
     if(isset($_POST['removeOne']))
     {
@@ -41,7 +40,6 @@
                 }
             }
         }
-        echo "removeOne";
     }
     //print_r($_SESSION['cart']);
     //print("    Total items: " . getTotalItems($_SESSION['cart']));
