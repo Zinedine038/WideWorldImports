@@ -253,7 +253,7 @@ function VoegKlantToe($FirstName, $LastName, $Infix, $Streetname, $HouseNumber, 
     $connection = mysqli_connect($host, $user, $pass, $databasename);
     $Password = password_hash($Password, PASSWORD_DEFAULT);
     $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber, Annex , PostalCode, City, Email, Password, NewsLetter) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, 'ssssisssssb', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $Email, $Password, $NewsLetter);
+    mysqli_stmt_bind_param($statement, 'ssssisssssi', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $Email, $Password, $NewsLetter);
     mysqli_stmt_execute($statement);
     return mysqli_stmt_affected_rows($statement) == 1;
 }

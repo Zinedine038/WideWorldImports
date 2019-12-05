@@ -14,6 +14,34 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
     $achternaam="";
     $email="";
     $wachtwoord="";
+    $spam="";
+
+
+
+if (isset($_GET["voornaam"])) {
+    $voornaam=$_GET["voornaam"];
+}
+if (isset($_GET["tussenvoegsel"])) {
+    $tussenvoegsel=$_GET["tussenvoegsel"];
+}
+if (isset($_GET["achternaam"])) {
+    $achternaam=$_GET["achternaam"];
+}
+if (isset($_GET["email"])) {
+    $email=$_GET["email"];
+}
+if (isset($_GET["wachtwoord"])) {
+    $wachtwoord=$_GET["wachtwoord"];
+}
+
+if (isset($_GET["spam"])) {
+    if ($_GET["spam"]==true) {
+        $spam = 1;
+    } else {
+        $spam=0;
+    }
+}
+
 
 
 
@@ -51,27 +79,46 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
-if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
+if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) && isset($_GET["wachtwoord"]) && isset($_GET["huisnummer"]) && isset($_GET["postcode"]) && isset($_GET["straatnaam"]) && isset($_GET["plaats"]) && isset($_GET["verzenden"]))
 {
     if (isset($_GET["huisnummertoe"])) {
         $huisnummertoevoeg= $_GET["huisnummertoe"];
     } else {
-        $huisnummertoevoeg=" ";
+        $huisnummertoevoeg="";
     }
 
     if (isset($_GET["tussenvoegsel"])) {
-        $tussenvoegseltoevoeg= $_GET["tussenvoegsel"];
+        $tussenvoegseltoevoeg=$_GET["tussenvoegsel"];
     } else {
         $tussenvoegseltoevoeg="";
     }
+        if (isset($_GET["spam"])) {
+            $spam=true;
+        } else {
+            $spam=false;
+        }
 
-    if (isset($_GET["Spam"])) {
-        $spam=true;
-    } else {
-        $spam=false;
-    }
-
-
+        print($_GET["voornaam"]);
+        print("<br>");
+        print($_GET["achternaam"]);
+        print("<br>");
+        print($tussenvoegseltoevoeg);
+        print("<br>");
+        print($_GET["straatnaam"]);
+        print("<br>");
+        print($_GET["huisnummer"]);
+        print("<br>");
+        print($huisnummertoevoeg);
+        print("<br>");
+        print($_GET["postcode"]);
+        print("<br>");
+        print($_GET['plaats']);
+        print("<br>");
+        print($_GET["email"]);
+        print("<br>");
+        print($_GET["wachtwoord"]);
+        print("<br>");
+        print($spam);
     VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam"], $_GET["huisnummer"], $huisnummertoevoeg ,$_GET["postcode"], $_GET["plaats"], $_GET["email"], $_GET["wachtwoord"], $spam);
 }
 
@@ -97,38 +144,38 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
                 <div class="form-group">
                     Voornaam
                     <input type="text" name="voornaam" placeholder="Typ hier je voornaam" required id="voornaam"
-                           class="form-control input-lg">
+                           class="form-control input-lg" value="<?php if (isset($voornaam)) {print $voornaam;}?>">
                 </div>
 
                     <div class="form-group">
                         Tussenvoegsel
                         <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" id="tussenvoegsel"
-                               class="form-control input-lg">
+                               class="form-control input-lg" value="<?php if (isset($tussenvoegsel)) {print $tussenvoegsel;}?>">
                     </div>
 
 
                     <div class="form-group">
                         Achternaam
                         <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required id="achternaam"
-                               class="form-control input-lg">
+                               class="form-control input-lg" value="<?php if (isset($achternaam)) {print $achternaam;}?>">
                     </div>
 
 
                     <div class="form-group">
                         Email
                         <input type="text" name="email" placeholder="Typ hier je email-adres" required id="email"
-                               class="form-control input-lg">
+                               class="form-control input-lg" value="<?php if (isset($email)) {print $email;}?>">
                     </div>
 
                     Wachtwoord
                     <div class="form-group">
                         <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               class="form-control input-lg" id="wachtwoord">
+                               class="form-control input-lg" id="wachtwoord" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>">
                     </div>
 
         <div class="form-group checkbox custom-control custom-checkbox">
 
-            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="Spam">
+            <input type="checkbox" class="custom-control-input checkboxbericht" id="defaultUnchecked" name="spam" <?php if ($spam==1){print("checked");}?>>
             <label class="custom-control-label" for="defaultUnchecked">
                 Wil je platgegooit worden met spam?
             </label>
@@ -141,7 +188,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         <input name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
         <input name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
         <div>
-            <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
+            <input type="submit" name="verzenden" class="btn btn-primary">
         </div>
     </form>
 </div>
@@ -193,8 +240,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
                         <input name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
                         <input name="email" type="text" id="email2" value="<?php print($email); ?>">
                         <input name="wachtwoord" type="text" id="wachtwoord2" value="<?php print($wachtwoord); ?>">
-                        <input name="spam" type="text" id="spam2" value="<?php if (isset($spam)) {print($spam);} ?>">
-
+                        <input name="spam" type="text" id="spam2" value="<?php if ($spam==1){print(1);} else {print(0);}?>">
 
 
                 </div>
