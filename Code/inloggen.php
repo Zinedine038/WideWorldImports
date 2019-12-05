@@ -2,14 +2,6 @@
 MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
 -->
 
-<?php
-
-    if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
-    {
-        print("JESQLSHIT");
-    }
-
-?>
 
 
 <?php
@@ -48,6 +40,34 @@ if  ($postcode!="" && $huisnummer!="") {
 
 
     ?>
+
+<?php
+
+if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
+{
+    if (isset($_GET["huisnummertoe"])) {
+        $huisnummertoevoeg= $_GET["huisnummertoe"];
+    } else {
+        $huisnummertoevoeg=" ";
+    }
+
+    if (isset($_GET["tussenvoegsel"])) {
+        $tussenvoegseltoevoeg= $_GET["tussenvoegsel"];
+    } else {
+        $tussenvoegseltoevoeg="";
+    }
+
+    if ($_GET["Spam"] == "on") {
+        $spam=true;
+    } else {
+        $spam=false;
+    }
+
+
+    VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam2"], $_GET["huisnummer2"], $huisnummertoevoeg ,$_GET["postcode2"], $_GET["plaats2"], $_GET["email"], $_GET["wachtwoord"], $spam);
+}
+
+?>
 
 <script>
 
