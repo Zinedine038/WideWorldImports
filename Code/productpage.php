@@ -66,7 +66,7 @@ include 'header.php';
             </div>
             <div class="col-md-5">
                 <?php
-                print (" <s><h3 class='inh'>€$oudePrijs </h3></s><br>");
+                print ("<s><h5 style='color: #ff0000'>€$oudePrijs</h5></s>");
                 print ("<h3 class='inh'>€$prijs</h3><br>");
                 print ("Voorraad: $voorraad<br>");
                 if ($marketing) {
@@ -93,7 +93,7 @@ include 'header.php';
 
     <!--- START RELEVANTE PRODUCTEN --->
     <div class="container-fluid bg">
-        <div class="container rel-prod pt-3 pb-3">
+        <div class="container rel-prod pt-4 pb-2">
             <div class="row">
                 <div class="col">
                     <h2 class="inh pb-2">Gerelateerde producten</h2>
