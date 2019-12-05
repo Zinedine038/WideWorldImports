@@ -127,10 +127,10 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         </div>
 
 
-        <input name="huisnummer2" type="text" id="huisnummer2" value="<?php print($huisnummer) ?>">
-        <input name="postcode2" type="text" id="postcode2" value="<?php print($postcode) ?>">
-        <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php print($huisnummertoe) ?>">
-        <input name="straatnaam2" type="text" id="straatnaam2" value="<?php print($straat) ?>">
+        <input name="huisnummer2" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
+        <input name="postcode2" type="text" id="postcode2" value="<?php print($postcode); ?>">
+        <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php if (isset($huisnummertoe)) { print($huisnummertoe);} ?>">
+        <input name="straatnaam2" type="text" id="straatnaam2" value="<?php print($straat); ?>">
         <input name="plaats2" type="text" id="plaats2" value="<?php print($plaats); ?>">
         <div>
             <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
