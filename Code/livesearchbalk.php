@@ -1,11 +1,13 @@
 
-    <script>
 
+        <?php
         $zoekterm = "";
         if (isset($_GET["submit"])) {
             $zoekterm = $_GET["zoekterm"];
         }
+        ?>
 
+        <script>
         function showResult(str) {
             if (str.length==0) {
                 document.getElementById("livesearch").innerHTML="";

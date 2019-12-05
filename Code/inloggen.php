@@ -69,52 +69,6 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
 ?>
 
-<script>
-
-    function autoinvul(){
-        var voornaam = document.getElementById("voornaam").value;
-        alert(voornaam);
-
-        // var tussenvoegsel = document.getElementById("tussenvoegsel").value;
-        // var achternaam =document.getElementById("achternaam").value;
-        // var email = document.getElementById("email").value;
-        // var wachtwoord = document.getElementById("wachtwoord").value;
-        // var spam = document.getElementById("spam").value;
-
-        //window.location.href = "inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + spam + "&spam3";
-    }
-    
-    function formKlopt() {
-        <?php
-            $postcode=$_GET["postcode"];
-            $huisnummer=$_GET["huisnummer"];
-            $huisnummertoe=$_GET["huisnummertoe"];
-        ?>
-
-        var huisnummerbestaat = document.getElementById("huisnummer2").value;
-        var postcodebestaat = document.getElementById("postcode2").value;
-        var straatbestaat = document.getElementById("straatnaam2").value;
-        var plaatsbestaat = document.getElementById("plaats2").value;
-        var huisnummertoe = document.getElementById("huisnummertoe").value;
-
-
-        if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat, huisnummertoe) {
-            document.getElementById("straatnaam2").value="<?php print($straat);?>";
-            document.getElementById("plaats2").value="<?php print($plaats);?>";
-            document.getElementById("postcode").value="<?php print($postcode);?>";
-            document.getElementById("huisnummer2").value="<?php print($huisnummer);?>";
-            document.getElementById("huisnummertoe2").value="<?php print($huisnummertoe);?>";
-            return true;
-        } else {
-            alert("Vul de postcode en huisnummer eerst in!");
-            return false;
-
-        }
-
-    }
-
-</script>
-
     <div class="container">
     <h2>Account aanmaken</h2>
 

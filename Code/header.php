@@ -44,10 +44,68 @@
     <title>Wide World Importers - <?php print($productnaam);?></title>
 
     <script>
+        //scripts voor inlogpagina
+        function autoinvul(){
+            var voornaam = document.getElementById("voornaam").value;
+            alert(voornaam);
+
+            // var tussenvoegsel = document.getElementById("tussenvoegsel").value;
+            // var achternaam =document.getElementById("achternaam").value;
+            // var email = document.getElementById("email").value;
+            // var wachtwoord = document.getElementById("wachtwoord").value;
+            // var spam = document.getElementById("spam").value;
+
+            //window.location.href = "inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + spam + "&spam3";
+        }
+
+        function formKlopt() {
+            var huisnummerbestaat = document.getElementById("huisnummer2").value;
+            var postcodebestaat = document.getElementById("postcode2").value;
+            var straatbestaat = document.getElementById("straatnaam2").value;
+            var plaatsbestaat = document.getElementById("plaats2").value;
+            var huisnummertoe = document.getElementById("huisnummertoe").value;
+
+            <?php
+                if (isset($_GET["postcode2"])) {
+                    $postcode = $_GET["postcode2"];
+                }
+                if (isset($_GET["huisnummer2"])) {
+                    $huisnummer = $_GET["huisnummer2"];
+                }
+                if (isset($_GET["huisnummertoe"])) {
+                    $huisnummertoe = $_GET["huisnummertoe"];
+                }
+            ?>
+            if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat, huisnummertoe) {
+                document.getElementById("straatnaam2").value="<?php if (isset($straat)) {print($straat);}?>";
+                document.getElementById("plaats2").value="<?php if (isset($plaats)) {print($plaats);}?>";
+                document.getElementById("postcode").value="<?php if (isset($postcode)) {print($postcode);}?>";
+                document.getElementById("huisnummer2").value="<?php if (isset($huisnummer)) {print($huisnummer);}?>";
+                document.getElementById("huisnummertoe2").value="<?php if (isset($huisnummertoe)) {print($huisnummertoe);}?>";
+                return true;
+            } else {
+                alert("Vul de postcode en huisnummer eerst in!");
+                return false;
+
+            }
+
+        }
+
+
+        //script voor overal
         function hoverOver() {
-            var a = document.getElementById('paginaalles');
-            var b = document.getElementById('bodyalles');
-            var c = document.getElementById('productnaam');
+
+            if (document.getElementById('paginaalles') != null) {
+                var a = document.getElementById('paginaalles');
+            }
+
+            if (document.getElementById('bodyalles') != null) {
+                var b = document.getElementById('bodyalles');
+            }
+
+            if (document.getElementById('productnaam') !=null) {
+                var c = document.getElementById('productnaam');
+            }
 
             if (a) {
                 document.getElementById('paginaalles').style.backgroundColor = 'rgba(0,0,0,0.5)';
@@ -232,9 +290,13 @@
                 }
             }
 
+
             document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
             document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';
-            document.getElementById('productnaam').style.color= 'rgba(69,194,227,1)';
+
+            if (document.getElementById('productnaam') != null) {
+                document.getElementById('productnaam').style.color = 'rgba(69,194,227,1)';
+            }
 
         }
 
