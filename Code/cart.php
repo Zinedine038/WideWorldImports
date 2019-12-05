@@ -35,13 +35,16 @@
         {
             if($value["product_id"] == $_GET['id'])
             {
-                $_SESSION['cart'][$key]['amount']-=1;
+                if($_SESSION['cart'][$key]['amount']>1)
+                {
+                    $_SESSION['cart'][$key]['amount']-=1;
+                }
             }
         }
         echo "removeOne";
     }
-    print_r($_SESSION['cart']);
-    print("    Total items: " . getTotalItems($_SESSION['cart']));
+    //print_r($_SESSION['cart']);
+    //print("    Total items: " . getTotalItems($_SESSION['cart']));
 
 ?>
 <!doctype html>
