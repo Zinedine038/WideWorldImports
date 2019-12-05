@@ -1,14 +1,18 @@
 <?php
 
+//Callable component for a shopping item with the assigned values for the item
 function component($productname, $productprice, $productimg, $productDescription, $productID, $reccomendedPrice = 699)
 {
+    //Photo behaviour
     $fotoPath = $productimg;
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
     $currentLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    //Uses default photo if he can't find a photo
     if(sqlfoto($productID)[0]!=null)
     {
         $fotoPath = sqlfoto($productID)[0];
     }
+    //HTML
     $element = "            
             <div class=\"col-md-3 col-sm-6 my-3\">
                 <form action=$currentLink method=\"post\">
@@ -48,16 +52,19 @@ function component($productname, $productprice, $productimg, $productDescription
     echo $element;
 }
 
-
+//Component but specificly for the shopping cart with a different layout and some other values
 function cartElement($productname, $productprice, $productimg, $productID, $amount, $reccomendedPrice = 699)
 {
     include_once 'functions.php';
+    //Photo behaviour
     $productPageLink = "http://localhost/wideworldimports/code/productpage.php?stockitemid=" . $productID;
     $foto = $productimg;
+    //Uses default photo if he can't find a photo
     if(sqlfoto($productID)[0]!=null)
     {
         $foto = sqlfoto($productID)[0];
     }
+    //HTML
     $element="
                 <form action=\"cart.php?action=remove&id=$productID\"  method=\"post\" class=\"cart-items\">
                 <div class=\"border rounded\">

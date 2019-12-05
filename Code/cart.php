@@ -1,10 +1,17 @@
 <?php
 
+    //Start cart session
     session_start();
+
+    //Get manditory functions
     require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");
+
+    //creates an object database
     $db = new CreateDb("");
     $_SESSION['cart'] = array_values($_SESSION['cart']);
+
+    //Remove an item
     if(isset($_POST['remove']))
     {
         if($_GET['action']=='remove')
@@ -18,6 +25,7 @@
             }
         }
     }
+    //Add an item to an existing product
     if(isset($_POST['addOne']))
     {
         foreach($_SESSION['cart'] as $key => $value)
@@ -28,6 +36,7 @@
             }
         }
     }
+    //Remove one from an existing product IF the current amount is more than 1
     if(isset($_POST['removeOne']))
     {
         foreach($_SESSION['cart'] as $key => $value)
@@ -41,8 +50,6 @@
             }
         }
     }
-    //print_r($_SESSION['cart']);
-    //print("    Total items: " . getTotalItems($_SESSION['cart']));
 
 ?>
 <!doctype html>
@@ -63,6 +70,7 @@
 <body class ="bg-light">
 
 <?php
+    //Creates the header
     require_once('./header.php');
 ?>
 
@@ -74,6 +82,7 @@
             <hr>
             <?php
 
+            //Calculates the total cost and discount from the shopping cart
             $total=0;
             $totaleKorting=0;
             if(isset($_SESSION['cart']))

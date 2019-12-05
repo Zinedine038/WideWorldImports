@@ -267,12 +267,14 @@ function KlantGegevensToevoegen($gegevens) {
     return $gegevens;
 }
 
+//Gets the parent from the parent array using a child key as search term (name, ID etc.)
 function getparent($array, $needle) {
     foreach($array as $key => $value) {
         if(in_array($needle, $value)) return $key;
     }
 }
 
+//Calculates the total amount of items in the cart including multiple units of 1 item
 function getTotalItems($array)
 {
     $total = 0;
@@ -286,13 +288,53 @@ function getTotalItems($array)
     return $total;
 }
 
+//Updates the shopping cart
+function updateShoppingCart()
+{
+    if (isset($_POST['add'])) {
+        if (isset($_SESSION['cart']))
+        {
+            $item_array_id = array_column($_SESSION['cart'], "product_id");
+            //Add to an existing product
+            if (in_array(($_POST['product_id']), $item_array_id))
+            {
+                $name = sql("stockitems", "stockitemname", $_POST["product_id"]);
+                $keyIndex = getparent($_SESSION['cart'], $name);
+                $_SESSION['cart'][$keyIndex]['amount'] += 1;
+            }
+            //Add a new unique item to the cart if the cart exists
+            else
+            {
+                $count = count($_SESSION['cart']);
+                $name = sql("stockitems", "stockitemname", $_POST["product_id"]);
+                $item_array = array('product_id' => $_POST['product_id'],
+                    'amount' => 1,
+                    'name' => $name);
+                $_SESSION['cart'][$count] = $item_array;
+            }
+        }
+        //Creates the shopping cart and adds the item
+        else
+        {
+            $name = sql("stockitems", "stockitemname", $_POST["product_id"]);
+            $item_array = array('product_id' => $_POST['product_id'],
+                'amount' => 1,
+                'name' => $name);
+            $_SESSION['cart'][0] = $item_array;
+        }
+    }
+}
+
+//Creates the database
 class CreateDb
 {
+    //Constructor
     public function __construct($msg)
     {
         print($msg);
     }
 
+    //Getdata function
     public function getData()
     {
         $host = getHost();

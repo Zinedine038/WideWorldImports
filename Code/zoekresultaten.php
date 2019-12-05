@@ -12,37 +12,9 @@ if(isset($_GET["resultsshown"])){
     $resultsshown=$_GET["resultsshown"];
 }
 
-if(isset($_POST['add']))
-{
-    include_once("functions.php");
-    //print_r($_POST['product_id']);
-    if(isset($_SESSION['cart']))
-    {
-        $item_array_id = array_column($_SESSION['cart'],"product_id");
-        if(in_array(($_POST['product_id']), $item_array_id))
-        {
-            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
-            $keyIndex = getparent($_SESSION['cart'],$name);
-            $_SESSION['cart'][$keyIndex]['amount']+=1;
-        }
-        else
-        {
-            $count=count($_SESSION['cart']);
-            $name = sql("stockitems","stockitemname",$_POST["product_id"]);
-            $item_array=array('product_id' => $_POST['product_id'],
-                'amount' => 1,
-                'name' => $name  );
-            $_SESSION['cart'][$count]=$item_array;
-        }
-    } else
-    {
-        $name = sql("stockitems","stockitemname",$_POST["product_id"]);
-        $item_array=array('product_id' => $_POST['product_id'],
-            'amount' => 1,
-            'name' => $name);
-        $_SESSION['cart'][0] = $item_array;
-    }
-}
+include_once("functions.php");
+updateShoppingCart();
+
 
 require_once('header.php');
 require_once("winkelmandje/php/component.php");
