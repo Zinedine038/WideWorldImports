@@ -2,14 +2,6 @@
 MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
 -->
 
-<?php
-
-    if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
-    {
-        print("JESQLSHIT");
-    }
-
-?>
 
 
 <?php
@@ -25,7 +17,7 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
         $huisnummertoe=strtoupper($_GET["huisnummertoe"]);
     }
 
-if (isset($_GET["submit"])) {
+if (isset($_GET["verzenden"])) {
     if ($postcode == "" || $huisnummer == "") {
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Geef je huisnummer en postcode!</h1>");
     }
@@ -49,13 +41,47 @@ if  ($postcode!="" && $huisnummer!="") {
 
     ?>
 
+<?php
+
+if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) || isset($_GET["wachtwoord"]) || isset($_GET["spam"]) || isset($_GET["huisnummer2"]) || isset($_GET["postcode2"]) || isset($_GET["straatnaam2"]) || isset($_GET["plaats2"]) || isset($_GET["verzenden"]))
+{
+    if (isset($_GET["huisnummertoe"])) {
+        $huisnummertoevoeg= $_GET["huisnummertoe"];
+    } else {
+        $huisnummertoevoeg=" ";
+    }
+
+    if (isset($_GET["tussenvoegsel"])) {
+        $tussenvoegseltoevoeg= $_GET["tussenvoegsel"];
+    } else {
+        $tussenvoegseltoevoeg="";
+    }
+
+    if ($_GET["Spam"] == "on") {
+        $spam=true;
+    } else {
+        $spam=false;
+    }
+
+
+    VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam2"], $_GET["huisnummer2"], $huisnummertoevoeg ,$_GET["postcode2"], $_GET["plaats2"], $_GET["email"], $_GET["wachtwoord"], $spam);
+}
+
+?>
+
 <script>
 
     function autoinvul(){
-        <?php $huisnummertoe= $_GET["huisnummertoe"];?>
-        document.getElementById("straatnaam2").value="<?php print($straat);?>";
-        document.getElementById("plaats2").value="<?php print($plaats);?>";
-        //document.getElementById("huisnummertoe").value="<?php print($huisnummertoe);?>";
+        var voornaam = document.getElementById("voornaam").value;
+        alert(voornaam);
+
+        // var tussenvoegsel = document.getElementById("tussenvoegsel").value;
+        // var achternaam =document.getElementById("achternaam").value;
+        // var email = document.getElementById("email").value;
+        // var wachtwoord = document.getElementById("wachtwoord").value;
+        // var spam = document.getElementById("spam").value;
+
+        //window.location.href = "inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + spam + "&spam3";
     }
     
     function formKlopt() {
@@ -63,10 +89,8 @@ if  ($postcode!="" && $huisnummer!="") {
             $postcode=$_GET["postcode"];
             $huisnummer=$_GET["huisnummer"];
             $huisnummertoe=$_GET["huisnummertoe"];
-
-
-
         ?>
+
         var huisnummerbestaat = document.getElementById("huisnummer2").value;
         var postcodebestaat = document.getElementById("postcode2").value;
         var straatbestaat = document.getElementById("straatnaam2").value;
@@ -110,8 +134,8 @@ if  ($postcode!="" && $huisnummer!="") {
 
                 <div class="form-group">
                     Voornaam
-                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam"
-                           class="form-control input-lg" required>
+                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" required
+                           class="form-control input-lg">
                 </div>
 
                     <div class="form-group">
@@ -140,14 +164,6 @@ if  ($postcode!="" && $huisnummer!="") {
                                class="form-control input-lg">
                     </div>
 
-
-
-
-
-
-
-
-
         <div class="form-group checkbox custom-control custom-checkbox">
 
             <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="Spam">
@@ -155,6 +171,8 @@ if  ($postcode!="" && $huisnummer!="") {
                 Wil je platgegooit worden met spam?
             </label>
         </div>
+
+
         <input name="huisnummer2" type="text" id="huisnummer2" value="<?php print($huisnummer) ?>">
         <input name="postcode2" type="text" id="postcode2" value="<?php print($postcode) ?>">
         <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php print($huisnummertoe) ?>">
@@ -164,7 +182,9 @@ if  ($postcode!="" && $huisnummer!="") {
             <input onclick="autoinvul();" type="submit" name="verzenden" class="btn btn-primary">
         </div>
     </form>
-            </div>
+</div>
+
+
 
 
 
