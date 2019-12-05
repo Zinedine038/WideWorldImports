@@ -252,7 +252,7 @@ function VoegKlantToe($connection, $FirstName, $LastName, $Infix, $Streetname, $
 }
 function KlantGegevensToevoegen($gegevens) {
     $connection = MaakVerbinding();
-    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"], $gegevens["NewsLetter"]) == 1)
+    if (VoegKlantToe($connection, $gegevens["FirstName"], $gegevens["LastName"], $gegevens["Streetname"], $gegevens["HouseNumber"], $gegevens["PostalCode"], $gegevens["City"], $gegevens["Email"], $gegevens["Password"]) == 1)
         $gegevens["melding"] = "De klant is toegevoegd";
     else $gegevens["melding"] = "Het toevoegen is mislukt";
     SluitVerbinding($connection);
