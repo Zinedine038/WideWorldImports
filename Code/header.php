@@ -338,7 +338,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
-                            <a class="wit pr-3" href="inloggen.php">
+                            <a class="wit pr-3" href="Inlogpagina.php">
                                 <i class="fas fa-running order-first"></i>
                                 <i class="fab fa-accessible-icon order-last"></i>
                             </a>
