@@ -98,30 +98,14 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
             $spam=false;
         }
 
-        print($_GET["voornaam"]);
-        print("<br>");
-        print($_GET["achternaam"]);
-        print("<br>");
-        print($tussenvoegseltoevoeg);
-        print("<br>");
-        print($_GET["straatnaam"]);
-        print("<br>");
-        print($_GET["huisnummer"]);
-        print("<br>");
-        print($huisnummertoevoeg);
-        print("<br>");
-        print($_GET["postcode"]);
-        print("<br>");
-        print($_GET['plaats']);
-        print("<br>");
-        print($_GET["email"]);
-        print("<br>");
-        print($_GET["wachtwoord"]);
-        print("<br>");
-        print($spam);
     VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam"], $_GET["huisnummer"], $huisnummertoevoeg ,$_GET["postcode"], $_GET["plaats"], $_GET["email"], $_GET["wachtwoord"], $spam);
-} else {
-    print("Vul alle velden in!");
+    print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
+    $URL="inlogpagina.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    die();
+} elseif (isset($_GET["verzenden"])) {
+    print("<h1 style='color: red; text-align: center; background-color: #00fafa'><h1>Error: vul alle velden in!</h1>");
 }
 
 ?>

@@ -42,5 +42,7 @@ if(isset($_GET["wachtwoord"])) {
         else{
             print ("Fuck");
     }
+
 }
+print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a>");
 include "footer.php";
