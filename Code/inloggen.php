@@ -79,7 +79,7 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
-if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) && isset($_GET["wachtwoord"]) && isset($_GET["huisnummer"]) && isset($_GET["postcode"]) && isset($_GET["straatnaam"]) && isset($_GET["plaats"]) && isset($_GET["verzenden"]))
+if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) && isset($_GET["wachtwoord"]) && isset($_GET["huisnummer"]) && ($_GET["huisnummer"]!="") && isset($_GET["postcode"]) && ($_GET["postcode"]!="") && isset($_GET["straatnaam"]) && ($_GET["straatnaam"]!="") && isset($_GET["plaats"]) && ($_GET["plaats"]!="") && isset($_GET["verzenden"]))
 {
     if (isset($_GET["huisnummertoe"])) {
         $huisnummertoevoeg= $_GET["huisnummertoe"];
@@ -120,6 +120,8 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         print("<br>");
         print($spam);
     VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam"], $_GET["huisnummer"], $huisnummertoevoeg ,$_GET["postcode"], $_GET["plaats"], $_GET["email"], $_GET["wachtwoord"], $spam);
+} else {
+    print("Vul alle velden in!");
 }
 
 ?>
@@ -163,7 +165,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
                     <div class="form-group">
                         Email
-                        <input type="text" name="email" placeholder="Typ hier je email-adres" required id="email"
+                        <input type="email" name="email" placeholder="Typ hier je email-adres" required id="email"
                                class="form-control input-lg" value="<?php if (isset($email)) {print $email;}?>">
                     </div>
 
