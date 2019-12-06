@@ -4,6 +4,7 @@ session_start();
 include "header.php";
 include_once '../config.php';
 ?>
+<div style="width: 90%; padding: 5%">
 <h2>Inloggen</h2>
 <form xmlns="http://www.w3.org/1999/html">
 <div class="form-group">
@@ -44,5 +45,6 @@ if(isset($_GET["wachtwoord"])) {
     }
 
 }
-print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a>");
+print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a>"); ?>
+</div> <?php
 include "footer.php";
