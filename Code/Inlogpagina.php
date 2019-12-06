@@ -2,8 +2,7 @@
 <?php
 session_start();
 include "header.php";
-MaakVerbinding();
-
+include_once '../config.php';
 ?>
 <h2>Inloggen</h2>
 <form xmlns="http://www.w3.org/1999/html">
@@ -20,12 +19,24 @@ MaakVerbinding();
     <input type="submit" value="Aanmelden">
 </form>
 <?php
+$host = getHost();
+$databasename = getDatabasename();
+$port = getPort();
+$user = getUser();
+$pass = getPass();
 if(isset($_GET["wachtwoord"])) {
     $wachtwoord = $_GET["wachtwoord"];
-    $Hash = password_hash($wachtwoord, PASSWORD_DEFAULT);
     $email = $_GET["Email"];
-    $wachtwoordDatabase = "SELECT Password FROM user WHERE Email = $email";
-    if($Hash == $wachtwoordDatabase){
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $sql= "SELECT Password FROM user WHERE Email = ?";
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "s", $email);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+    $row = mysqli_fetch_array($result);
+    $HashedWW = $row["Password"];
+    if(password_verify($wachtwoord, $HashedWW)){
         print("Eureka!");
     }
         else{
