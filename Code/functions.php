@@ -325,6 +325,41 @@ function updateShoppingCart()
     }
 }
 
+//Functions for generating stars
+function stars($amount)
+{
+    $rounded = round($amount*2) / 2;
+    $empty=5;
+    $stringToReturn = "";
+    //If half
+    if (abs($rounded - floor($rounded) - 0.5) < 0.0001)
+    {
+        $empty-=$rounded;
+        $rounded-=0.5;
+        for($i = 0; $i<$rounded; $i++)
+        {
+            $stringToReturn = $stringToReturn . "<i class=\"fas fa-star\"></i>";
+        }
+        $stringToReturn = $stringToReturn . "<i class=\"fas fa-star-half\"></i>";
+    }
+    else
+    {
+        $empty-=$rounded;
+        for($i = 0; $i<$rounded; $i++)
+        {
+            $stringToReturn = $stringToReturn . "<i class=\"fas fa-star\"></i>";
+        }
+    }
+    for($i = 0; $i<$empty; $i++)
+    {
+        if($i+0.5!=$empty)
+        {
+            $stringToReturn = $stringToReturn . "<i class=\"far fa-star\"></i>" ;
+        }
+    }
+    return $stringToReturn;
+}
+
 //Creates the database
 class CreateDb
 {
@@ -343,7 +378,7 @@ class CreateDb
         $user = getUser();
         $pass = getPass();
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
-        $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails, UnitPrice FROM stockitems";
+        $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails, UnitPrice, Rating FROM stockitems";
         $result = mysqli_query($connection,$sql);
         if(mysqli_num_rows($result)>0)
         {

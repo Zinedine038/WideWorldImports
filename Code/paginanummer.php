@@ -18,7 +18,7 @@ $limitmin = $resultsperpage * ($page - 1);
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
 if (isset($_GET["stockitemgroupid"])) {
 $StockitemstockgroupID = $_GET["stockitemgroupid"];
-$sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments, UnitPrice FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ? LIMIT ?, ?";
+$sql = "SELECT StockItemName, StockItemID, RecommendedRetailPrice, MarketingComments, UnitPrice, Rating FROM stockitems JOIN stockitemstockgroups USING (stockitemID) WHERE stockgroupID = ? LIMIT ?, ?";
 $statement = mysqli_prepare($connection, $sql);
 mysqli_stmt_bind_param($statement, "iii", $StockitemstockgroupID, $limitmin, $resultsperpage);
 mysqli_stmt_execute($statement);
@@ -60,7 +60,8 @@ mysqli_stmt_close($statement); ?>
             $Beschrijving = $row["MarketingComments"];
             $foto = sqlfoto($id);
             $fotoo = $foto["0"];
-            component($naam, $prijs, $fotoo, $Beschrijving, $id, $oudePrijs);
+            $rating = $row["Rating"];
+            component($naam, $prijs, $fotoo, $Beschrijving, $id, $oudePrijs,$rating);
             $i++;
         } ?>
     </div>

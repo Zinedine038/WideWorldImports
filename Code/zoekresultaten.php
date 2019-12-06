@@ -50,7 +50,8 @@ require_once("winkelmandje/php/component.php");
             $commentaar = sql("stockitems", "MarketingComments", $id);
             $Itemid = sql("stockitems", "StockItemID", $id);
             $oudePrijs = sql("stockitems", "RecommendedRetailPrice", $id);
-            component($naam,$prijs,"./upload/product1.png",$commentaar,$Itemid,$oudePrijs);
+            $rating = sql("stockitems", "Rating", $id);
+            component($naam,$prijs,"./upload/product1.png",$commentaar,$Itemid,$oudePrijs, $rating);
             $count++;
         }
 

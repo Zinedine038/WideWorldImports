@@ -1,7 +1,7 @@
 <?php
 
 //Callable component for a shopping item with the assigned values for the item
-function component($productname, $productprice, $productimg, $productDescription, $productID, $reccomendedPrice = 699)
+function component($productname, $productprice, $productimg, $productDescription, $productID, $reccomendedPrice = 699, $rating =4)
 {
     //Photo behaviour
     $fotoPath = $productimg;
@@ -27,11 +27,9 @@ function component($productname, $productprice, $productimg, $productDescription
                                 <h5 class=\"card-title\">$productname</h5>
                             </a>
                             <h6>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"far fa-star\"></i>
+                                ".
+                                stars($rating)
+                                ."
                             </h6>
                             <p class=\"card-text\" style='text-decoration: unset; width: unset; color: unset;'>
                                 $productDescription
