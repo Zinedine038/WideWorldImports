@@ -18,24 +18,24 @@ MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
 
 
 
-if (isset($_GET["voornaam"])) {
-    $voornaam=$_GET["voornaam"];
+if (isset($_POST["voornaam"])) {
+    $voornaam=$_POST["voornaam"];
 }
-if (isset($_GET["tussenvoegsel"])) {
-    $tussenvoegsel=$_GET["tussenvoegsel"];
+if (isset($_POST["tussenvoegsel"])) {
+    $tussenvoegsel=$_POST["tussenvoegsel"];
 }
-if (isset($_GET["achternaam"])) {
-    $achternaam=$_GET["achternaam"];
+if (isset($_POST["achternaam"])) {
+    $achternaam=$_POST["achternaam"];
 }
-if (isset($_GET["email"])) {
-    $email=$_GET["email"];
+if (isset($_POST["email"])) {
+    $email=$_POST["email"];
 }
-if (isset($_GET["wachtwoord"])) {
-    $wachtwoord=$_GET["wachtwoord"];
+if (isset($_POST["wachtwoord"])) {
+    $wachtwoord=$_POST["wachtwoord"];
 }
 
-if (isset($_GET["spam"])) {
-    if ($_GET["spam"]==true) {
+if (isset($_POST["spam"])) {
+    if ($_POST["spam"]==true) {
         $spam = 1;
     } else {
         $spam=0;
@@ -46,14 +46,14 @@ if (isset($_GET["spam"])) {
 
 
 
- if (isset($_GET["huisnummer"]) || isset($_GET["postcode"])) {
+ if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
         /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
-        $postcode = strtoupper(str_replace(" ", "", $_GET["postcode"]));
-        $huisnummer = trim($_GET["huisnummer"]);
-        $huisnummertoe=strtoupper($_GET["huisnummertoe"]);
+        $postcode = strtoupper(str_replace(" ", "", $_POST["postcode"]));
+        $huisnummer = trim($_POST["huisnummer"]);
+        $huisnummertoe=strtoupper($_POST["huisnummertoe"]);
     }
 
-if (isset($_GET["submit"])) {
+if (isset($_POST["submit"])) {
     if ($postcode == "" || $huisnummer == "") {
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Geef je huisnummer en postcode!</h1>");
     }
@@ -79,32 +79,32 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
-if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email"]) && isset($_GET["wachtwoord"]) && isset($_GET["huisnummer"]) && ($_GET["huisnummer"]!="") && isset($_GET["postcode"]) && ($_GET["postcode"]!="") && isset($_GET["straatnaam"]) && ($_GET["straatnaam"]!="") && isset($_GET["plaats"]) && ($_GET["plaats"]!="") && isset($_GET["verzenden"]))
+if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["wachtwoord"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
 {
-    if (isset($_GET["huisnummertoe"])) {
-        $huisnummertoevoeg= $_GET["huisnummertoe"];
+    if (isset($_POST["huisnummertoe"])) {
+        $huisnummertoevoeg= $_POST["huisnummertoe"];
     } else {
         $huisnummertoevoeg="";
     }
 
-    if (isset($_GET["tussenvoegsel"])) {
-        $tussenvoegseltoevoeg=$_GET["tussenvoegsel"];
+    if (isset($_POST["tussenvoegsel"])) {
+        $tussenvoegseltoevoeg=$_POST["tussenvoegsel"];
     } else {
         $tussenvoegseltoevoeg="";
     }
-        if (isset($_GET["spam"])) {
+        if (isset($_POST["spam"])) {
             $spam=true;
         } else {
             $spam=false;
         }
 
-    VoegKlantToe($_GET["voornaam"], $_GET["achternaam"], $tussenvoegseltoevoeg, $_GET["straatnaam"], $_GET["huisnummer"], $huisnummertoevoeg ,$_GET["postcode"], $_GET["plaats"], $_GET["email"], $_GET["wachtwoord"], $spam);
+    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
     $URL="inlogpagina.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     die();
-} elseif (isset($_GET["verzenden"])) {
+} elseif (isset($_POST["verzenden"])) {
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'><h1>Error: vul alle velden in!</h1>");
 }
 
@@ -121,7 +121,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
 
 
-    <form action="inloggen.php" method="get" onsubmit="return formKlopt();">
+    <form action="inloggen.php" method="post" onsubmit="return formKlopt();">
 
 
 
@@ -187,7 +187,7 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
 
 
-                    <form onsubmit="formVul()" action="inloggen.php" method="get">
+                    <form onsubmit="formVul()" action="inloggen.php" method="post">
                         Huisnummer
                         <div class="form-group">
                             <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>

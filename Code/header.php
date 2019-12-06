@@ -87,14 +87,14 @@
                 var huisnummertoe = document.getElementById("huisnummertoe").value;
             }
             <?php
-            if (isset($_GET["postcode2"])) {
+            if (isset($_POST["postcode2"])) {
                 $postcode = $_GET["postcode2"];
             }
-            if (isset($_GET["huisnummer2"])) {
+            if (isset($_POST["huisnummer2"])) {
                 $huisnummer = $_GET["huisnummer2"];
             }
-            if (isset($_GET["huisnummertoe"])) {
-                $huisnummertoe = $_GET["huisnummertoe"];
+            if (isset($_POST["huisnummertoe"])) {
+                $huisnummertoe = $_POST["huisnummertoe"];
             }
 
 
