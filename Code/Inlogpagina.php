@@ -6,7 +6,7 @@ include_once '../config.php';
 ?>
 <div style="width: 90%; padding: 5%">
 <h2>Inloggen</h2>
-<form xmlns="http://www.w3.org/1999/html">
+<form xmlns="http://www.w3.org/1999/html" method="post">
 <div class="form-group">
                     Email
                     <input type="text" name="Email" placeholder="Vul hier je email"
@@ -25,9 +25,9 @@ $databasename = getDatabasename();
 $port = getPort();
 $user = getUser();
 $pass = getPass();
-if(isset($_GET["wachtwoord"])) {
-    $wachtwoord = $_GET["wachtwoord"];
-    $email = $_GET["Email"];
+if(isset($_POST["wachtwoord"])) {
+    $wachtwoord = $_POST["wachtwoord"];
+    $email = $_POST["Email"];
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $sql= "SELECT Password FROM user WHERE Email = ?";
     $statement = mysqli_prepare($connection, $sql);
@@ -37,6 +37,7 @@ if(isset($_GET["wachtwoord"])) {
     mysqli_stmt_close($statement);
     $row = mysqli_fetch_array($result);
     $HashedWW = $row["Password"];
+print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a><br>");
     if(password_verify($wachtwoord, $HashedWW)){
         print("Eureka!");
     }
@@ -44,7 +45,6 @@ if(isset($_GET["wachtwoord"])) {
             print ("Fuck");
     }
 
-}
-print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a>"); ?>
+} ?>
 </div> <?php
 include "footer.php";
