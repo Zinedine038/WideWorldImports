@@ -46,31 +46,34 @@
     <script>
         //scripts voor inlogpagina
         function formVul(){
-            var voornaam2 = document.getElementById("voornaam").value;
-            alert(voornaam2);
+
             if (document.getElementById("voornaam") != null) {
                 var voornaam = document.getElementById("voornaam").value;
-
+                document.getElementById("voornaam2").value=voornaam;
             }
 
              if (document.getElementById("tussenvoegsel") != null) {
-                 var tussenvoegsel = document.getElementById("tussenvoegsel").value;
+                 var tussenvoegsel1 = document.getElementById("tussenvoegsel").value;
+                 document.getElementById("tussenvoegsel2").value=tussenvoegsel1;
              }
              if (document.getElementById("achternaam") != null) {
-                 var achternaam = document.getElementById("achternaam").value;
+                 var achternaam1 = document.getElementById("achternaam").value;
+                 document.getElementById("achternaam2").value=achternaam1;
              }
              if (document.getElementById("email") != null) {
-                 var email = document.getElementById("email").value;
+                 var email1 = document.getElementById("email").value;
+                 document.getElementById("email2").value=email1;
              }
              if (document.getElementById("wachtwoord") != null) {
-                 var wachtwoord = document.getElementById("wachtwoord").value;
+                 var wachtwoord1 = document.getElementById("wachtwoord").value;
+                 document.getElementById("wachtwoord2").value=wachtwoord1;
              }
-             if (document.getElementById("spam") != null) {
-                 var spam = document.getElementById("spam").value;
+             if (document.querySelector('.checkboxbericht').checked) {
+                 document.getElementById("spam2").value=1;
+             } else {
+                 document.getElementById("spam2").value=0;
              }
 
-        alert('hi');
-            window.location.href = "http://localhost/wideworldimports/code/inloggen.php?huisnummer3=" + voornaam + "&voornaam3" + tussenvoegsel + "&tussenvoegsel3" + achternaam + " &achternaam3" + email + "&email3" + wachtwoord + "wachtwoord3" + "&spam3" + spam;
         }
 
         function formKlopt() {
@@ -80,31 +83,31 @@
             var postcodebestaat = document.getElementById("postcode2").value;
             var straatbestaat = document.getElementById("straatnaam2").value;
             var plaatsbestaat = document.getElementById("plaats2").value;
-            var huisnummertoe = document.getElementById("huisnummertoe").value;
-
+            if (document.getElementById("huisnummertoe") != null) {
+                var huisnummertoe = document.getElementById("huisnummertoe").value;
+            }
             <?php
-            if (isset($_GET["postcode2"])) {
+            if (isset($_POST["postcode2"])) {
                 $postcode = $_GET["postcode2"];
             }
-            if (isset($_GET["huisnummer2"])) {
+            if (isset($_POST["huisnummer2"])) {
                 $huisnummer = $_GET["huisnummer2"];
             }
-            if (isset($_GET["huisnummertoe"])) {
-                $huisnummertoe = $_GET["huisnummertoe"];
+            if (isset($_POST["huisnummertoe"])) {
+                $huisnummertoe = $_POST["huisnummertoe"];
             }
+
+
             ?>
 
-            if (huisnummerbestaat, postcodebestaat, straatbestaat, plaatsbestaat, huisnummertoe) {
-                document.getElementById("straatnaam2").value="<?php if (isset($straat)) {print($straat);}?>";
-                document.getElementById("plaats2").value="<?php if (isset($plaats)) {print($plaats);}?>";
-                document.getElementById("postcode").value="<?php if (isset($postcode)) {print($postcode);}?>";
-                document.getElementById("huisnummer2").value="<?php if (isset($huisnummer)) {print($huisnummer);}?>";
-                document.getElementById("huisnummertoe2").value="<?php if (isset($huisnummertoe)) {print($huisnummertoe);}?>";
-                return true;
-            } else {
-                alert("Vul de postcode en huisnummer eerst in!");
-                return false;
-
+            if (!(document.querySelector('.checkboxbericht').checked)) {
+                var check = document.getElementsByClassName('checkboxbericht');
+                if (check) {
+                    for (var ie = 0; ie < check.length; ie++) {
+                        check[ie].removeAttribute('checked');
+                    }
+                }
+                document.getElementById("spam").value=0;
             }
 
         }
@@ -335,7 +338,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
-                            <a class="wit pr-3" href="inloggen.php">
+                            <a class="wit pr-3" href="Inlogpagina.php">
                                 <i class="fas fa-running order-first"></i>
                                 <i class="fab fa-accessible-icon order-last"></i>
                             </a>
