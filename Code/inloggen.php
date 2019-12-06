@@ -168,11 +168,11 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
         </div>
 
 
-        <input name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
-        <input name="postcode" type="text" id="postcode2" value="<?php print($postcode); ?>">
-        <input name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php if (isset($huisnummertoe)) { print($huisnummertoe);} ?>">
-        <input name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
-        <input name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
+        <input style="display: none" name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
+        <input style="display: none" name="postcode" type="text" id="postcode2" value="<?php print($postcode); ?>">
+        <input style="display: none" name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php if (isset($huisnummertoe)) { print($huisnummertoe);} ?>">
+        <input style="display: none" name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
+        <input style="display: none" name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
         <div>
             <input type="submit" name="verzenden" class="btn btn-primary">
         </div>
@@ -221,12 +221,12 @@ if (isset($_GET["voornaam"]) && isset($_GET["achternaam"]) && isset($_GET["email
 
                         <br>
 
-                        <input name="voornaam" type="text" id="voornaam2" value="<?php print($voornaam); ?>">
-                        <input name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
-                        <input name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
-                        <input name="email" type="text" id="email2" value="<?php print($email); ?>">
-                        <input name="wachtwoord" type="text" id="wachtwoord2" value="<?php print($wachtwoord); ?>">
-                        <input name="spam" type="text" id="spam2" value="<?php if ($spam==1){print(1);} else {print(0);}?>">
+                        <input style="display: none" name="voornaam" type="text" id="voornaam2" value="<?php print($voornaam); ?>">
+                        <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
+                        <input style="display: none" name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
+                        <input style="display: none" name="email" type="text" id="email2" value="<?php print($email); ?>">
+                        <input style="display: none" name="wachtwoord" type="text" id="wachtwoord2" value="<?php print($wachtwoord); ?>">
+                        <input style="display: none" name="spam" type="text" id="spam2" value="<?php if ($spam==1){print(1);} else {print(0);}?>">
 
 
                 </div>
