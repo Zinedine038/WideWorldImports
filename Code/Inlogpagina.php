@@ -20,6 +20,7 @@ include_once '../config.php';
     <input type="submit" value="Aanmelden">
 </form>
 <?php
+print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a><br>");
 $host = getHost();
 $databasename = getDatabasename();
 $port = getPort();
@@ -37,7 +38,6 @@ if(isset($_POST["wachtwoord"])) {
     mysqli_stmt_close($statement);
     $row = mysqli_fetch_array($result);
     $HashedWW = $row["Password"];
-print("Heb je nog geen account? <a href='inloggen.php'>klik hier</a><br>");
     if(password_verify($wachtwoord, $HashedWW)){
         print("Eureka!");
     }
