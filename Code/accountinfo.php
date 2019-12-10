@@ -3,7 +3,17 @@ session_start();
 
 include "header.php";
 ?>
+<?php
+// Als ingelogd laat acountinfo plaatje zien MOET IN HEADER
+if (isset($_SESSION["voornaam"])) {
+    print("
+    <a class='wit' href='accountinfo.php'>
+        <i class='fas fa-user'></i>
+    </a>
+    ");
+}
 
+?>
 <?php if (isset($_SESSION["voornaam"])) {
     print("Voornaam:");
     print ($_SESSION["voornaam"]);
