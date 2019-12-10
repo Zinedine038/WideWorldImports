@@ -1,9 +1,3 @@
-<!--
-MOET FORMS EIGEN ID GEVEN WERKT DAAROM NU NIET
--->
-
-
-
 <?php
     include "header.php";
     $postcode="";
