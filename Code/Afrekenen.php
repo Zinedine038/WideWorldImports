@@ -3,6 +3,9 @@ session_start();
 include "header.php";
 include_once '../config.php';
 ?>
+<a class="wit" href="accountinfo.php">
+    <i class="fas fa-user"></i>
+</a>
 
 <div style="width: 90%; padding: 5%; display:  <?php if (1===1) {print("none");} else {print("unset");} ?>">
     <h2>Inloggen</h2>
@@ -141,8 +144,9 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
     }
 
     VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
+    $_SESSION["ingelogd"]=true;
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
-    $URL="inlogpagina.php";
+    $URL="afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     die();
@@ -164,7 +168,6 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
 
             <form action="Afrekenen.php" method="post" onsubmit="return formKlopt();">
-
 
 
 
