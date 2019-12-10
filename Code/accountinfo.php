@@ -2,13 +2,18 @@
 session_start();
 
 include "header.php";
-// MOET IN HEADER
-if (!(isset($_SESSION["voornaam"]))) {
-    $_SESSION["ingelogd"] = false;
-}
 ?>
 
-
-<?php if ($_SESSION["voornaam"] == true) {
+<?php if (isset($_SESSION["voornaam"])) {
     print_r($_SESSION);
+    print ($_SESSION["voornaam"]);
+    print ($_SESSION["tussenvoegsel"]);
+    print ($_SESSION["achternaam"]);
+    print ($_SESSION["email"]);
+    print ($_SESSION["huisnummer"]);
+    print ($_SESSION["annex"]);
+    print ($_SESSION["straatnaam"]);
+    print ($_SESSION["plaats"]);
+    print ($_SESSION["postcode"]);
+    print ($_SESSION["newsletter"]);
 }
