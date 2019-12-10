@@ -38,11 +38,34 @@ if(isset($_POST["wachtwoord"])) {
     mysqli_stmt_close($statement);
     $row = mysqli_fetch_array($result);
     $HashedWW = $row["Password"];
+
     if(password_verify($wachtwoord, $HashedWW)){
-        print("Eureka!");
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $sql= "SELECT FirstName, LastName, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email,NewsLetter FROM user WHERE Email = ?";
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "s", $email);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+        $row = mysqli_fetch_array($result);
+
+        $_SESSION["voornaam"] = $row["FirstName"];
+        $_SESSION["achternaam"] = $row["LastName"];
+        $_SESSION["tussenvoegsel"] = $row["Infix"];
+        $_SESSION["email"] = $row["Email"];
+        $_SESSION["huisnummer"] = $row["HouseNumber"];
+        $_SESSION["annex"] = $row["Annex"];
+        $_SESSION["straatnaam"] = $row["Streetname"];
+        $_SESSION["plaats"] = $row["City"];
+        $_SESSION["postcode"] = $row["PostalCode"];
+        $_SESSION["newsletter"] = $row["NewsLetter"];
+        $URL="accountinfo.php";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+        die();
     }
         else{
-            print ("Fuck");
+            print ("Email of wachtwoord is incorrect");
     }
 
 } ?>
