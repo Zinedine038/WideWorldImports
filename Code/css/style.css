@@ -56,9 +56,12 @@ body {
     max-height: 300px;
 }
 
-.btn-primary {
+#knopuit {
+    background-color: #a8a8a8;
+}
+
+.btn-success {
     width: 100%;
-    background-color: limegreen !important;
     border: 0px !important;
 }
 
@@ -183,8 +186,13 @@ img.livefoto {
     margin-left: -10px;
 }
 
+.footer-img {
+    max-height: 40px;
+}
+
 h4 {
     color: #c9061d;
     font-family: 'Raleway', sans-serif;
     font-size: 20px !important;
 }
+
