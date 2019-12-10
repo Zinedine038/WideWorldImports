@@ -38,7 +38,15 @@
         {
             if($value["product_id"] == $_GET['id'])
             {
-                $_SESSION['cart'][$key]['amount']+=1;
+                $stock=sql("stockitemholdings", "QuantityOnHand", $_SESSION['cart'][$key]['product_id']);
+                if($_SESSION['cart'][$key]['amount']+1<=$stock)
+                {
+                    $_SESSION['cart'][$key]['amount']+=1;
+                }
+                else
+                {
+                    $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad";
+                }
             }
         }
     }
@@ -73,7 +81,15 @@
             {
                 if($value["product_id"] == $_GET['id'])
                 {
-                    $_SESSION['cart'][$key]['amount']=$_POST['newAmount'];
+                    $stock=sql("stockitemholdings", "QuantityOnHand", $_SESSION['cart'][$key]['product_id']);
+                    if($_POST['newAmount']<=$stock)
+                    {
+                        $_SESSION['cart'][$key]['amount']=$_POST['newAmount'];
+                    }
+                    else
+                    {
+                        $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad";
+                    }
                 }
             }
         }
