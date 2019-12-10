@@ -186,6 +186,10 @@ img.livefoto {
     margin-left: -10px;
 }
 
+.footer-img {
+    max-height: 40px;
+}
+
 h4 {
     color: #c9061d;
     font-family: 'Raleway', sans-serif;
