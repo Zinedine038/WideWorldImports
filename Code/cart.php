@@ -45,7 +45,7 @@
                 }
                 else
                 {
-                    $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad";
+                    $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad!" . "<br>" . "Huidige voorraad:" . $stock;
                 }
             }
         }
@@ -88,7 +88,7 @@
                     }
                     else
                     {
-                        $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad";
+                        $errorMSG="Het door u ingevoerde getal is meer dan de huidige voorraad!" . "<br>" . "Huidige voorraad:" . $stock;
                     }
                 }
             }
