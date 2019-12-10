@@ -56,9 +56,12 @@ body {
     max-height: 300px;
 }
 
-.btn-primary {
+#knopuit {
+    background-color: #7d7894;
+}
+
+.btn-success {
     width: 100%;
-    background-color: limegreen !important;
     border: 0px !important;
 }
 
@@ -188,3 +191,4 @@ h4 {
     font-family: 'Raleway', sans-serif;
     font-size: 20px !important;
 }
+

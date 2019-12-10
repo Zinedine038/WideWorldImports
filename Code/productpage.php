@@ -45,7 +45,7 @@ include 'header.php';
                 print ("<s><h5 style='color: #ff0000'>€$oudePrijs</h5></s>");
                 print ("<h3 class='inh'>€$prijs</h3><br>");
                 // als product onder de 50 is geeft die waarschuwing aan
-                if ($voorraad < 50){
+                if ($voorraad < 50 && $voorraad > 0){
                     print("<h4>Let op! Voorraad is beperkt!</h4><br>");
                 }
 
@@ -63,8 +63,10 @@ include 'header.php';
                 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 ?>
                 <br>
+
                 <form action= <?php echo $actual_link ?> method="post">
-                    <button type="submit" class="btn btn-primary" name="add">Plaats in winkelwagen</button>
+                    <button type="submit" class="btn btn-success" name="add" <?php
+                    if ($voorraad <= 0) { print ("id=knopuit disabled");} ?>>Plaats in winkelwagen</button>
                     <input type='hidden' name='product_id' value=<?php echo $_GET["stockitemid"] ?>>
                     <?php $product = $_GET["stockitemid"]; ?>
                 </form>
