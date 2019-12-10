@@ -7,17 +7,17 @@
     <div class="container">
         <div class="row">
 <?php } ?>
-        <div class="col-md-3 text-sm-center">
-            <img src="images/ideal.png" class="footer-img" alt="ideal logo" />
-            <img src="images/266px-Mastercard-logo.svg.png" class="footer-img" alt="mastercard logo" />
-            <img src="images/Visa.png" class="footer-img" alt="visa logo" />
+        <div class="col-md-4">
+            <img src="images/ideal.png" class="footer-img pt-1 pr-1" alt="ideal logo" />
+            <img src="images/266px-Mastercard-logo.svg.png" class="footer-img pt-1 pr-1" alt="mastercard logo" />
+            <img src="images/Visa.png" class="footer-img pt-1 pr-1" alt="visa logo" />
         </div>
-        <div class="col-md-3 text-sm-center">
-            <img src="images/wecycle-logo.jpg" class="footer-img" alt="wecycle logo" />
-            <img src="images/Thuiswinkel_Org_Kleur_Horizontaal.png" class="footer-img" alt="thuiswinkel logo" />
+        <div class="col-md-4">
+            <img src="images/wecycle-logo.png" class="footer-img pt-1 pr-1" alt="wecycle logo" />
+            <img src="images/Thuiswinkel_Org_Kleur_Horizontaal.png" class="footer-img pt-1 pr-1" alt="thuiswinkel logo" />
         </div>
-        <div class="col-md-3">
-
+        <div class="col-md-4">
+            <a href="overons.php">Over ons</a>
         </div>
     </div>
 </div>

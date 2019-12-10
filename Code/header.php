@@ -325,7 +325,7 @@
 </head>
 <body id="bodyalles">
 
-<div class="container-fluid header-bg">
+<div class="container-fluid header-bg p-0">
     <div class="row">
         <div class="container">
             <nav class="navbar navbar-expand-lg d-flex flex-row align-items-center">
@@ -339,8 +339,14 @@
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
                             <a class="wit pr-3" href="Inlogpagina.php">
-                                <i class="fas fa-running order-first"></i>
+
+                                <?php if(isset($_SESSION["voornaam"])){
+                                    $voornaam = $_SESSION["voornaam"];
+                                    print("Welkom $voornaam");
+                                } else { ?>
+                                    <i class="fas fa-running order-first"></i>
                                 <i class="fab fa-accessible-icon order-last"></i>
+                                <?php }?>
                             </a>
                         </div>
                         <div class="order-2 py-2">
@@ -376,4 +382,24 @@
             </nav>
         </div>
     </div>
+    <?php
+    // VERANDER HIER HET THEMA
+$thema = "neutraal";
+
+if ($thema == "sinterklaas") {
+    ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-SINTERKLAAS.jpg" class="header-img" alt="header">
+    </div>
+<?php }
+if ($thema == "kerst") { ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-KERSTMAN.jpg" class="header-img" alt="header">
+    </div>
+<?php }
+if ($thema == "neutraal") { ?>
+    <div class="container-fluid p-0">
+        <img src="images/HEADER-NEUTRAAL.jpg" class="header-img" alt="header">
+    </div>
+<?php } ?>
 </div>
