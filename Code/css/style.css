@@ -62,7 +62,7 @@ body {
     border: 0px !important;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h5 {
     font-family: 'Raleway', sans-serif;
     color: #45c2e3;
 }
@@ -181,4 +181,10 @@ img.livefoto {
     padding: 3px 5px;
     vertical-align: top;
     margin-left: -10px;
+}
+
+h4 {
+    color: #c9061d;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px !important;
 }

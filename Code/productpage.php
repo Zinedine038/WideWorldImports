@@ -44,6 +44,11 @@ include 'header.php';
                 <?php
                 print ("<s><h5 style='color: #ff0000'>€$oudePrijs</h5></s>");
                 print ("<h3 class='inh'>€$prijs</h3><br>");
+                // als product onder de 50 is geeft die waarschuwing aan
+                if ($voorraad < 50){
+                    print("<h4>Let op! Voorraad is beperkt!</h4><br>");
+                }
+
                 print ("Voorraad: $voorraad<br>");
                 if ($marketing) {
                     print ("$marketing<br>");
