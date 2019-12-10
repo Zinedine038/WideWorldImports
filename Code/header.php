@@ -325,7 +325,7 @@
 </head>
 <body id="bodyalles">
 
-<div class="container-fluid header-bg p-0">
+<div class="container-fluid header-bg">
     <div class="row">
         <div class="container">
             <nav class="navbar navbar-expand-lg d-flex flex-row align-items-center">
@@ -338,8 +338,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
-                            <a class="wit pr-3" href="Inlogpagina.php">
-
+                            <a class="wit pr-3" href="accountinfo.php">
                                 <?php if(isset($_SESSION["voornaam"])){
                                     $voornaam = $_SESSION["voornaam"];
                                     print("Welkom $voornaam");
@@ -388,17 +387,17 @@ $thema = "neutraal";
 
 if ($thema == "sinterklaas") {
     ?>
-    <div class="container-fluid p-0">
+    <div class="row">
         <img src="images/HEADER-SINTERKLAAS.jpg" class="header-img" alt="header">
     </div>
 <?php }
 if ($thema == "kerst") { ?>
-    <div class="container-fluid p-0">
+    <div class="row">
         <img src="images/HEADER-KERSTMAN.jpg" class="header-img" alt="header">
     </div>
 <?php }
 if ($thema == "neutraal") { ?>
-    <div class="container-fluid p-0">
+    <div class="row">
         <img src="images/HEADER-NEUTRAAL.jpg" class="header-img" alt="header">
     </div>
 <?php } ?>
