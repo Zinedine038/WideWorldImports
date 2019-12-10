@@ -338,13 +338,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
-                            <a class="wit pr-3" href="accountinfo.php">
-                                <?php if(isset($_SESSION["voornaam"])){
-                                    $voornaam = $_SESSION["voornaam"];
-                                    print("Welkom $voornaam");
-                                } else { ?>
-                                    <i class="fas fa-running order-first"></i>
-                                <i class="fab fa-accessible-icon order-last"></i>
+
+                                <?php if(isset($_SESSION["voornaam"])){ ?>
+                                <a class="wit pr-3" href="accountinfo.php"> <?php $voornaam = $_SESSION["voornaam"];
+                                    print ("Welkom $voornaam");?>
+                                </a>
+                                <?php } else { ?>
+                            <a class="wit pr-3" href="Inlogpagina.php">
+                                <i class="fas fa-running order-first"></i>
+                                    <i class="fab fa-accessible-icon order-last"></i>
+                            </a>
                                 <?php }?>
                             </a>
                         </div>
