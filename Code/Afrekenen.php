@@ -62,6 +62,10 @@ $wachtwoord="";
 $spam="";
 
 
+if (isset($_SESSION["voornaam"])) {
+    $_POST["voornaam"]=$_SESSION["voornaam"];
+}
+
 
 if (isset($_POST["voornaam"])) {
     $voornaam=$_POST["voornaam"];
