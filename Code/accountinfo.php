@@ -5,7 +5,6 @@ include "header.php";
 ?>
 
 <?php if (isset($_SESSION["voornaam"])) {
-    print_r($_SESSION);
     print ($_SESSION["voornaam"]);
     print ($_SESSION["tussenvoegsel"]);
     print ($_SESSION["achternaam"]);
