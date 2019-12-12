@@ -16,7 +16,7 @@ function component($productname, $productprice, $productimg, $productDescription
     $element = "            
             <div class=\"col-md-3 col-sm-6 my-3\">
                 <form action=$currentLink method=\"post\">
-                    <div class=\"card shadow\">
+                    <div class=\"card\">
                         <div>
                             <a href=$productPageLink>
                                 <img src=\"$fotoPath\" alt=\"Image1\" class = \"img-fluid card-img-top plaatjescomponent\">
@@ -31,15 +31,12 @@ function component($productname, $productprice, $productimg, $productDescription
                                 stars($rating)
                                 ."
                             </h6>
-                            <p class=\"card-text\" style='text-decoration: unset; width: unset; color: unset;'>
-                                $productDescription
-                            </p>
                             <h5>
                                 <small><s class=\"text-secondary\">€$reccomendedPrice</s></small>
                                 <span class=\"price\">€$productprice
                             </span>
                             </h5>
-                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Voeg toe aan Winkelmandje<i class=\"fas fa-shopping-cart\"></i></button>
+                            <button type=\"submit\" class=\"btn btn-success my-3\" name=\"add\">Voeg toe aan Winkelmandje<i class=\"fas fa-shopping-cart\"></i></button>
                             <input type='hidden' name='product_id' value='$productID'>
                             <input type='hidden' name='product_name' value='$productname'>
                         </div>

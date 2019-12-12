@@ -161,9 +161,6 @@ img.livefoto {
     text-align: center ;
 }
 
-
-
-
 .badge {
     padding-left: 9px;
     padding-right: 9px;
@@ -196,3 +193,11 @@ h4 {
     font-size: 20px !important;
 }
 
+.img-fluid {
+    max-height: 140px;
+    width: auto !important;
+}
+
+.card {
+    border: 1px solid #45c2e3 !important;
+}

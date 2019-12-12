@@ -27,6 +27,9 @@ mysqli_stmt_close($statement); ?>
 <div class="container pt-5">
     <div class="row">
         <div class="col">
+            <h2><?php $resie = categorieNaam($StockitemstockgroupID);
+                print($resie["0"]["stockgroupname"]); ?>
+            </h2>
             <form method="get">
                 Resultaten per pagina: <select name='resultsperpage' onchange="this.form.submit()"'>
                 <option value=16 <?php if ($resultsperpage == 16) {
@@ -47,9 +50,6 @@ mysqli_stmt_close($statement); ?>
             </form>
         </div>
     </div>
-    <h2><?php $resie = categorieNaam($StockitemstockgroupID);
-        print($resie["0"]["stockgroupname"]); ?>
-    </h2>
 
     <div class="row text-center py-2"><?php
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -73,6 +73,7 @@ mysqli_stmt_close($statement); ?>
     }
 } ?>
 
+<!-- START BUTTONS -->
 <div class="container">
     <div class="row pb-3">
         <div class="col-sm">
@@ -97,3 +98,4 @@ mysqli_stmt_close($statement); ?>
         </div>
     </div>
 </div>
+<!-- END BUTTONS -->
