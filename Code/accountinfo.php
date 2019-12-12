@@ -28,5 +28,11 @@ include "header.php";
         print("Ja");
     } else {
         print("Nee");
-    }
+    } ?> <form>
+    <input type="submit" name="Destroy" value="Uitloggen" class="btn btn-primary" formmethod="post"> <?php
+    if(isset($_POST["Destroy"])){
+        Session_destroy();
+        $URL="index.php";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    } ?></form> <?php
 }
