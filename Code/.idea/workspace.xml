@@ -107,6 +107,7 @@
       <workItem from="1573668265188" duration="2746000" />
       <workItem from="1573993407660" duration="249000" />
       <workItem from="1574149920547" duration="22260000" />
+      <workItem from="1575979106077" duration="1727000" />
     </task>
     <servers />
   </component>
@@ -138,16 +139,6 @@
           <url>file://$PROJECT_DIR$/zoekpostcode.php</url>
           <line>33</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/productpage.php</url>
-          <line>39</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/functions.php</url>
-          <line>123</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
