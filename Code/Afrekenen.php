@@ -29,32 +29,6 @@ include_once '../config.php';
         </div>
     </div>
     </div>
-    <?php
-    $host = getHost();
-    $databasename = getDatabasename();
-    $port = getPort();
-    $user = getUser();
-    $pass = getPass();
-    if(isset($_POST["wachtwoord"])) {
-        $wachtwoord = $_POST["wachtwoord"];
-        $email = $_POST["Email"];
-        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
-        $sql= "SELECT Password FROM user WHERE Email = ?";
-        $statement = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($statement, "s", $email);
-        mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
-        mysqli_stmt_close($statement);
-        $row = mysqli_fetch_array($result);
-        $HashedWW = $row["Password"];
-        if(password_verify($wachtwoord, $HashedWW)){
-            print("Eureka!");
-        }
-        else{
-            print ("Fuck");
-        }
-
-    } ?>
 </div>
 
 <?php
@@ -65,7 +39,6 @@ $straat="";
 $voornaam="";
 $achternaam="";
 $email="";
-$wachtwoord="";
 $spam="";
 
 
@@ -122,9 +95,7 @@ if (isset($_POST["achternaam"])) {
 if (isset($_POST["email"])) {
     $email=$_POST["email"];
 }
-if (isset($_POST["wachtwoord"])) {
-    $wachtwoord=$_POST["wachtwoord"];
-}
+
 
 if (isset($_POST["spam"])) {
     if ($_POST["spam"]==true) {
@@ -171,7 +142,7 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
-if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["wachtwoord"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
+if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
 {
     if (isset($_POST["huisnummertoe"])) {
         $huisnummertoevoeg= $_POST["huisnummertoe"];
@@ -190,7 +161,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
         $spam=false;
     }
 
-    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
+    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $spam);
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
     $URL="afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
@@ -242,12 +213,6 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                     Email
                     <input type="email" name="email" placeholder="Typ hier je email-adres" required id="email"
                            class="form-control input-lg" value="<?php if (isset($email)) {print $email;}?>">
-                </div>
-
-                Wachtwoord
-                <div class="form-group">
-                    <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                           class="form-control input-lg" id="wachtwoord" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>">
                 </div>
 
                 <div class="form-group checkbox custom-control custom-checkbox">
@@ -318,7 +283,6 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                 <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
                 <input style="display: none" name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
                 <input style="display: none" name="email" type="text" id="email2" value="<?php print($email); ?>">
-                <input style="display: none" name="wachtwoord" type="text" id="wachtwoord2" value="<?php print($wachtwoord); ?>">
                 <input style="display: none" name="spam" type="text" id="spam2" value="<?php if ($spam==1){print(1);} else {print(0);}?>">
 
 
