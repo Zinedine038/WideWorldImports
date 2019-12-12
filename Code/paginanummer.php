@@ -87,7 +87,8 @@ mysqli_stmt_close($statement); ?>
         </div>
         <div id="pagenumber" class="col-sm">
             <?php
-            print("Pagina $page");
+            if(isset($_GET['stockitemgroupid'])){
+            print("Pagina $page");}
             ?>
         </div>
         <div class="col-sm">

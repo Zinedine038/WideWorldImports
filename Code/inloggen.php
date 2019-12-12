@@ -149,9 +149,25 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
                     Wachtwoord
                     <div class="form-group">
-                        <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               class="form-control input-lg" id="wachtwoord" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>">
+                        <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}.^\S{6,}$"
+                               class="form-control input-lg" id="wachtwoord password" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>">
                     </div>
+                    Bevestig wachtwoord
+                    <div class="form-group">
+                        <input title="">
+
+                    </div>
+        <input id="password" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
+
+        <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required>
+        <div class="form-group">
+        Bevestig wachtwoord
+            <input type="password" name="confirm_password" id="bevestig_wachtwoord" class="form-control input-lg"
+            placeholder="Bevestig je wachtwoord"/>
+            <span id='message'></span>
+
+        </div>
+
 
         <div class="form-group checkbox custom-control custom-checkbox">
 
@@ -182,6 +198,11 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
 
                     <form onsubmit="formVul()" action="inloggen.php" method="post">
+                        Postcode
+                        <div class="form-group">
+                            <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
+                                   name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
+                        </div>
                         Huisnummer
                         <div class="form-group">
                             <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
@@ -193,11 +214,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                             <input type="text" maxlength="3" value="<?php if (isset ($huisnummertoe)) {print $huisnummertoe;}?>" name="huisnummertoe" placeholder="Typ hier je Huisnummer toevoeging" class="form-control input-lg">
                         </div>
 
-                        Postcode
-                        <div class="form-group">
-                            <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
-                                   name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
-                        </div>
+
                             Straatnaam
                             <div class="form-group">
                                 <input type="text" value="<?php if (isset ($straat)) {print $straat;}?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
