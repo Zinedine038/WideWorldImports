@@ -149,16 +149,19 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
                     Wachtwoord
                     <div class="form-group">
-                        <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}.^\S{6,}$"
-                               class="form-control input-lg" id="wachtwoord" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>"
-                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Vul het wachtwoord hieronder ook in!' : ''); if(this.checkValidity()) form.bevestig_ww.pattern = this.value;"
-                        >
+                        <input type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               class="form-control input-lg" id="wachtwoord"
+                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!' : ''); if(this.checkValidity()) form.bevestig_ww.pattern = this.value;"
+                        />
+
                     </div>
                     Bevestig wachtwoord
                     <div class="form-group">
-                        <input title="" placeholder="Bevestig het wachtwoord" class="form-control input-lg"
-                               type="password" id="bevestig_ww" name="bevestig_ww"
-                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" required>
+                        <input placeholder="Bevestig het wachtwoord" class="form-control input-lg"
+                               title="Vul het wachtwoord hetzelfde als hierboven in!" type="password" id="bevestig_ww" name="bevestig_ww" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Vul het wachtwoord hetzelfde als hierboven in!' : '');"
+                               required
+                        />
                     </div>
 
 
