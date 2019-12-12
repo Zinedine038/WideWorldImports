@@ -7,7 +7,10 @@ include_once '../config.php';
     <i class="fas fa-user"></i>
 </a>
 
-<div style="width: 90%; padding: 5%; display:  <?php if (1===1) {print("none");} else {print("unset");} ?>">
+<div style="width: 90%; padding: 5%; display:  <?php if (isset($_SESSION["voornaam"])) {print("none");} else {print("unset");} ?>">
+    <div class="container" style="background-color: gray">
+    <div class="row" style="width: 90%; padding: 5%">
+        <div class="col-md-6">
     <h2>Inloggen</h2>
     <form xmlns="http://www.w3.org/1999/html" method="post">
         <div class="form-group">
@@ -20,8 +23,12 @@ include_once '../config.php';
             <input type="password" name="wachtwoord" placeholder="Vul hier je wachtwoord"
                    class="form-control input-lg" required>
         </div>
-        <input type="submit" value="Aanmelden">
+
+        <input type="submit" class="btn btn-primary" value="Aanmelden">
     </form>
+        </div>
+    </div>
+    </div>
     <?php
     $host = getHost();
     $databasename = getDatabasename();
@@ -64,8 +71,44 @@ $spam="";
 
 if (isset($_SESSION["voornaam"])) {
     $_POST["voornaam"]=$_SESSION["voornaam"];
+    print("BINGO");
 }
 
+if (isset($_SESSION["tussenvoegsel"])) {
+    $_POST["tussenvoegsel"]=$_SESSION["tussenvoegsel"];
+}
+
+if (isset($_SESSION["achternaam"])) {
+    $_POST["achternaam"]=$_SESSION["achternaam"];
+}
+
+if (isset($_SESSION["email"])) {
+    $_POST["email"]=$_SESSION["email"];
+}
+
+if (isset($_SESSION["huisnummer"])) {
+    $_POST["huisnummer"]=$_SESSION["huisnummer"];
+}
+
+if (isset($_SESSION["annex"])) {
+    $_POST["huisnummertoe"]=$_SESSION["annex"];
+}
+
+if (isset($_SESSION["straatnaam"])) {
+    $_POST["straatnaam"]=$_SESSION["straatnaam"];
+}
+
+if (isset($_SESSION["plaats"])) {
+    $_POST["plaats"]=$_SESSION["plaats"];
+}
+
+if (isset($_SESSION["postcode"])) {
+    $_POST["postcode"]=$_SESSION["postcode"];
+}
+
+if (isset($_SESSION["spam"])) {
+    $_POST["spam"]=$_SESSION["spam"];
+}
 
 if (isset($_POST["voornaam"])) {
     $voornaam=$_POST["voornaam"];
@@ -148,7 +191,6 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
     }
 
     VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
-    $_SESSION["ingelogd"]=true;
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
     $URL="afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
@@ -237,6 +279,13 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
 
             <form onsubmit="formVul()" action="Afrekenen.php" method="post">
+
+                Postcode
+                <div class="form-group">
+                    <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
+                           name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
+                </div>
+
                 Huisnummer
                 <div class="form-group">
                     <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
@@ -248,11 +297,6 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                     <input type="text" maxlength="3" value="<?php if (isset ($huisnummertoe)) {print $huisnummertoe;}?>" name="huisnummertoe" placeholder="Typ hier je Huisnummer toevoeging" class="form-control input-lg">
                 </div>
 
-                Postcode
-                <div class="form-group">
-                    <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
-                           name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
-                </div>
                 Straatnaam
                 <div class="form-group">
                     <input type="text" value="<?php if (isset ($straat)) {print $straat;}?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
