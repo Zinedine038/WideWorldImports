@@ -18,11 +18,6 @@ include_once '../config.php';
             <input type="text" name="Email" placeholder="Vul hier je email"
                    class="form-control input-lg" required>
         </div>
-        <div class="form-group">
-            Wachtwoord
-            <input type="password" name="wachtwoord" placeholder="Vul hier je wachtwoord"
-                   class="form-control input-lg" required>
-        </div>
 
         <input type="submit" class="btn btn-primary" value="Aanmelden">
     </form>
