@@ -150,23 +150,18 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                     Wachtwoord
                     <div class="form-group">
                         <input title="Wachtwoord moet minimaal uit 8 tekens bestaan, en moet 1 hoofdletter, kleine letter, cijfer en ander karakter bevatten!" type="password" name="wachtwoord" placeholder="Typ hier je wachtwoord" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}.^\S{6,}$"
-                               class="form-control input-lg" id="wachtwoord password" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>">
+                               class="form-control input-lg" id="wachtwoord" value="<?php if (isset($wachtwoord)) {print $wachtwoord;}?>"
+                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Vul het wachtwoord hieronder ook in!' : ''); if(this.checkValidity()) form.bevestig_ww.pattern = this.value;"
+                        >
                     </div>
                     Bevestig wachtwoord
                     <div class="form-group">
-                        <input title="">
-
+                        <input title="" placeholder="Bevestig het wachtwoord" class="form-control input-lg"
+                               type="password" id="bevestig_ww" name="bevestig_ww"
+                               onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" required>
                     </div>
-        <input id="password" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
 
-        <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required>
-        <div class="form-group">
-        Bevestig wachtwoord
-            <input type="password" name="confirm_password" id="bevestig_wachtwoord" class="form-control input-lg"
-            placeholder="Bevestig je wachtwoord"/>
-            <span id='message'></span>
 
-        </div>
 
 
         <div class="form-group checkbox custom-control custom-checkbox">
