@@ -360,6 +360,26 @@ function stars($amount)
     return $stringToReturn;
 }
 
+//Returns random products for the carousel based on the amount number
+function getRandomProducts($amount)
+{
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $sql = "SELECT StockItemID, StockItemName, RecommendedRetailPrice, Photo, SearchDetails, UnitPrice, Rating FROM stockitems ORDER BY RAND() LIMIT " . $amount;
+    $result = mysqli_query($connection,$sql);
+    if(mysqli_num_rows($result)>0)
+    {
+        return $result;
+    }
+
+
+}
+
+
 //Creates the database
 class CreateDb
 {
