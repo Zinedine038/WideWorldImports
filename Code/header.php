@@ -386,7 +386,7 @@
     </div>
     <?php
     // VERANDER HIER HET THEMA
-$thema = "neutraal";
+$thema = "kerst";
 
 if ($thema == "sinterklaas") {
     ?>
