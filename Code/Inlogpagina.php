@@ -17,7 +17,7 @@ include_once '../config.php';
         <input type="password" name="wachtwoord" placeholder="Vul hier je wachtwoord"
                class="form-control input-lg" required>
     </div>
-    <input type="submit" value="Aanmelden" class="btn btn-primary">
+    <input type="submit" value="Inloggen" class="btn btn-primary">
 </form>
 <?php
 print("Heb je nog geen account? <a href='inloggen.php' class=\"btn btn-secondary\">klik hier</a><br>");
