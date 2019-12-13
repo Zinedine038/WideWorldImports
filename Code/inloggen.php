@@ -92,12 +92,19 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
             $spam=false;
         }
 
-    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
-    print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
-    $URL="inlogpagina.php";
-    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
-    die();
+    $succes = VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
+    if($succes) {
+        print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
+        $URL="inlogpagina.php";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+        die();
+    } else{
+        print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Error: Er bestaat al een account met dit emailadres</h1>");
+    }
+
+
+
 } elseif (isset($_POST["verzenden"])) {
     print("<h1 style='color: red; text-align: center; background-color: #00fafa'><h1>Error: vul alle velden in!</h1>");
 }
