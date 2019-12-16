@@ -266,7 +266,12 @@ function KlantGegevensToevoegen($gegevens) {
     SluitVerbinding($connection);
     return $gegevens;
 }
-
+function Bewerk($conncection, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $Email, $NewsLetter){
+    $statement = mysqli_prepare($conncection, "UPDATE user SET FirstName=?, LastName=?, Infix=?, Streetname=?, HouseNumber=?, Annex=?, PostalCode=?, City=?, NewsLetter=? WHERE Email=?");
+    mysqli_stmt_bind_param($statement, 'ssssisssis', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $NewsLetter, $Email);
+    mysqli_stmt_execute($statement);
+    Sluitverbinding($conncection);
+}
 //Gets the parent from the parent array using a child key as search term (name, ID etc.)
 function getparent($array, $needle) {
     foreach($array as $key => $value) {
