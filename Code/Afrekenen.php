@@ -179,13 +179,12 @@ if (!isset($_SESSION["voornaam"])) {
         $tussenvoegseltoevoeg="";
     }
 
-    $_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
+    make_order_without_account($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
+
     $URL="afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     die();
-
-
 }
 
 
