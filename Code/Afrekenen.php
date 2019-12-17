@@ -166,7 +166,7 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
-if (!isset($_SESSION["voornaam"])) {
+if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
     if (isset($_POST["huisnummertoe"])) {
         $huisnummertoevoeg= $_POST["huisnummertoe"];
     } else {
