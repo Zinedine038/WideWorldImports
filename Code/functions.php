@@ -412,6 +412,56 @@ class CreateDb
     }
 }
 
+function make_order_without_accout($firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email,$cart){
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
+// Gegevens in de database pleuren
+    $sql = "INSERT INTO user (FirstName, Lastname, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email) VALUES (?,?,?,?,?,?,?,?,?)";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "ssssissss", $firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email);
+    mysqli_stmt_execute($statement);
+    $user_id=mysqli_insert_id($connection);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+
+
+
+    $number_orderlines =count($cart);
+
+// Order aanmaken
+    $sql = "INSERT INTO EUorder (userID) VALUES (?)";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "i", $user_id);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $order_id = mysqli_insert_id($connection);
+    mysqli_stmt_close($statement);
+
+    for($i =0; $i <= $number_orderlines; $i++){
+
+        $StockItemID = $_SESSION['cart'][$i]['product_id'];
+        $Quantity = $_SESSION['cart'][$i]['amount'];
+
+        $sql = "INSERT INTO EUorderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "iiii", $order_id,$StockItemID, $Quantity, $UnitPrice);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+
+
+
+    }
+
+
+}
+
 
 
 
