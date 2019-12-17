@@ -2,6 +2,28 @@
 session_start();
 
 include "header.php";
+ $postcode = "";
+    $huisnummer="";
+    /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
+    if (isset($_GET["submit"])) {
+        $_SESSION["postcode"] =  strtoupper(str_replace(" ","",$_GET["postcode"]));
+        $_SESSION["huisnummer"] = trim($_GET["huisnummer"]);
+    }
+
+/// Als zowel postcode als huisnummer zijn ingevuld roept hij de functie zoekadres() aan
+if (isset($_GET["postcode"]) AND isset($_GET["huisnummer"])) {
+    $resultaten = zoekadres($postcode, $huisnummer);
+/// Controleerd of er resultaten gevonden zijn
+    if ($resultaten != 0) {
+        $straat = $resultaten["straatnaam"];
+        $plaats = $resultaten["gemeentenaam"];
+        print("Straat: $straat<br>Plaats: $plaats");
+    } else {
+        print("Deze deze combinatie is niet gevonden!");
+
+    }
+}
+
 if (isset($_SESSION["voornaam"])) {
     $spam = $_SESSION["newsletter"];
     ?>
