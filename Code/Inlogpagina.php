@@ -41,7 +41,7 @@ if(isset($_POST["wachtwoord"])) {
 
     if(password_verify($wachtwoord, $HashedWW)){
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
-        $sql= "SELECT FirstName, LastName, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email,NewsLetter FROM user WHERE Email = ?";
+        $sql= "SELECT UserID, FirstName, LastName, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email,NewsLetter FROM user WHERE Email = ?";
         $statement = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($statement, "s", $email);
         mysqli_stmt_execute($statement);
@@ -49,6 +49,7 @@ if(isset($_POST["wachtwoord"])) {
         mysqli_stmt_close($statement);
         $row = mysqli_fetch_array($result);
 
+        $_SESSION["UserID"] = $row["UserID"];
         $_SESSION["voornaam"] = $row["FirstName"];
         $_SESSION["achternaam"] = $row["LastName"];
         $_SESSION["tussenvoegsel"] = $row["Infix"];
