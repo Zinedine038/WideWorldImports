@@ -98,13 +98,27 @@ if (isset($_SESSION["voornaam"])) {
     print("BINGO");
 }
 
+if (isset($_POST["voornaam"])) {
+    $voornaam=$_POST["voornaam"];
+}
+
+
+
 if (isset($_SESSION["tussenvoegsel"])) {
     $_POST["tussenvoegsel"]=$_SESSION["tussenvoegsel"];
     $tussenvoegsel=$_POST["tussenvoegsel"];
 }
 
+if (isset($_POST["voornaam"])) {
+    $tussenvoegsel=$_POST["voornaam"];
+}
+
 if (isset($_SESSION["achternaam"])) {
     $_POST["achternaam"]=$_SESSION["achternaam"];
+    $achternaam=$_POST["achternaam"];
+}
+
+if (isset($_POST["achternaam"])) {
     $achternaam=$_POST["achternaam"];
 }
 
@@ -113,16 +127,29 @@ if (isset($_SESSION["email"])) {
     $email=$_POST["email"];
 }
 
+if (isset($_POST["email"])) {
+    $email=$_POST["email"];
+}
+
 if (isset($_SESSION["huisnummer"])) {
     $_POST["huisnummer"]=$_SESSION["huisnummer"];
+}
+
+if (isset($_POST["huisnummertoe"])) {
+    $huisnummer=$_POST["huisnummer"];
 }
 
 if (isset($_SESSION["annex"])) {
     $_POST["huisnummertoe"]=$_SESSION["annex"];
 }
 
+
 if (isset($_SESSION["straatnaam"])) {
     $_POST["straatnaam"]=$_SESSION["straatnaam"];
+}
+
+if (isset($_POST["straatnaam"])) {
+    $straat=$_POST["straatnaam"];
 }
 
 if (isset($_SESSION["plaats"])) {
@@ -131,6 +158,10 @@ if (isset($_SESSION["plaats"])) {
 
 if (isset($_SESSION["postcode"])) {
     $_POST["postcode"]=$_SESSION["postcode"];
+}
+
+if (isset($_POST["postcode"])) {
+    $postcode=$_POST["postcode"];
 }
 
 if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
