@@ -433,11 +433,6 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
     $result = mysqli_stmt_get_result($statement);
     mysqli_stmt_close($statement);
 
-
-
-
-
-
     $number_orderlines =count($cart);
 
 // Order aanmaken
@@ -463,14 +458,52 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement);
-
-
     }
-
-
 }
 
+function make_order_with_account($userid, $streetname, $housenumber, $annex, $postalcode, $city, $cart){
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
+    $sql = "UPDATE user SET Streetname = ?, HouseNumber = ?, Annex = ?, PostalCode = ?, City = ? WHERE UserID = ?;";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "sisssi", $streetname, $housenumber, $annex, $postalcode, $city, $userid);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+
+    // Order aanmaken
+    $sql = "INSERT INTO EUOrder (userID) VALUES (?);";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "i", $user_id);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $order_id = mysqli_insert_id($connection);
+    mysqli_stmt_close($statement);
+
+    $number_orderlines =count($cart);
+
+    for($i =0; $i <= $number_orderlines; $i++){
+
+        $StockItemID = $_SESSION['cart'][$i]['product_id'];
+        $Quantity = $_SESSION['cart'][$i]['amount'];
+        $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
+
+        $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "iiii", $order_id,$StockItemID, $Quantity, $UnitPrice);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+    }
+
+}
 
 
 
