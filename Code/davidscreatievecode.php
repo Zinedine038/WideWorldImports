@@ -63,7 +63,7 @@
         }
     }
 
-    //script voor overal
+    //script voor overal donker achtergrond bij hover livesearch.
     function hoverOver() {
         if (document.getElementById('paginaalles') != null) {
             var a = document.getElementById('paginaalles');
@@ -165,8 +165,30 @@
                 elements11[i11].setAttribute('style', 'filter: brightness(40%) !important');
             }
         }
-    }
 
+
+        var elements12 = document.getElementsByClassName('header-img');
+        if (elements12) {
+            for (var i12 = 0; i12 < elements12.length; i12++) {
+                elements12[i12].setAttribute('style', 'filter: brightness(40%) !important')
+            }
+        }
+
+        var elements13 = document.getElementsByClassName('card');
+        if (elements13) {
+            for (var i13 = 0; i13 < elements13.length; i13++) {
+                elements13[i13].setAttribute('style', 'filter: brightness(40%) !important')
+            }
+        }
+
+        var elements14 = document.getElementsByClassName('fas');
+        if (elements14) {
+            for (var i14 = 0; i14 < elements14.length; i14++) {
+                elements14[i14].setAttribute('style', 'filter: brightness(40%) !important')
+            }
+        }
+
+    }
     function hoverAway() {
         var elements1 = document.getElementsByClassName('h-25');
         if (elements1) {
@@ -245,12 +267,38 @@
             }
         }
 
-        var elements12 = document.getElementsByClassName('btn');
+        var elements12 = document.getElementsByClassName('header-img');
         if (elements12) {
             for (var i12 = 0; i12 < elements12.length; i12++) {
                 elements12[i12].removeAttribute('style');
             }
         }
+
+        var elements13 = document.getElementsByClassName('card');
+        if (elements13) {
+            for (var i13 = 0; i13 < elements13.length; i13++) {
+                elements13[i13].removeAttribute('style');
+            }
+        }
+
+        var elements14 = document.getElementsByClassName('fas');
+        if (elements14) {
+            for (var i14 = 0; i14 < elements14.length; i14++) {
+                elements14[i14].removeAttribute('style');
+            }
+        }
+
+
+
+
+        var elements100 = document.getElementsByClassName('btn');
+        if (elements100) {
+            for (var i100 = 0; i100 < elements100.length; i100++) {
+                elements100[i100].removeAttribute('style');
+            }
+        }
+
+
 
         document.getElementById('paginaalles').style.backgroundColor = 'rgba(255,255,255,1)';
         document.getElementById('bodyalles').style.backgroundColor = 'rgba(255,255,255,1)';

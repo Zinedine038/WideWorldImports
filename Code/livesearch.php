@@ -27,7 +27,7 @@ if (strlen($q) > 0) {
             $oudePrijs = sql("stockitems", "RecommendedRetailPrice", $id);
             // Geef de prijs weer met een komma, in plaats van een punt en zet er een euroteken voor.
             $prijs="€".str_replace(".",",", $prijs);
-            // Limiteert de weergegeven resultaten tot 8.
+            // Limiteert de weergegeven resultaten tot 6.
             if ($count != 6) {
                 $foto = sqlfoto($id);
                 $fototje = $foto["0"];
