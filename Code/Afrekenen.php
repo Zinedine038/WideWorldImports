@@ -189,159 +189,193 @@ if (!isset($_SESSION["voornaam"])) {
 
 
 
-if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
-{
+if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"])) {
     if (isset($_POST["huisnummertoe"])) {
-        $huisnummertoevoeg= $_POST["huisnummertoe"];
+        $huisnummertoevoeg = $_POST["huisnummertoe"];
     } else {
-        $huisnummertoevoeg="";
+        $huisnummertoevoeg = "";
     }
 
     if (isset($_POST["tussenvoegsel"])) {
-        $tussenvoegseltoevoeg=$_POST["tussenvoegsel"];
+        $tussenvoegseltoevoeg = $_POST["tussenvoegsel"];
     } else {
-        $tussenvoegseltoevoeg="";
+        $tussenvoegseltoevoeg = "";
     }
     if (isset($_POST["spam"])) {
-        $spam=true;
+        $spam = true;
     } else {
-        $spam=false;
+        $spam = false;
     }
 
-    //($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
-    $URL="afrekenen.php";
+    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg, $_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
+    $URL = "afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     die();
+}
+
+    ?>
+
+    <div class="container">
+        <h2>Controlleer je gegevens</h2>
+
+        <div class="row" style="width: 90%; padding: 5%">
+
+            <div class="col-md-6">
 
 
-?>
-
-<div class="container">
-    <h2>Controlleer je gegevens</h2>
-
-    <div class="row" style="width: 90%; padding: 5%">
-
-        <div class="col-md-6">
+                <form action="Afrekenen.php" method="post" onsubmit="return formKlopt();">
 
 
+                    <div class="form-group">
+                        Voornaam
+                        <input type="text" name="voornaam"
+                               placeholder="Typ hier je voornaam" <?php if (isset($_SESSION["voornaam"])) {
+                            print("disabled");
+                        } ?> id="voornaam"
+                               class="form-control input-lg" value="<?php if (isset($voornaam)) {
+                            print $voornaam;
+                        } ?>">
+                    </div>
+
+                    <div class="form-group">
+                        Tussenvoegsel
+                        <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel"
+                               id="tussenvoegsel" <?php if (isset($_SESSION["voornaam"])) {
+                            print("disabled");
+                        } ?>
+                               class="form-control input-lg" value="<?php if (isset($tussenvoegsel)) {
+                            print $tussenvoegsel;
+                        } ?>">
+                    </div>
 
 
-
-            <form action="Afrekenen.php" method="post" onsubmit="return formKlopt();">
-
-
-
-
-                <div class="form-group">
-                    Voornaam
-                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" <?php if (isset($_SESSION["voornaam"])) {print("disabled");} ?> id="voornaam"
-                           class="form-control input-lg" value="<?php if (isset($voornaam)) {print $voornaam;}?>">
-                </div>
-
-                <div class="form-group">
-                    Tussenvoegsel
-                    <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" id="tussenvoegsel" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
-                           class="form-control input-lg" value="<?php if (isset($tussenvoegsel)) {print $tussenvoegsel;}?>">
-                </div>
+                    <div class="form-group">
+                        Achternaam
+                        <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required
+                               id="achternaam" <?php if (isset($_SESSION["voornaam"])) {
+                            print("disabled");
+                        } ?>
+                               class="form-control input-lg" value="<?php if (isset($achternaam)) {
+                            print $achternaam;
+                        } ?>">
+                    </div>
 
 
-                <div class="form-group">
-                    Achternaam
-                    <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required id="achternaam" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
-                           class="form-control input-lg" value="<?php if (isset($achternaam)) {print $achternaam;}?>">
-                </div>
+                    <div class="form-group">
+                        Email
+                        <input type="email" name="email" placeholder="Typ hier je email-adres" required
+                               id="email" <?php if (isset($_SESSION["voornaam"])) {
+                            print("disabled");
+                        } ?>
+                               class="form-control input-lg" value="<?php if (isset($email)) {
+                            print $email;
+                        } ?>">
+                    </div>
 
 
-                <div class="form-group">
-                    Email
-                    <input type="email" name="email" placeholder="Typ hier je email-adres" required id="email" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
-                           class="form-control input-lg" value="<?php if (isset($email)) {print $email;}?>">
-                </div>
+                    <input style="display: none" name="huisnummer" type="text" id="huisnummer2"
+                           value="<?php print($huisnummer); ?>">
+                    <input style="display: none" name="postcode" type="text" id="postcode2"
+                           value="<?php print($postcode); ?>">
+                    <input style="display: none" name="huisnummertoe" type="text" id="huisnummertoe2"
+                           value="<?php if (isset($huisnummertoe)) {
+                               print($huisnummertoe);
+                           } ?>">
+                    <input style="display: none" name="straatnaam" type="text" id="straatnaam2"
+                           value="<?php print($straat); ?>">
+                    <input style="display: none" name="plaats" type="text" id="plaats2"
+                           value="<?php print($plaats); ?>">
+                    <div>
+                        <input type="submit" name="verzenden" value="Betalen" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
 
 
+            <div class="col-md-6">
 
-                <input style="display: none" name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
-                <input style="display: none" name="postcode" type="text" id="postcode2" value="<?php print($postcode); ?>">
-                <input style="display: none" name="huisnummertoe" type="text" id="huisnummertoe2" value="<?php if (isset($huisnummertoe)) { print($huisnummertoe);} ?>">
-                <input style="display: none" name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
-                <input style="display: none" name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
-                <div>
-                    <input type="submit" name="verzenden" value="Betalen" class="btn btn-primary">
-                </div>
+
+                <form onsubmit="formVul()" action="Afrekenen.php" method="post">
+
+                    Postcode
+                    <div class="form-group">
+                        <input type="text" value="<?php if (isset ($postcode)) {
+                            print $postcode;
+                        } ?>"
+                               name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg"
+                               required>
+                    </div>
+
+                    Huisnummer
+                    <div class="form-group">
+                        <input type="number" value="<?php if (isset ($huisnummer)) {
+                            print $huisnummer;
+                        } ?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg"
+                               required>
+                    </div>
+
+
+                    Huisnummertoevoegingen
+                    <div class="form-group">
+                        <input type="text" maxlength="3" value="<?php if (isset ($huisnummertoe)) {
+                            print $huisnummertoe;
+                        } ?>" name="huisnummertoe" placeholder="Typ hier je Huisnummer toevoeging"
+                               class="form-control input-lg">
+                    </div>
+
+                    Straatnaam
+                    <div class="form-group">
+                        <input type="text" value="<?php if (isset ($straat)) {
+                            print $straat;
+                        } ?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
+                               class="form-control input-lg">
+                    </div>
+
+
+                    Plaats
+                    <div class="form-group">
+                        <input type="text" value="<?php if (isset($plaats)) {
+                            print($plaats);
+                        } ?>"
+                               name="plaats" placeholder="Typ hier je Plaats" readonly
+                               class="form-control input-lg">
+                    </div>
+                    <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
+
+                    <br>
+
+                    <input style="display: none" name="voornaam" type="text" id="voornaam2"
+                           value="<?php print($voornaam); ?>">
+                    <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2"
+                           value="<?php if (isset($tussenvoegsel)) {
+                               print($tussenvoegsel);
+                           } ?>">
+                    <input style="display: none" name="achternaam" type="text" id="achternaam2"
+                           value="<?php print($achternaam); ?>">
+                    <input style="display: none" name="email" type="text" id="email2" value="<?php print($email); ?>">
+                    <input style="display: none" name="spam" type="text" id="spam2" value="<?php if ($spam == 1) {
+                        print(1);
+                    } else {
+                        print(0);
+                    } ?>">
+
+
+            </div>
+
+
             </form>
-        </div>
-
-
-
-
-
-        <div class="col-md-6">
-
-
-
-            <form onsubmit="formVul()" action="Afrekenen.php" method="post">
-
-                Postcode
-                <div class="form-group">
-                    <input type="text" value="<?php if (isset ($postcode)) {print $postcode;} ?>"
-                           name="postcode" placeholder="Typ hier je Postcode" class="form-control input-lg" required>
-                </div>
-
-                Huisnummer
-                <div class="form-group">
-                    <input type="number" value="<?php if (isset ($huisnummer)) {print $huisnummer;}?>" name="huisnummer" placeholder="Typ hier je Huisnummer" class="form-control input-lg" required>
-                </div>
-
-
-                Huisnummertoevoegingen
-                <div class="form-group">
-                    <input type="text" maxlength="3" value="<?php if (isset ($huisnummertoe)) {print $huisnummertoe;}?>" name="huisnummertoe" placeholder="Typ hier je Huisnummer toevoeging" class="form-control input-lg">
-                </div>
-
-                Straatnaam
-                <div class="form-group">
-                    <input type="text" value="<?php if (isset ($straat)) {print $straat;}?>" name="straatnaam" placeholder="Typ hier je Straatnaam" readonly
-                           class="form-control input-lg">
-                </div>
-
-
-                Plaats
-                <div class="form-group">
-                    <input type="text" value="<?php if(isset($plaats)) {print($plaats);}?>"
-                           name="plaats" placeholder="Typ hier je Plaats" readonly
-                           class="form-control input-lg">
-                </div>
-                <input type="submit" name="submit" value="Vul automatisch in" class="btn btn-secondary">
-
-                <br>
-
-                <input style="display: none" name="voornaam" type="text" id="voornaam2" value="<?php print($voornaam); ?>">
-                <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
-                <input style="display: none" name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
-                <input style="display: none" name="email" type="text" id="email2" value="<?php print($email); ?>">
-                <input style="display: none" name="spam" type="text" id="spam2" value="<?php if ($spam==1){print(1);} else {print(0);}?>">
 
 
         </div>
-
-
-
-
-        </form>
-
 
     </div>
 
-</div>
-
-</div>
+    </div>
 
 
+    <?php
 
+    include "footer.php";
 
-
-
-<?php
-include "footer.php";
 ?>
