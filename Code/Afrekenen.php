@@ -3,6 +3,57 @@ session_start();
 include "header.php";
 include_once '../config.php';
 ?>
+
+<?php
+$host = getHost();
+$databasename = getDatabasename();
+$port = getPort();
+$user = getUser();
+$pass = getPass();
+if(isset($_POST["wachtwoord"])) {
+    $wachtwoord = $_POST["wachtwoord"];
+    $email = $_POST["Email"];
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $sql= "SELECT Password FROM user WHERE Email = ?";
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "s", $email);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+    $row = mysqli_fetch_array($result);
+    $HashedWW = $row["Password"];
+
+    if(password_verify($wachtwoord, $HashedWW)){
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $sql= "SELECT UserID, FirstName, LastName, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email,NewsLetter FROM user WHERE Email = ?";
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "s", $email);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+        $row = mysqli_fetch_array($result);
+
+        $_SESSION["UserID"] = $row["UserID"];
+        $_SESSION["voornaam"] = $row["FirstName"];
+        $_SESSION["achternaam"] = $row["LastName"];
+        $_SESSION["tussenvoegsel"] = $row["Infix"];
+        $_SESSION["email"] = $row["Email"];
+        $_SESSION["huisnummer"] = $row["HouseNumber"];
+        $_SESSION["annex"] = $row["Annex"];
+        $_SESSION["straatnaam"] = $row["Streetname"];
+        $_SESSION["plaats"] = $row["City"];
+        $_SESSION["postcode"] = $row["PostalCode"];
+        $_SESSION["newsletter"] = $row["NewsLetter"];
+        $URL="afrekenen.php";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+        die();
+    }
+    else{
+        print ("Email of wachtwoord is incorrect");
+    }
+
+} ?>
 <a class="wit" href="accountinfo.php">
     <i class="fas fa-user"></i>
 </a>
@@ -12,15 +63,19 @@ include_once '../config.php';
     <div class="row" style="width: 90%; padding: 5%">
         <div class="col-md-6">
     <h2>Inloggen</h2>
-    <form xmlns="http://www.w3.org/1999/html" method="post">
-        <div class="form-group">
-            Email
-            <input type="text" name="Email" placeholder="Vul hier je email"
-                   class="form-control input-lg" required>
-        </div>
-
-        <input type="submit" class="btn btn-primary" value="Aanmelden">
-    </form>
+            <form xmlns="http://www.w3.org/1999/html" method="post">
+                <div class="form-group">
+                    Email
+                    <input type="text" name="Email" placeholder="Vul hier je email"
+                           class="form-control input-lg" required>
+                </div>
+                <div class="form-group">
+                    Wachtwoord
+                    <input type="password" name="wachtwoord" placeholder="Vul hier je wachtwoord"
+                           class="form-control input-lg" required>
+                </div>
+                <input type="submit" value="Inloggen" class="btn btn-primary">
+            </form>
         </div>
     </div>
     </div>
@@ -111,6 +166,30 @@ if  ($postcode!="" && $huisnummer!="") {
 
 <?php
 
+if (!isset($_SESSION["voornaam"])) {
+    if (isset($_POST["huisnummertoe"])) {
+        $huisnummertoevoeg= $_POST["huisnummertoe"];
+    } else {
+        $huisnummertoevoeg="";
+    }
+
+    if (isset($_POST["tussenvoegsel"])) {
+        $tussenvoegseltoevoeg=$_POST["tussenvoegsel"];
+    } else {
+        $tussenvoegseltoevoeg="";
+    }
+
+    $_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
+    $URL="afrekenen.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    die();
+
+
+}
+
+
+
 if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
 {
     if (isset($_POST["huisnummertoe"])) {
@@ -130,15 +209,12 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
         $spam=false;
     }
 
-    VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $spam);
-    print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Account is succesvol aangemaakt!</h1>");
+    //($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
     $URL="afrekenen.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     die();
-} elseif (isset($_POST["verzenden"])) {
-    print("<h1 style='color: red; text-align: center; background-color: #00fafa'><h1>Error: vul alle velden in!</h1>");
-}
+
 
 ?>
 
