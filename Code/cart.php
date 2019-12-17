@@ -2,7 +2,6 @@
 
     //Start cart session
     session_start();
-
     //Get manditory functions
     require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");

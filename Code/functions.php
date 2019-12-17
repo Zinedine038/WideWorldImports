@@ -313,9 +313,11 @@ function updateShoppingCart()
             {
                 $count = count($_SESSION['cart']);
                 $name = sql("stockitems", "stockitemname", $_POST["product_id"]);
+                $unitPrice = sql("stockitems", "unitprice", $_POST["product_id"]);
                 $item_array = array('product_id' => $_POST['product_id'],
                     'amount' => 1,
-                    'name' => $name);
+                    'name' => $name,
+                    'unitPrice' => $unitPrice);
                 $_SESSION['cart'][$count] = $item_array;
             }
         }
@@ -323,9 +325,11 @@ function updateShoppingCart()
         else
         {
             $name = sql("stockitems", "stockitemname", $_POST["product_id"]);
+            $unitPrice = sql("stockitems", "unitprice", $_POST["product_id"]);
             $item_array = array('product_id' => $_POST['product_id'],
                 'amount' => 1,
-                'name' => $name);
+                'name' => $name,
+                'unitPrice' => $unitPrice);
             $_SESSION['cart'][0] = $item_array;
         }
     }
