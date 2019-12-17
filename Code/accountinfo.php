@@ -177,8 +177,8 @@ if (isset($_SESSION["voornaam"])) {
    <?php
     //Accountgegevens aanpassen
     if (isset($_POST["Gegevens"])){
-        $conncection = MaakVerbinding();
-        Bewerk($conncection, $_POST["voornaam"], $_POST["achternaam"], $_POST["tussenvoegsel"], $_POST["straatnaam"], $_POST["huisnummer"], $_POST["huisnummertoe"], $_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["spam"]);
+        $connection = MaakVerbinding();
+        Bewerk($connection, $_POST["voornaam"], $_POST["achternaam"], $_POST["tussenvoegsel"], $_POST["straatnaam"], $_POST["huisnummer"], $_POST["huisnummertoe"], $_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["spam"]);
         $URL = "accountinfo.php";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         $_SESSION["voornaam"] = $_POST["voornaam"];
