@@ -25,8 +25,9 @@ while($row=$result->fetch_assoc())
     $randomProducts[$teller]["Rating"] =$row["Rating"];
     $teller+=1;
 }
-$current=1;
-
+$current=1; ?>
+<div class="container">
+<?php
 if(!isset($_GET["stockitemgroupid"])) {
     ?>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -77,27 +78,17 @@ if(!isset($_GET["stockitemgroupid"])) {
 
     <div class="buttons">
         <span class="left">
-        <a class="fas fa-angle-left" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-    </span>
+            <a class="fas fa-angle-left" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            </a>
+        </span>
         <span class="right" style="float: right">
-        <a class="fas fa-angle-right" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </span>
+            <a class="fas fa-angle-right" href="#carouselExampleIndicators" role="button" data-slide="next">
+            </a>
+        </span>
     </div>
-
-
-    <?php
+</div>
+<?php
 }
-
-
-
-
-
 include 'paginanummer.php';
 
 include 'footer.php'; ?>

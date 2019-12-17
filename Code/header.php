@@ -46,7 +46,7 @@
 </head>
 <body id="bodyalles">
 
-<div class="container-fluid header-bg">
+<div class="container-fluid header-bg mb-4">
     <div class="row">
         <div class="container">
             <nav class="navbar navbar-expand-lg d-flex flex-row align-items-center">
