@@ -87,7 +87,7 @@ tr.resultaatbalkje {
 
 a {
     text-decoration: none !important;
-    color: black;
+    color: #000000 !important;
 }
 
 a:hover {

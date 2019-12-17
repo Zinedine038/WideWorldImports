@@ -15,7 +15,11 @@
             <img src="images/Thuiswinkel_Org_Kleur_Horizontaal.png" class="footer-img pt-1 pr-1" alt="thuiswinkel logo" />
         </div>
         <div class="col-md-4">
-            <a href="overons.php">Over ons</a>
+            <?php if (isset($_GET["stockitemid"])) { ?>
+                <a href="overons.php">Over ons</a>
+            <?php } else {?>
+                <a href="overons.php" class="wit">Over ons</a>
+            <?php } ?>
         </div>
     </div>
 </div>
