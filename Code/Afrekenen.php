@@ -39,19 +39,23 @@ $spam="";
 
 if (isset($_SESSION["voornaam"])) {
     $_POST["voornaam"]=$_SESSION["voornaam"];
+    $voornaam=$_POST["voornaam"];
     print("BINGO");
 }
 
 if (isset($_SESSION["tussenvoegsel"])) {
     $_POST["tussenvoegsel"]=$_SESSION["tussenvoegsel"];
+    $tussenvoegsel=$_POST["tussenvoegsel"];
 }
 
 if (isset($_SESSION["achternaam"])) {
     $_POST["achternaam"]=$_SESSION["achternaam"];
+    $achternaam=$_POST["achternaam"];
 }
 
 if (isset($_SESSION["email"])) {
     $_POST["email"]=$_SESSION["email"];
+    $email=$_POST["email"];
 }
 
 if (isset($_SESSION["huisnummer"])) {
@@ -73,36 +77,6 @@ if (isset($_SESSION["plaats"])) {
 if (isset($_SESSION["postcode"])) {
     $_POST["postcode"]=$_SESSION["postcode"];
 }
-
-if (isset($_SESSION["spam"])) {
-    $_POST["spam"]=$_SESSION["spam"];
-}
-
-if (isset($_POST["voornaam"])) {
-    $voornaam=$_POST["voornaam"];
-}
-if (isset($_POST["tussenvoegsel"])) {
-    $tussenvoegsel=$_POST["tussenvoegsel"];
-}
-if (isset($_POST["achternaam"])) {
-    $achternaam=$_POST["achternaam"];
-}
-if (isset($_POST["email"])) {
-    $email=$_POST["email"];
-}
-
-
-if (isset($_POST["spam"])) {
-    if ($_POST["spam"]==true) {
-        $spam = 1;
-    } else {
-        $spam=0;
-    }
-}
-
-
-
-
 
 if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
     /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
@@ -186,37 +160,30 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
                 <div class="form-group">
                     Voornaam
-                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" required id="voornaam"
+                    <input type="text" name="voornaam" placeholder="Typ hier je voornaam" <?php if (isset($_SESSION["voornaam"])) {print("disabled");} ?> id="voornaam"
                            class="form-control input-lg" value="<?php if (isset($voornaam)) {print $voornaam;}?>">
                 </div>
 
                 <div class="form-group">
                     Tussenvoegsel
-                    <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" id="tussenvoegsel"
+                    <input type="text" name="tussenvoegsel" placeholder="Typ hier je tussenvoegsel" id="tussenvoegsel" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
                            class="form-control input-lg" value="<?php if (isset($tussenvoegsel)) {print $tussenvoegsel;}?>">
                 </div>
 
 
                 <div class="form-group">
                     Achternaam
-                    <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required id="achternaam"
+                    <input type="text" name="achternaam" placeholder="Typ hier je achternaam" required id="achternaam" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
                            class="form-control input-lg" value="<?php if (isset($achternaam)) {print $achternaam;}?>">
                 </div>
 
 
                 <div class="form-group">
                     Email
-                    <input type="email" name="email" placeholder="Typ hier je email-adres" required id="email"
+                    <input type="email" name="email" placeholder="Typ hier je email-adres" required id="email" <?php if (isset($_SESSION["voornaam"])) {print("disabled");}?>
                            class="form-control input-lg" value="<?php if (isset($email)) {print $email;}?>">
                 </div>
 
-                <div class="form-group checkbox custom-control custom-checkbox">
-
-                    <input type="checkbox" class="custom-control-input checkboxbericht" id="defaultUnchecked" name="spam" <?php if ($spam==1){print("checked");}?>>
-                    <label class="custom-control-label" for="defaultUnchecked">
-                        Wil je platgegooit worden met spam?
-                    </label>
-                </div>
 
 
                 <input style="display: none" name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
@@ -225,7 +192,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                 <input style="display: none" name="straatnaam" type="text" id="straatnaam2" value="<?php print($straat); ?>">
                 <input style="display: none" name="plaats" type="text" id="plaats2" value="<?php print($plaats); ?>">
                 <div>
-                    <input type="submit" name="verzenden" class="btn btn-primary">
+                    <input type="submit" name="verzenden" value="Betalen" class="btn btn-primary">
                 </div>
             </form>
         </div>
