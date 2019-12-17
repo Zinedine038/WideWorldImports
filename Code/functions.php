@@ -417,7 +417,7 @@ class CreateDb
     }
 }
 
-function make_order_without_accout($firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email,$cart){
+function make_order_without_account($firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email,$cart){
     $host = getHost();
     $databasename = getDatabasename();
     $port = getPort();
@@ -451,6 +451,7 @@ function make_order_without_accout($firstname,$lastname,$infix,$streetname,$hous
 
         $StockItemID = $_SESSION['cart'][$i]['product_id'];
         $Quantity = $_SESSION['cart'][$i]['amount'];
+        $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
 
         $sql = "INSERT INTO EUorderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
@@ -459,7 +460,6 @@ function make_order_without_accout($firstname,$lastname,$infix,$streetname,$hous
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement);
-
 
 
     }
