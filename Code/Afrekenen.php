@@ -236,10 +236,10 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
         $spam = false;
     }
     make_order_with_account($_SESSION["UserID"], $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg, $_POST["postcode"], $_POST["plaats"], $_SESSION["cart"]);
-    //    $URL = "Betalinggeslaagd.php";
-//    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-//    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
-//    die();
+    $URL = "Betalinggeslaagd.php";
+    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    die();
 
 }
 
