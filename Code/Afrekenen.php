@@ -54,10 +54,6 @@ if(isset($_POST["wachtwoord"])) {
     }
 
 } ?>
-<a class="wit" href="accountinfo.php">
-    <i class="fas fa-user"></i>
-</a>
-
 <div style="width: 90%; padding: 5%; display:  <?php if (isset($_SESSION["voornaam"])) {print("none");} else {print("unset");} ?>">
     <div class="container" style="background-color: gray">
     <div class="row" style="width: 90%; padding: 5%">
@@ -95,7 +91,6 @@ $spam="";
 if (isset($_SESSION["voornaam"])) {
     $_POST["voornaam"]=$_SESSION["voornaam"];
     $voornaam=$_POST["voornaam"];
-    print("BINGO");
 }
 
 if (isset($_POST["voornaam"])) {
@@ -110,7 +105,7 @@ if (isset($_SESSION["tussenvoegsel"])) {
 }
 
 if (isset($_POST["voornaam"])) {
-    $tussenvoegsel=$_POST["voornaam"];
+    $voornaam=$_POST["voornaam"];
 }
 
 if (isset($_SESSION["achternaam"])) {
@@ -220,7 +215,7 @@ if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
 
 
 
-if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"])) {
+if (isset($_POST["UserID"]) && isset($_POST["verzenden"])) {
     if (isset($_POST["huisnummertoe"])) {
         $huisnummertoevoeg = $_POST["huisnummertoe"];
     } else {
@@ -275,7 +270,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
                             print("disabled");
                         } ?>
                                class="form-control input-lg" value="<?php if (isset($tussenvoegsel)) {
-                            print $tussenvoegsel;
+                            print ($tussenvoegsel);
                         } ?>">
                     </div>
 
