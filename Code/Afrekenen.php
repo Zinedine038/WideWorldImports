@@ -53,7 +53,11 @@ if(isset($_POST["wachtwoord"])) {
         print ("Email of wachtwoord is incorrect");
     }
 
-} ?>
+}
+
+
+
+?>
 <div style="width: 90%; padding: 5%; display:  <?php if (isset($_SESSION["voornaam"])) {print("none");} else {print("unset");} ?>">
     <div class="container" style="background-color: gray">
     <div class="row" style="width: 90%; padding: 5%">
@@ -87,77 +91,75 @@ $achternaam="";
 $email="";
 $spam="";
 
-
 if (isset($_SESSION["voornaam"])) {
-    $_POST["voornaam"]=$_SESSION["voornaam"];
-    $voornaam=$_POST["voornaam"];
+    $_POST["voornaam"] = $_SESSION["voornaam"];
+    $voornaam = $_POST["voornaam"];
 }
-
-if (isset($_POST["voornaam"])) {
-    $voornaam=$_POST["voornaam"];
-}
-
-
 
 if (isset($_SESSION["tussenvoegsel"])) {
-    $_POST["tussenvoegsel"]=$_SESSION["tussenvoegsel"];
-    $tussenvoegsel=$_POST["tussenvoegsel"];
-}
-
-if (isset($_POST["voornaam"])) {
-    $voornaam=$_POST["voornaam"];
+    $_POST["tussenvoegsel"] = $_SESSION["tussenvoegsel"];
+    $tussenvoegsel = $_POST["tussenvoegsel"];
 }
 
 if (isset($_SESSION["achternaam"])) {
-    $_POST["achternaam"]=$_SESSION["achternaam"];
-    $achternaam=$_POST["achternaam"];
-}
-
-if (isset($_POST["achternaam"])) {
-    $achternaam=$_POST["achternaam"];
+    $_POST["achternaam"] = $_SESSION["achternaam"];
+    $achternaam = $_POST["achternaam"];
 }
 
 if (isset($_SESSION["email"])) {
-    $_POST["email"]=$_SESSION["email"];
-    $email=$_POST["email"];
-}
-
-if (isset($_POST["email"])) {
-    $email=$_POST["email"];
-}
-
-if (isset($_SESSION["huisnummer"])) {
-    $_POST["huisnummer"]=$_SESSION["huisnummer"];
-}
-
-if (isset($_POST["huisnummertoe"])) {
-    $huisnummer=$_POST["huisnummer"];
-}
-
-if (isset($_SESSION["annex"])) {
-    $_POST["huisnummertoe"]=$_SESSION["annex"];
+    $_POST["email"] = $_SESSION["email"];
+    $email = $_POST["email"];
 }
 
 
-if (isset($_SESSION["straatnaam"])) {
-    $_POST["straatnaam"]=$_SESSION["straatnaam"];
+if (!isset($_POST["submit"]) && !isset($_POST["verzenden"])) {
+
+    if (isset($_SESSION["huisnummer"])) {
+        $_POST["huisnummer"] = $_SESSION["huisnummer"];
+    }
+
+    if (isset($_SESSION["annex"])) {
+        $_POST["huisnummertoe"] = $_SESSION["annex"];
+    }
+
+    if (isset($_SESSION["straatnaam"])) {
+        $_POST["straatnaam"] = $_SESSION["straatnaam"];
+    }
+
+    if (isset($_SESSION["plaats"])) {
+        $_POST["plaats"] = $_SESSION["plaats"];
+    }
+
+    if (isset($_SESSION["postcode"])) {
+        $_POST["postcode"] = $_SESSION["postcode"];
+    }
 }
 
-if (isset($_POST["straatnaam"])) {
-    $straat=$_POST["straatnaam"];
-}
 
-if (isset($_SESSION["plaats"])) {
-    $_POST["plaats"]=$_SESSION["plaats"];
-}
+    if (isset($_POST["voornaam"])) {
+        $voornaam = $_POST["voornaam"];
+    }
 
-if (isset($_SESSION["postcode"])) {
-    $_POST["postcode"]=$_SESSION["postcode"];
-}
+    if (isset($_POST["achternaam"])) {
+        $achternaam = $_POST["achternaam"];
+    }
 
-if (isset($_POST["postcode"])) {
-    $postcode=$_POST["postcode"];
-}
+    if (isset($_POST["email"])) {
+        $email = $_POST["email"];
+    }
+
+    if (isset($_POST["huisnummertoe"])) {
+        $huisnummer = $_POST["huisnummer"];
+    }
+
+    if (isset($_POST["straatnaam"])) {
+        $straat = $_POST["straatnaam"];
+    }
+
+
+
+
+
 
 if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
     /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
@@ -213,9 +215,10 @@ if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
     die();
 }
 
-
-
-if (isset($_POST["UserID"]) && isset($_POST["verzenden"])) {
+if (empty($_SESSION["cart"])) {
+    print ("Error: karretje is leeg!!!");
+}
+if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION["cart"]) ) {
     if (isset($_POST["huisnummertoe"])) {
         $huisnummertoevoeg = $_POST["huisnummertoe"];
     } else {
@@ -233,10 +236,11 @@ if (isset($_POST["UserID"]) && isset($_POST["verzenden"])) {
         $spam = false;
     }
     make_order_with_account($_SESSION["UserID"], $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg, $_POST["postcode"], $_POST["plaats"], $_SESSION["cart"]);
-    $URL = "Betalinggeslaagd.php";
-    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
-    die();
+    //    $URL = "Betalinggeslaagd.php";
+//    echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+//    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+//    die();
+
 }
 
     ?>
@@ -400,7 +404,13 @@ if (isset($_POST["UserID"]) && isset($_POST["verzenden"])) {
 
 
     <?php
-
+    print ($_POST["postcode"]);
+    print ($_POST["huisnummer"]);
+    print ($_POST["huisnummertoe"]);
+    print ($plaats);
+    print ($straat);
+    print ($_POST["straatnaam"]);
+    print ($_POST["plaats"]);
     include "footer.php";
 
 ?>
