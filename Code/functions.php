@@ -235,7 +235,7 @@ function MaakVerbinding()
     $port = getPort();
     $user = getUser();
     $pass = getPass();
-    $connection = mysqli_connect($host, $user, $pass, $databasename);
+    $connection = mysqli_connect($host, $user, $pass, $databasename,$port);
     return $connection;
 }
 function Sluitverbinding($connection)
@@ -250,7 +250,7 @@ function VoegKlantToe($FirstName, $LastName, $Infix, $Streetname, $HouseNumber, 
     $port = getPort();
     $user = getUser();
     $pass = getPass();
-    $connection = mysqli_connect($host, $user, $pass, $databasename);
+    $connection = mysqli_connect($host, $user, $pass, $databasename,$port);
     $Password = password_hash($Password, PASSWORD_DEFAULT);
     $statement = mysqli_prepare($connection, "INSERT INTO user (FirstName, LastName, Infix, Streetname, HouseNumber, Annex , PostalCode, City, Email, Password, NewsLetter) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
     mysqli_stmt_bind_param($statement, 'ssssisssssi', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $Email, $Password, $NewsLetter);
@@ -266,9 +266,9 @@ function KlantGegevensToevoegen($gegevens) {
     SluitVerbinding($connection);
     return $gegevens;
 }
-function Bewerk($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $Email, $NewsLetter){
-    $statement = mysqli_prepare($connection, "UPDATE user SET FirstName=?, LastName=?, Infix=?, Streetname=?, HouseNumber=?, Annex=?, PostalCode=?, City=?, NewsLetter=? WHERE Email=?");
-    mysqli_stmt_bind_param($statement, 'ssssisssis', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $NewsLetter, $Email);
+function Bewerk($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City,$NewsLetter, $UserID){
+    $statement = mysqli_prepare($connection, "UPDATE user SET FirstName=?, LastName=?, Infix=?, Streetname=?, HouseNumber=?, Annex=?, PostalCode=?, City=?, NewsLetter=? WHERE UserID=?");
+    mysqli_stmt_bind_param($statement, 'ssssisssii', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $NewsLetter, $UserID);
     mysqli_stmt_execute($statement);
     Sluitverbinding($connection);
     return mysqli_stmt_affected_rows($statement) == 1;

@@ -2,28 +2,52 @@
 session_start();
 
 include "header.php";
- $postcode = "";
-    $huisnummer="";
-    /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
-    if (isset($_GET["submit"])) {
-        $_SESSION["postcode"] =  strtoupper(str_replace(" ","",$_GET["postcode"]));
-        $_SESSION["huisnummer"] = trim($_GET["huisnummer"]);
+// error voorkomen als je niet ingelogd bent dat je eerst een error ziet voordat je wordt geredirect
+if (isset($_SESSION["postcode"])) {
+    $postcode = $_SESSION["postcode"];
+    $huisnummer = $_SESSION["huisnummer"];
+    if(isset($_POST["spam"])) {
+        $_POST["spam"] = 1;
     }
+    else {
+        $_POST["spam"] = 0;
+    }
+    $_SESSION["newsletter"] = $_POST["spam"];
+}
+ else {
+    $postcode = "";
+    $huisnummer = "";
+}
+//Fix voor het niet gebruiken van de invul knop
+/// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
+if (isset($_POST["submit"])) {
+    $_SESSION["postcode"] = strtoupper(str_replace(" ", "", $_POST["postcode"]));
+    $_SESSION["huisnummer"] = trim($_POST["huisnummer"]);
 
 /// Als zowel postcode als huisnummer zijn ingevuld roept hij de functie zoekadres() aan
-if (isset($_GET["postcode"]) AND isset($_GET["huisnummer"])) {
-    $resultaten = zoekadres($postcode, $huisnummer);
+    if (isset($_POST["postcode"]) AND isset($_POST["huisnummer"])) {
+        $postcode = $_POST["postcode"];
+        $huisnummer = $_POST["huisnummer"];
+        $resultaten = zoekadres($postcode, $huisnummer);
 /// Controleerd of er resultaten gevonden zijn
-    if ($resultaten != 0) {
-        $straat = $resultaten["straatnaam"];
-        $plaats = $resultaten["gemeentenaam"];
-        print("Straat: $straat<br>Plaats: $plaats");
-    } else {
-        print("Deze deze combinatie is niet gevonden!");
+        if ($resultaten != 0) {
+            $straat = $resultaten["straatnaam"];
+            $plaats = $resultaten["woonplaatsnaam"];
+            $_SESSION["voornaam"] = $_POST["voornaam"];
+            $_SESSION["achternaam"] = $_POST["achternaam"];
+            $_SESSION["tussenvoegsel"] = $_POST["tussenvoegsel"];
+            $_SESSION["annex"] = $_POST["huisnummertoe"];
+            $_SESSION["postcode"] = $_POST["postcode"];
+            $_SESSION["plaats"] = $_POST["plaats"];
+            $_SESSION["newsletter"] = $_POST["spam"];
+            $_SESSION["straatnaam"] = $resultaten["straatnaam"];
+            $_SESSION["plaats"] = $resultaten["woonplaatsnaam"];
+        } else {
+            print("Deze deze combinatie is niet gevonden!");
 
+        }
     }
 }
-
 if (isset($_SESSION["voornaam"])) {
     $spam = $_SESSION["newsletter"];
     ?>
@@ -35,7 +59,7 @@ if (isset($_SESSION["voornaam"])) {
             <div class="col-md-6">
 
 
-                <form method="post">
+                <form onsubmit="formVul()" action="accountinfo.php" method="post">
 
 
                     <div class="form-group">
@@ -70,8 +94,8 @@ if (isset($_SESSION["voornaam"])) {
 
                         <input type="checkbox" class="custom-control-input checkboxbericht" id="defaultUnchecked"
                                name="spam" <?php if ($_SESSION["newsletter"] == 1) {
-                            print("checked");
-                        } ?>>
+                            print("checked");}else {print("unchecked");}
+                         ?>>
                         <label class="custom-control-label" for="defaultUnchecked">
                             Wil je platgegooit worden met spam?
                         </label>
@@ -79,17 +103,17 @@ if (isset($_SESSION["voornaam"])) {
 
 
                     <input style="display: none" name="huisnummer" type="text" id="huisnummer2"
-                           value="<?php print($_SESSION["huisnummer"]); ?>">
+                           value="<?php if(isset($_POST["huisnummer"])){ print($_POST["huisnummer"]);} else { print($_SESSION["huisnummer"]);}?>">
                     <input style="display: none" name="postcode" type="text" id="postcode2"
-                           value="<?php print($_SESSION["postcode"]); ?>">
+                           value="<?php if(isset($_POST["postcode"])){ print($_POST["postcode"]);} else { print($_SESSION["postcode"]);}?>">
                     <input style="display: none" name="huisnummertoe" type="text" id="huisnummertoe2"
-                           value="<?php if (isset($_SESSION["annex"])) {
-                               print($_SESSION["annex"]);
+                           value="<?php if (isset($_POST["annex"])) {
+                               print($_POST["annex"]);
                            } ?>">
                     <input style="display: none" name="straatnaam" type="text" id="straatnaam2"
-                           value="<?php print($_SESSION["straatnaam"]); ?>">
+                           value="<?php if(isset($_POST["submit"])){ print($straat);} else { print($_SESSION["straatnaam"]);}?>">
                     <input style="display: none" name="plaats" type="text" id="plaats2"
-                           value="<?php print($_SESSION["plaats"]); ?>">
+                           value="<?php if(isset($_POST["submit"])){ print($plaats);} else { print($_SESSION["plaats"]);}?>">
                     <div>
                         <input type="submit" name="Gegevens" value="Gegevens aanpassen" class="btn btn-primary"
                                formmethod="post">
@@ -125,7 +149,7 @@ if (isset($_SESSION["voornaam"])) {
 
                     Straatnaam
                     <div class="form-group">
-                        <input type="text" value="<?php print $_SESSION["straatnaam"]; ?>" name="straatnaam"
+                        <input type="text" value="<?php if (isset($_POST["straatnaam"])){ print($straat);} else {print($_SESSION["straatnaam"]);} ?>" name="straatnaam"
                                placeholder="Typ hier je Straatnaam" readonly
                                class="form-control input-lg">
                     </div>
@@ -133,7 +157,7 @@ if (isset($_SESSION["voornaam"])) {
 
                     Plaats
                     <div class="form-group">
-                        <input type="text" value="<?php print($_SESSION["plaats"]); ?>"
+                        <input type="text" value="<?php if (isset($_POST["plaats"])){ print($plaats);} else {print($_SESSION["plaats"]);} ?>"
                                name="plaats" placeholder="Typ hier je Plaats" readonly
                                class="form-control input-lg">
                     </div>
@@ -169,55 +193,27 @@ if (isset($_SESSION["voornaam"])) {
 
     </div>
     <?php
-    print("Voornaam:");
-    print ($_SESSION["voornaam"]);
-    print ("<br>Tussenvoegsel:");
-    print ($_SESSION["tussenvoegsel"]);
-    print ("<br>Achternaam:");
-    print ($_SESSION["achternaam"]);
-    print("<br>Email:");
-    print ($_SESSION["email"]);
-    print("<br>Huisnummer:");
-    print ($_SESSION["huisnummer"]);
-    print("<br>Huisnummer toevoegsel:");
-    print ($_SESSION["annex"]);
-    print("<br>Straatnaam:");
-    print ($_SESSION["straatnaam"]);
-    print("<br>Plaats:");
-    print ($_SESSION["plaats"]);
-    print("<br>Postcode:");
-    print ($_SESSION["postcode"]);
-    print("<br>Wilt spam:");
-    if ($_SESSION["newsletter"] == 1) {
-        print("Ja");
-    } else {
-        print("Nee");
-    } ?>
-    <form>
-        <input type="submit" name="Destroy" value="Uitloggen" class="btn btn-primary" formmethod="post">
-    </form>
-   <?php
     //Accountgegevens aanpassen
     if (isset($_POST["Gegevens"])){
         $connection = MaakVerbinding();
-        $gelukt = Bewerk($connection, $_POST["voornaam"], $_POST["achternaam"], $_POST["tussenvoegsel"], $_POST["straatnaam"], $_POST["huisnummer"], $_POST["huisnummertoe"], $_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["spam"]);
+        $gelukt = Bewerk($connection, $_POST["voornaam"], $_POST["achternaam"], $_POST["tussenvoegsel"], $_POST["straatnaam"], $_POST["huisnummer"], $_POST["huisnummertoe"], $_POST["postcode"], $_POST["plaats"], $_POST["spam"], $_SESSION["UserID"]);
         if ($gelukt == 1){
             print("Account aanpassen is gelukt");
+            $_SESSION["voornaam"] = $_POST["voornaam"];
+            $_SESSION["achternaam"] = $_POST["achternaam"];
+            $_SESSION["tussenvoegsel"] = $_POST["tussenvoegsel"];
+            $_SESSION["straatnaam"] = $_POST["straatnaam"];
+            $_SESSION["huisnummer"] = $_POST["huisnummer"];
+            $_SESSION["annex"] = $_POST["huisnummertoe"];
+            $_SESSION["postcode"] = $_POST["postcode"];
+            $_SESSION["plaats"] = $_POST["plaats"];
+            $_SESSION["newsletter"] = $_POST["spam"];
         }
         else{
             print("Account aanpassen is gefaald");
         }
         $URL = "accountinfo.php";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-        $_SESSION["voornaam"] = $_POST["voornaam"];
-        $_SESSION["achternaam"] = $_POST["achternaam"];
-        $_SESSION["tussenvoegsel"] = $_POST["tussenvoegsel"];
-        $_SESSION["straatnaam"] = $_POST["straatnaam"];
-        $_SESSION["huisnummer"] = $_POST["huisnummer"];
-        $_SESSION["annex"] = $_POST["huisnummertoe"];
-        $_SESSION["postcode"] = $_POST["postcode"];
-        $_SESSION["plaats"] = $_POST["plaats"];
-        $_SESSION["newsletter"] = $_POST["spam"];
     }
     // Uitloggen
     if (isset($_POST["Destroy"])) {
@@ -228,4 +224,5 @@ if (isset($_SESSION["voornaam"])) {
 } else {
     $URL = "index.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-} ?>
+}
+include "footer.php";
