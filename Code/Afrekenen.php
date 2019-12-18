@@ -58,7 +58,7 @@ if(isset($_POST["wachtwoord"])) {
     <div class="container" style="background-color: gray">
     <div class="row" style="width: 90%; padding: 5%">
         <div class="col-md-6">
-    <h2>Inloggen</h2>
+    <h2 class="h2">Inloggen</h2>
             <form xmlns="http://www.w3.org/1999/html" method="post">
                 <div class="form-group">
                     Email
@@ -242,7 +242,7 @@ if (isset($_POST["UserID"]) && isset($_POST["verzenden"])) {
     ?>
 
     <div class="container">
-        <h2>Controlleer je gegevens</h2>
+        <h2 class="h2">Controlleer je gegevens</h2>
 
         <div class="row" style="width: 90%; padding: 5%">
 

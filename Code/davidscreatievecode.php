@@ -188,6 +188,24 @@
             }
         }
 
+        var elements15 = document.getElementsByClassName('h2');
+        if (elements15) {
+            for (var i15 = 0; i15 < elements15.length; i15++) {
+                elements15[i15].setAttribute('style', 'filter: brightness(40%) !important')
+            }
+        }
+
+        var elements16 = document.getElementsByClassName('form-control');
+        if (elements16) {
+            for (var i16 = 0; i16 < elements16.length; i16++) {
+                elements16[i16].setAttribute('style', 'filter: brightness(40%) !important')
+            }
+        }
+
+
+
+
+
     }
     function hoverAway() {
         var elements1 = document.getElementsByClassName('h-25');
@@ -287,6 +305,21 @@
                 elements14[i14].removeAttribute('style');
             }
         }
+
+        var elements15 = document.getElementsByClassName('h2');
+        if (elements15) {
+            for (var i15 = 0; i15 < elements15.length; i15++) {
+                elements15[i15].removeAttribute('style');
+            }
+        }
+
+        var elements16 = document.getElementsByClassName('form-control');
+        if (elements16) {
+            for (var i16 = 0; i16 < elements16.length; i16++) {
+                elements16[i16].removeAttribute('style');
+            }
+        }
+
 
 
 
