@@ -50,7 +50,7 @@
     */
 </style>
 <form id="zoekform" class="form-inline my-2 my-md-0" method="get" action="./zoekresultaten.php">
-    <input name="zoekterm"  type="text" onkeyup="showResult(this.value)" class="zoekbalk form-control " placeholder="Zoeken">
+    <input name="zoekterm"  type="text" onkeyup="showResult(this.value)" class="zoekbalk form-control " placeholder="Zoeken" autocomplete="off">
 <!--style='width: 40%; border: initial; !important;'-->
         <div id="livesearch"></div>
     <input type="submit" name="submit" value="Submit" style="background: transparent; border: unset; font-size: 0;">
