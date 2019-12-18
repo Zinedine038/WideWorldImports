@@ -2,17 +2,38 @@
 session_start();
 
 include "header.php";
+
+if (isset($_POST["spam"])) {
+    if ($_POST["spam"] == "on") {
+        $_POST["spam"] = 1;
+    } elseif ($_POST["spam"] == "off") {
+        $_POST["spam"] = 0;
+    }
+}
+
+
+if (!isset($_POST["submit"]) && !isset($_POST["verzenden"])) {
+    if (isset($_SESSION["newsletter"])) {
+        $_POST["newsletter"] = $_SESSION["newsletter"];
+    } else {
+        $_SESSION["newsletter"]=$_POST["spam"];
+    }
+} else {
+    $_SESSION["newsletter"]=$_POST["spam"];
+}
+
+if (isset($_POST["spam"])) {
+    $_SESSION["newsletter"]=$_POST["spam"];
+}
+
+
+
 // error voorkomen als je niet ingelogd bent dat je eerst een error ziet voordat je wordt geredirect
 if (isset($_SESSION["postcode"])) {
     $postcode = $_SESSION["postcode"];
     $huisnummer = $_SESSION["huisnummer"];
-    if(isset($_POST["spam"])) {
-        $_POST["spam"] = 1;
-    }
-    else {
-        $_POST["spam"] = 0;
-    }
-    $_SESSION["newsletter"] = $_POST["spam"];
+
+
 }
  else {
     $postcode = "";
@@ -21,6 +42,7 @@ if (isset($_SESSION["postcode"])) {
 //Fix voor het niet gebruiken van de invul knop
 /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
 if (isset($_POST["submit"])) {
+
     $_SESSION["postcode"] = strtoupper(str_replace(" ", "", $_POST["postcode"]));
     $_SESSION["huisnummer"] = trim($_POST["huisnummer"]);
 
@@ -39,17 +61,17 @@ if (isset($_POST["submit"])) {
             $_SESSION["annex"] = $_POST["huisnummertoe"];
             $_SESSION["postcode"] = $_POST["postcode"];
             $_SESSION["plaats"] = $_POST["plaats"];
-            $_SESSION["newsletter"] = $_POST["spam"];
             $_SESSION["straatnaam"] = $resultaten["straatnaam"];
             $_SESSION["plaats"] = $resultaten["woonplaatsnaam"];
         } else {
-            print("Deze deze combinatie is niet gevonden!");
+            print("Deze combinatie is niet gevonden!");
 
         }
     }
 }
+// wut het werkt niet zonder dit, maar dit doet helemaal niets!!!
 if (isset($_SESSION["voornaam"])) {
-    $spam = $_SESSION["newsletter"];
+
     ?>
     <div class="container">
         <h2>Accountgegevens</h2>
@@ -93,9 +115,10 @@ if (isset($_SESSION["voornaam"])) {
                     <div class="form-group checkbox custom-control custom-checkbox">
 
                         <input type="checkbox" class="custom-control-input checkboxbericht" id="defaultUnchecked"
-                               name="spam" <?php if ($_SESSION["newsletter"] == 1) {
+                               name="spam" <?php if ($_SESSION["newsletter"]==1) {
                             print("checked");}else {print("unchecked");}
                          ?>>
+
                         <label class="custom-control-label" for="defaultUnchecked">
                             Wil je platgegooit worden met spam?
                         </label>
@@ -176,9 +199,9 @@ if (isset($_SESSION["voornaam"])) {
                            value="<?php print($_SESSION["email"]); ?>">
                     <input style="display: none" name="spam" type="text" id="spam2"
                            value="<?php if ($_SESSION["newsletter"] == 1) {
-                               print(1);
+                               print(true);
                            } else {
-                               print(0);
+                               print(false);
                            } ?>">
 
 
@@ -197,6 +220,9 @@ if (isset($_SESSION["voornaam"])) {
     //Accountgegevens aanpassen
     if (isset($_POST["Gegevens"])){
         $connection = MaakVerbinding();
+        if (isset($_POST["spam"])) {
+            $_POST["spam"]=1;
+        } else {$_POST["spam"]=0;}
         $gelukt = Bewerk($connection, $_POST["voornaam"], $_POST["achternaam"], $_POST["tussenvoegsel"], $_POST["straatnaam"], $_POST["huisnummer"], $_POST["huisnummertoe"], $_POST["postcode"], $_POST["plaats"], $_POST["spam"], $_SESSION["UserID"]);
         if ($gelukt == 1){
             print("Account aanpassen is gelukt");
