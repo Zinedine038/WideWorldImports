@@ -389,6 +389,14 @@ function getRandomProducts($amount)
 
 }
 
+function emptyShoppingCart()
+{
+    foreach($_SESSION['cart'] as $key => $value)
+    {
+        unset($_SESSION['cart'][$key]);
+    }
+}
+
 
 //Creates the database
 class CreateDb

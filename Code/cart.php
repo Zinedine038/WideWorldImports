@@ -5,7 +5,6 @@
     //Get manditory functions
     require_once("./functions.php");
     require_once("./Winkelmandje/php/Component.php");
-
     $errorMSG="";
 
     //creates an object database
