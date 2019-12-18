@@ -488,7 +488,7 @@ function make_order_with_account($userid, $streetname, $housenumber, $annex, $po
     $sql = "INSERT INTO EUOrder (userID) VALUES (?);";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
-    mysqli_stmt_bind_param($statement, "i", $user_id);
+    mysqli_stmt_bind_param($statement, "i", $userid);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     $order_id = mysqli_insert_id($connection);
@@ -498,9 +498,10 @@ function make_order_with_account($userid, $streetname, $housenumber, $annex, $po
 
     for($i =0; $i <= $number_orderlines; $i++){
 
+        if(isset($_SESSION['cart'][$i]['product_id']) && isset($_SESSION['cart'][$i]['amount']) && isset($_SESSION['cart'][$i]['unitPrice'])){
         $StockItemID = $_SESSION['cart'][$i]['product_id'];
         $Quantity = $_SESSION['cart'][$i]['amount'];
-        $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
+        $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];}
 
         $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);

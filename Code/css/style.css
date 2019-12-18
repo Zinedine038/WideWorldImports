@@ -201,3 +201,12 @@ h4 {
 .card {
     border: 1px solid #45c2e3 !important;
 }
+
+.carousel-control-prev-icon {
+    background-image: url(../images/wecycle-logo.jpg);
+    width: 32px;
+    height: 32px;
+}
+.carousel-control-next-icon {
+    background-color: red;
+}

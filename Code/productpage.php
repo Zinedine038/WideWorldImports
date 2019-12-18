@@ -17,6 +17,27 @@ include 'header.php';
         <div class="row ">
             <div class="col-md-7">
                 <?php
+                if($productnr >= 220 && $productnr <=227){?>
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block product-img" src="<?php print($foto["0"]); ?>" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <iframe width="630" height="315" src="https://www.youtube.com/embed/cMGvdksBguI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+               <?php }
+                else{
                 if (!isset($foto["1"])) {
                     print ('<img src="' . $foto["0"] . '" class="product-img"/><br>');
                 } else { ?>
@@ -38,7 +59,7 @@ include 'header.php';
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                <?php } ?>
+                <?php }} ?>
             </div>
             <div class="col-md-5">
                 <?php
