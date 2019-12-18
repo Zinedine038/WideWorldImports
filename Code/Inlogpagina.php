@@ -6,7 +6,7 @@ include_once '../config.php';
 ?>
 <div style="width: 90%; padding: 5%">
 <h2>Inloggen</h2>
-<form xmlns="http://www.w3.org/1999/html" method="post">
+<form method="post">
 <div class="form-group">
                     Email
                     <input type="text" name="Email" placeholder="Vul hier je email"
