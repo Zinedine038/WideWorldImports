@@ -34,11 +34,12 @@
     }
     ///Haalt de informatie op uit de database
     $productnaam = sql("stockitems", "stockitemname", $productnr);
-    $prijs = sql("stockitems", "UnitPrice", $productnr);
+//    $prijs = round($prijs,2);
+    $prijs = number_format(sql("stockitems", "UnitPrice", $productnr),2,",", ".");
     $marketing = sql("stockitems", "MarketingComments", $productnr);
-    $voorraad = sql("stockitemholdings", "QuantityOnHand", $productnr);
+    $voorraad = number_format(sql("stockitemholdings", "QuantityOnHand", $productnr),0,",", ".");
     $gekoeld = sql("stockitems","ischillerstock",$productnr);
-    $oudePrijs = sql("stockitems","RecommendedRetailPrice",$productnr);
+    $oudePrijs = number_format(sql("stockitems","RecommendedRetailPrice",$productnr), 2, ",",".");
     $foto = sqlfoto($productnr);
     ?>
     <title>Wide World Importers - <?php print($productnaam);?></title>

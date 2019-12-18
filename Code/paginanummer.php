@@ -55,8 +55,8 @@ mysqli_stmt_close($statement); ?>
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $naam = $row["StockItemName"];
             $id = $row["StockItemID"];
-            $prijs = $row["UnitPrice"];
-            $oudePrijs = $row["RecommendedRetailPrice"];
+            $prijs = number_format($row["UnitPrice"],2,",",".");
+            $oudePrijs = number_format($row["RecommendedRetailPrice"],2,",",".");
             $Beschrijving = $row["MarketingComments"];
             $foto = sqlfoto($id);
             $fotoo = $foto["0"];

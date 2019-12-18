@@ -16,13 +16,13 @@ $teller=1;
 $randomProducts=array();
 while($row=$result->fetch_assoc())
 {
-    $randomProducts[$teller]["ID"] =$row["StockItemID"];
-    $randomProducts[$teller]["Naam"] =$row["StockItemName"];
-    $randomProducts[$teller]["OudePrijs"] =$row["RecommendedRetailPrice"];
-    $randomProducts[$teller]["Foto"] =$row["Photo"];
-    $randomProducts[$teller]["SearchDetails"] =$row["SearchDetails"];
-    $randomProducts[$teller]["Prijs"] =$row["UnitPrice"];
-    $randomProducts[$teller]["Rating"] =$row["Rating"];
+    $randomProducts[$teller]["ID"] = $row["StockItemID"];
+    $randomProducts[$teller]["Naam"] = $row["StockItemName"];
+    $randomProducts[$teller]["OudePrijs"] = number_format($row["RecommendedRetailPrice"],2,",",".");
+    $randomProducts[$teller]["Foto"] = $row["Photo"];
+    $randomProducts[$teller]["SearchDetails"] = $row["SearchDetails"];
+    $randomProducts[$teller]["Prijs"] = number_format($row["UnitPrice"],2,",",".");
+    $randomProducts[$teller]["Rating"] = $row["Rating"];
     $teller+=1;
 }
 $current=1; ?>
