@@ -101,7 +101,6 @@ if (isset($_SESSION["voornaam"])) {
                         </label>
                     </div>
 
-
                     <input style="display: none" name="huisnummer" type="text" id="huisnummer2"
                            value="<?php if(isset($_POST["huisnummer"])){ print($_POST["huisnummer"]);} else { print($_SESSION["huisnummer"]);}?>">
                     <input style="display: none" name="postcode" type="text" id="postcode2"
@@ -118,6 +117,8 @@ if (isset($_SESSION["voornaam"])) {
                         <input type="submit" name="Gegevens" value="Gegevens aanpassen" class="btn btn-primary"
                                formmethod="post">
                         <input type="submit" name="Destroy" value="Uitloggen" class="btn btn-primary" formmethod="post">
+                        <br> <br>
+                        <a href="wwaanpassen.php">Klik hier om uw wachtwoord te veranderen!</a>
                     </div>
                 </form>
             </div>
