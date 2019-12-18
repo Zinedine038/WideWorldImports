@@ -424,21 +424,19 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
     $user = getUser();
     $pass = getPass();
 // Gegevens in de database pleuren
-    $sql = "INSERT INTO user (FirstName, Lastname, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO user (FirstName, Lastname, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email) VALUES (?,?,?,?,?,?,?,?,?);";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($statement, "ssssissss", $firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email);
     mysqli_stmt_execute($statement);
-    $user_id=mysqli_insert_id($connection);
+    $user_id = mysqli_insert_id($connection);
     $result = mysqli_stmt_get_result($statement);
     mysqli_stmt_close($statement);
-
-
 
     $number_orderlines =count($cart);
 
 // Order aanmaken
-    $sql = "INSERT INTO EUorder (userID) VALUES (?)";
+    $sql = "INSERT INTO EUOrder (userID) VALUES (?);";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
     mysqli_stmt_bind_param($statement, "i", $user_id);
@@ -453,21 +451,59 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
         $Quantity = $_SESSION['cart'][$i]['amount'];
         $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
 
-        $sql = "INSERT INTO EUorderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $statement = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($statement, "iiii", $order_id,$StockItemID, $Quantity, $UnitPrice);
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         mysqli_stmt_close($statement);
-
-
     }
-
-
 }
 
+function make_order_with_account($userid, $streetname, $housenumber, $annex, $postalcode, $city, $cart){
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
 
+    $sql = "UPDATE user SET Streetname = ?, HouseNumber = ?, Annex = ?, PostalCode = ?, City = ? WHERE UserID = ?;";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "sisssi", $streetname, $housenumber, $annex, $postalcode, $city, $userid);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    mysqli_stmt_close($statement);
+
+    // Order aanmaken
+    $sql = "INSERT INTO EUOrder (userID) VALUES (?);";
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $statement = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($statement, "i", $user_id);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $order_id = mysqli_insert_id($connection);
+    mysqli_stmt_close($statement);
+
+    $number_orderlines =count($cart);
+
+    for($i =0; $i <= $number_orderlines; $i++){
+
+        $StockItemID = $_SESSION['cart'][$i]['product_id'];
+        $Quantity = $_SESSION['cart'][$i]['amount'];
+        $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
+
+        $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
+        $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+        $statement = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($statement, "iiii", $order_id,$StockItemID, $Quantity, $UnitPrice);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        mysqli_stmt_close($statement);
+    }
+
+}
 
 
 
