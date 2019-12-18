@@ -404,13 +404,6 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
 
 
     <?php
-    print ($_POST["postcode"]);
-    print ($_POST["huisnummer"]);
-    print ($_POST["huisnummertoe"]);
-    print ($plaats);
-    print ($straat);
-    print ($_POST["straatnaam"]);
-    print ($_POST["plaats"]);
     include "footer.php";
 
 ?>
