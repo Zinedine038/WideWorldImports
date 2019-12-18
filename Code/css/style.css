@@ -203,10 +203,11 @@ h4 {
 }
 
 .carousel-control-prev-icon {
-    background-image: url(../images/wecycle-logo.jpg);
     width: 32px;
     height: 32px;
+    background-color: #45c2e3 !important;
 }
+
 .carousel-control-next-icon {
-    background-color: red;
+    background-color: #45c2e3 !important;
 }
