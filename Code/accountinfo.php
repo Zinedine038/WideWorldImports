@@ -141,7 +141,9 @@ if (isset($_SESSION["voornaam"])) {
                                formmethod="post">
                         <input type="submit" name="Destroy" value="Uitloggen" class="btn btn-primary" formmethod="post">
                         <br> <br>
-                        <a href="wwaanpassen.php">Klik hier om uw wachtwoord te veranderen!</a>
+                        <input type="submit" name="Verwijder" value="Verwijder account" class="btn btn-primary" formmethod="post">
+                        <br> <br>
+                        <a href="wwaanpassen.php">Wachtwoord vergeten? Klik hier!</a>
                     </div>
                 </form>
             </div>
@@ -244,10 +246,19 @@ if (isset($_SESSION["voornaam"])) {
     }
     // Uitloggen
     if (isset($_POST["Destroy"])) {
+        print("<h1 style='color: red; text-align: center; background-color: #00fafa'>U bent uitgelogd!</h1>");
         Session_destroy();
         $URL = "index.php";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-    } ?><?php
+    }
+    //Account verwijderen
+    if(isset($_POST["Verwijder"])){
+        print("<h1 style='color: red; text-align: center; background-color: #00fafa'>U heeft uw account verwijderd!</h1>");
+        Session_destroy();
+        Verwijder($_SESSION["UserID"]);
+        $URL = "index.php";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+    }
 } else {
     $URL = "index.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";

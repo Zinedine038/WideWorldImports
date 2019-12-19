@@ -60,7 +60,7 @@ if(isset($_POST["wachtwoord"])) {
         $_SESSION["plaats"] = $row["City"];
         $_SESSION["postcode"] = $row["PostalCode"];
         $_SESSION["newsletter"] = $row["NewsLetter"];
-        $URL="accountinfo.php";
+        $URL="index.php";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
         die();

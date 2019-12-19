@@ -273,6 +273,13 @@ function Bewerk($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseN
     Sluitverbinding($connection);
     return mysqli_stmt_affected_rows($statement) == 1;
 }
+function Verwijder($UserID){
+    $connection = MaakVerbinding();
+    $statement = mysqli_prepare($connection, "DELETE FROM user WHERE UserID=?");
+    mysqli_stmt_bind_param($statement, i, $UserID);
+    mysqli_stmt_execute($statement);
+    Sluitverbinding($connection);
+}
 //Gets the parent from the parent array using a child key as search term (name, ID etc.)
 function getparent($array, $needle) {
     foreach($array as $key => $value) {
