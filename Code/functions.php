@@ -396,6 +396,7 @@ function getRandomProducts($amount)
 
 }
 
+//Function for emptying shopping cart
 function emptyShoppingCart()
 {
     foreach($_SESSION['cart'] as $key => $value)
@@ -403,6 +404,23 @@ function emptyShoppingCart()
         unset($_SESSION['cart'][$key]);
     }
 }
+
+function PullFromStock($productID, $amountToRemove)
+{
+    $oldStock = sql("stockitemholdings", "QuantityOnHand", $productID);
+    $newStock=$oldStock-=$amountToRemove;
+    $host = getHost();
+    $databasename = getDatabasename();
+    $port = getPort();
+    $user = getUser();
+    $pass = getPass();
+    $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
+    $sql = "UPDATE stockitemholdings SET QuantityOnHand=".$newStock." WHERE StockItemID=" . $productID;
+    $query = mysqli_prepare($connection, $sql);
+    mysqli_stmt_execute($query);
+}
+
+
 
 
 //Creates the database
@@ -465,7 +483,7 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
         $StockItemID = $_SESSION['cart'][$i]['product_id'];
         $Quantity = $_SESSION['cart'][$i]['amount'];
         $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];
-
+        PullFromStock($StockItemID,$Quantity);
         $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $statement = mysqli_prepare($connection, $sql);
@@ -509,6 +527,7 @@ function make_order_with_account($userid, $streetname, $housenumber, $annex, $po
         $StockItemID = $_SESSION['cart'][$i]['product_id'];
         $Quantity = $_SESSION['cart'][$i]['amount'];
         $UnitPrice = $_SESSION['cart'][$i]['unitPrice'];}
+        PullFromStock($StockItemID,$Quantity);
 
         $sql = "INSERT INTO EUOrderline (OrderID, StockItemID, Quantity, UnitPrice) VALUES (?,?,?,?)";
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
