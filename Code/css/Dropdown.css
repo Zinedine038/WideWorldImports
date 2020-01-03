@@ -7,13 +7,13 @@
     border: none;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* The container <div> */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown Content (Default = Hidden) */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -23,7 +23,7 @@
     z-index: 1;
 }
 
-/* Links inside the dropdown */
+/* Links in de dropdown */
 .dropdown-content a {
                        color: black;
                        padding: 6px 8px;
@@ -32,11 +32,11 @@
 
 }
 
-/* Change color of dropdown links on hover */
+/* Verander kleur in de dropdown*/
 .dropdown-content a:hover {background-color: #ddd;}
 
-/* Show the dropdown menu on hover */
+/* Laat dropdown zien bij hover*/
 .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
+/* Veranderd achtergrond kleur als de dropdown content te zien is*/
 .dropdown:hover .dropbtn {background-color: #45c2e3;}

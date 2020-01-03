@@ -26,6 +26,7 @@ $databasename = getDatabasename();
 $port = getPort();
 $user = getUser();
 $pass = getPass();
+//Wachtwoord uit de database halen als er op de knop is gedrukt
 if(isset($_POST["wachtwoord"])) {
     $wachtwoord = $_POST["wachtwoord"];
     $email = $_POST["Email"];
@@ -38,7 +39,7 @@ if(isset($_POST["wachtwoord"])) {
     mysqli_stmt_close($statement);
     $row = mysqli_fetch_array($result);
     $HashedWW = $row["Password"];
-
+//controle dat het wachtwoord klopt
     if(password_verify($wachtwoord, $HashedWW)){
         $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
         $sql= "SELECT UserID, FirstName, LastName, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email,NewsLetter FROM user WHERE Email = ?";

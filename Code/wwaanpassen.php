@@ -63,6 +63,7 @@ if (isset($_POST["wijzigen"])) {
     $row = mysqli_fetch_array($result);
     $HashedWW = $row["Password"];
     Sluitverbinding($connection);
+    //controleren dat het wachtwoord klopt en voldoet aan de eisen
     if (password_verify($wachtwoord, $HashedWW) && $nieuwww != $wachtwoord && $nieuwww == $bevestig) {
         $Password = password_hash($nieuwww, PASSWORD_DEFAULT);
         $connection = MaakVerbinding();
