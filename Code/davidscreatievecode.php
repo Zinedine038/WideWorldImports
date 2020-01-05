@@ -1,5 +1,5 @@
 <script>
-    //scripts voor inlogpagina
+    //scripts voor inlogpagina, om te kijken of het aan de eisen voldoen.
     function formVul() {
         if (document.getElementById("voornaam") != null) {
             var voornaam = document.getElementById("voornaam").value;
@@ -63,7 +63,7 @@
         }
     }
 
-    //script voor overal donker achtergrond bij hover livesearch.
+    //script voor overal donkere achtergrond bij het hover livesearch.
     function hoverOver() {
         if (document.getElementById('paginaalles') != null) {
             var a = document.getElementById('paginaalles');
