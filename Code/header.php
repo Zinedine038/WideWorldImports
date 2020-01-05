@@ -61,7 +61,9 @@
                     <div class="ml-md-auto order-last d-flex">
                         <div class="order-1 py-2">
 
-                                <?php if(isset($_SESSION["voornaam"])){ ?>
+                                <?php
+                                // Session inlog, als er een session["voornaam"] is er ingelogd
+                                if(isset($_SESSION["voornaam"])){ ?>
                                 <a class="wit pr-3" href="accountinfo.php"> <?php $voornaam = $_SESSION["voornaam"];
                                     print ("Welkom $voornaam");?>
                                 </a>
@@ -91,6 +93,7 @@
                     <div class="dropdown">
                         <button class="dropbtn" style="text-align: left;">Categorieën</button>
                         <div class="dropdown-content"> <?php
+                            //De stockgroupid en stockgroupname worden opgehaald en in de dropdown menu gezet
                             $rij1 = "StockGroupName";
                             $rij2 = "StockGroupID";
                             $result = DatabaseCatogorie("*", "stockgroups");

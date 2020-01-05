@@ -3,6 +3,7 @@
 
 
         <script>
+            // Als drukt op enter in zoekbalk verstuurt zoekopdracht.
             <?php
             $zoekterm = "";
             if (isset($_GET["submit"])) {
@@ -11,6 +12,7 @@
                 }
             }
             ?>
+            // Directe resultaat voor zoeken in zoekbalk (livesearch)
         function showResult(str) {
             if (str.length==0) {
                 document.getElementById("livesearch").innerHTML="";
@@ -28,9 +30,7 @@
                 if (this.readyState==4 && this.status==200) {
                     // Geeft alleen resultaat als het verzoek om informatie te krijgen gelukt is aan de client-kant en server-kant.
                     document.getElementById("livesearch").innerHTML=this.responseText;
-                    // Zet het resultaat van de zoekopdracht in de (zichtbare) zoekbalk.
-                    document.getElementById("livesearch").style.border="1px solid #76eec6";
-                    // Geeft de resultatenbalk een rand eromheen.
+                    // Zet het resultaat van de zoekopdracht op de (zichtbare) zoekbalk.
                 }
             }
             // Stuur het resultaat door naar de pagina livesearch.php

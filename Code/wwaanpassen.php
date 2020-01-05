@@ -48,6 +48,7 @@ include "header.php";
 </form>
 </body>
 <?php
+//Als er op de knop is geklikt haal alles uit het formulier en haal het hash wachtwoord uit de database
 if (isset($_POST["wijzigen"])) {
     $wachtwoord = $_POST["wachtwoord"];
     $nieuwww = $_POST["nieuw_wachtwoord"];
