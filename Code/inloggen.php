@@ -1,4 +1,5 @@
 <?php
+// Zet de header in de pagina en intialiseert en prepareert variabelen.
     include "header.php";
     $postcode="";
     $huisnummer="";
@@ -37,10 +38,7 @@ if (isset($_POST["spam"])) {
 }
 
 
-
-
-
- if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
+if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
         /// Zet variabelen naar user input en haalt de eventuele spaties weg, maakt de postcode upper case
         $postcode = strtoupper(str_replace(" ", "", $_POST["postcode"]));
         $huisnummer = trim($_POST["huisnummer"]);
@@ -61,17 +59,15 @@ if  ($postcode!="" && $huisnummer!="") {
         $plaats = $resultaten["gemeentenaam"];
     }
     else{
+        // Geeft foutmelding bij ongeldige postcode en huisnummer.
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Adres niet gevonden, geef een geldige postcode en huisnummer op!</h1>");
-        //error, wordt al weergeven bij bovenstaande functie.
     }}
-
-
-
-
 
     ?>
 
 <?php
+
+// Voert alleen de gegevens in de database als alles is in gevuld en er op de verzend-knop gedrukt is.
 
 if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["email"]) && isset($_POST["wachtwoord"]) && isset($_POST["huisnummer"]) && ($_POST["huisnummer"]!="") && isset($_POST["postcode"]) && ($_POST["postcode"]!="") && isset($_POST["straatnaam"]) && ($_POST["straatnaam"]!="") && isset($_POST["plaats"]) && ($_POST["plaats"]!="") && isset($_POST["verzenden"]))
 {
@@ -91,6 +87,9 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
         } else {
             $spam=false;
         }
+
+    // Zet resultaat van de databasefuncties in variabele en controlleert deze vervolgens om te kijken bij het toevoegen van een klant of deze actie gelukt is.
+    // Zo niet geeft het een errormelding terug.
 
     $succes = VoegKlantToe($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_POST["wachtwoord"], $spam);
     if($succes) {
@@ -120,7 +119,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
 
 
-
+        <!-- Formulier voor het aanmaken van een account inclusief alle NAW-gegevens. -->
 
     <form action="inloggen.php" method="post" onsubmit="return formKlopt();">
 
@@ -182,6 +181,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
             </label>
         </div>
 
+        <!-- Onzichtbare tabel voor synchroniseren postcodeinfo -->
 
         <input style="display: none" name="huisnummer" type="text" id="huisnummer2" value="<?php print($huisnummer); ?>">
         <input style="display: none" name="postcode" type="text" id="postcode2" value="<?php print($postcode); ?>">
@@ -200,7 +200,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
                 <div class="col-md-6">
 
-
+                    <!-- Formulier voor postcode en postcode informatie (huisnummer, huisnummertoevoegingen, straatnaam en plaats. -->
 
                     <form onsubmit="formVul()" action="inloggen.php" method="post">
                         Postcode
@@ -237,6 +237,8 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
                         <br>
 
+                        <!-- Onzichtbare tabel voor synchroniseren formulier met postcode info -->
+
                         <input style="display: none" name="voornaam" type="text" id="voornaam2" value="<?php print($voornaam); ?>">
                         <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2" value="<?php if (isset($tussenvoegsel)) {print($tussenvoegsel);}?>">
                         <input style="display: none" name="achternaam" type="text" id="achternaam2" value="<?php print($achternaam); ?>">
@@ -264,19 +266,7 @@ if (isset($_POST["voornaam"]) && isset($_POST["achternaam"]) && isset($_POST["em
 
 
 
-    <?php /*
-    Gebruikersid auto
-    Voornaam
-    Achternaam
-    Tussenvoegsel
-    Straatnaam
-    Huisnummer
-    Postcode
-    Stad
-    Email-adres
-    Wachtwoord
-    NIEUWSSPAM? Ja of nee
-    Date= Datum maken met functie insert into
-    */
+    <?php
+    // Zet footer onderaan pagina.
     include "footer.php";
     ?>

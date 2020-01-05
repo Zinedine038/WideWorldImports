@@ -1,7 +1,7 @@
 <?php
 include "functions.php";
 
-//get the q parameter from URL
+// Verkrijgt q parameter van de URL
 $q = $_GET["q"];
 
 //Zoekt alleen als de lengte langer is dan 0
