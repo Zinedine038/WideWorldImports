@@ -42,8 +42,7 @@ function search($zoekterm, $page, $resultsperpage)
     $limitmin = $resultsperpage * ($page-1);
 
 
-
-
+    /// Trekt de zoektermen uit elkaar en zet ze in een array
     $zoektermem = explode(" ", $zoekterm);
     $aantalzoektermen = count($zoektermem);
 
@@ -123,6 +122,7 @@ function sqlfoto($productnr)
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         array_push($foto,$row["imagepath"]);}
 
+        ///Kijkt of er een foto is opgehaald, als dit niet het geval is haalt het een productcatogorie foto op en plaatst deze in dezelfde array
     if (!isset($foto["0"])) {
 
         $sql = "SELECT imagepath FROM stockimages WHERE ImageID IN (SELECT ImageID FROM stockgroupstockimages WHERE StockGroupID IN (SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ? AND StockGroupID != 1)) limit 1";
@@ -141,7 +141,7 @@ function sqlfoto($productnr)
     return $foto;
 }
 
-// Geef producttemperatuur weer
+// Geef producttemperatuur terug
 function sqltemp($productnr)
 {
     ///Database connectie info
@@ -175,6 +175,7 @@ function DatabaseCatogorie($kolom, $tabel)
     $port = getPort();
     $user = getUser();
     $pass = getPass();
+
 ///SQL maakt statement, voert het uit en zet het in $result
 $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
 $sql = "SELECT $kolom FROM $tabel";
@@ -188,7 +189,7 @@ return ($result);
 }
 
 
-
+/// Haalt gerelateerde producten op voor de productpagina
 function gerelateerdeProducten ($stockid){
     $host = getHost();
     $databasename = getDatabasename();
@@ -208,6 +209,7 @@ ORDER BY rand() LIMIT 3";
     return ($result);
 }
 
+/// Haalt de categorienaam op van een product
 function categorieNaam($productnr)
 {
     $host = getHost();
@@ -228,6 +230,7 @@ function categorieNaam($productnr)
     mysqli_stmt_close($statement);
     return ($result);
 }
+///Maakt verbinding met Database
 function MaakVerbinding()
 {
     $host = getHost();
@@ -238,11 +241,13 @@ function MaakVerbinding()
     $connection = mysqli_connect($host, $user, $pass, $databasename,$port);
     return $connection;
 }
+
+///Sluit verbinding database
 function Sluitverbinding($connection)
 {
     mysqli_close($connection);
 }
-
+///Zet klant in Database
 function VoegKlantToe($FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex ,$PostalCode, $City, $Email, $Password, $NewsLetter)
 {
     $host = getHost();
@@ -266,6 +271,8 @@ function KlantGegevensToevoegen($gegevens) {
     SluitVerbinding($connection);
     return $gegevens;
 }
+
+/// Klantgegevens bewerken
 function Bewerk($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City,$NewsLetter, $UserID){
     $statement = mysqli_prepare($connection, "UPDATE user SET FirstName=?, LastName=?, Infix=?, Streetname=?, HouseNumber=?, Annex=?, PostalCode=?, City=?, NewsLetter=? WHERE UserID=?");
     mysqli_stmt_bind_param($statement, 'ssssisssii', $FirstName, $LastName, $Infix, $Streetname, $HouseNumber, $Annex, $PostalCode, $City, $NewsLetter, $UserID);
@@ -273,6 +280,8 @@ function Bewerk($connection, $FirstName, $LastName, $Infix, $Streetname, $HouseN
     Sluitverbinding($connection);
     return mysqli_stmt_affected_rows($statement) == 1;
 }
+
+/// Account verwijderen
 function Verwijder($UserID){
     $connection = MaakVerbinding();
     $statement = mysqli_prepare($connection, "DELETE FROM user WHERE UserID=?");
@@ -404,7 +413,7 @@ function emptyShoppingCart()
         unset($_SESSION['cart'][$key]);
     }
 }
-
+/// Function to decrease stock of product when bought
 function PullFromStock($productID, $amountToRemove)
 {
     $oldStock = sql("stockitemholdings", "QuantityOnHand", $productID);
@@ -449,14 +458,14 @@ class CreateDb
         }
     }
 }
-
+/// Makes order in database voor klanten zonder account
 function make_order_without_account($firstname,$lastname,$infix,$streetname,$housenumber,$annex,$postalcode,$city,$email,$cart){
     $host = getHost();
     $databasename = getDatabasename();
     $port = getPort();
     $user = getUser();
     $pass = getPass();
-// Gegevens in de database pleuren
+// Klantgegevens in de database zetten
     $sql = "INSERT INTO user (FirstName, Lastname, Infix, Streetname, HouseNumber, Annex, PostalCode, City, Email) VALUES (?,?,?,?,?,?,?,?,?);";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
@@ -478,6 +487,7 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
     $order_id = mysqli_insert_id($connection);
     mysqli_stmt_close($statement);
 
+/// Order lines aanmaken
     for($i =0; $i <= $number_orderlines; $i++){
 
         $StockItemID = $_SESSION['cart'][$i]['product_id'];
@@ -493,14 +503,14 @@ function make_order_without_account($firstname,$lastname,$infix,$streetname,$hou
         mysqli_stmt_close($statement);
     }
 }
-
+/// Maakt order in database voor klanten met account
 function make_order_with_account($userid, $streetname, $housenumber, $annex, $postalcode, $city, $cart){
     $host = getHost();
     $databasename = getDatabasename();
     $port = getPort();
     $user = getUser();
     $pass = getPass();
-
+/// Past eventueel het adres aan van klant
     $sql = "UPDATE user SET Streetname = ?, HouseNumber = ?, Annex = ?, PostalCode = ?, City = ? WHERE UserID = ?;";
     $connection = mysqli_connect($host, $user, $pass, $databasename, $port);
     $statement = mysqli_prepare($connection, $sql);
@@ -520,7 +530,7 @@ function make_order_with_account($userid, $streetname, $housenumber, $annex, $po
     mysqli_stmt_close($statement);
 
     $number_orderlines =count($cart);
-
+/// Maakt orderlines aan
     for($i =0; $i <= $number_orderlines; $i++){
 
         if(isset($_SESSION['cart'][$i]['product_id']) && isset($_SESSION['cart'][$i]['amount']) && isset($_SESSION['cart'][$i]['unitPrice'])){

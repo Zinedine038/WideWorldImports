@@ -69,13 +69,13 @@ include 'header.php';
                 if ($voorraad < 50 && $voorraad > 0){
                     print("<h4>Let op! Voorraad is beperkt!</h4><br>");
                 }
-
+                /// Print de voorraad en eventueel bericht als product bijna uitverkocht is
                 print ("Voorraad: $voorraad<br>");
                 if ($marketing) {
                     print ("$marketing<br>");
                 }
 
-                // Als er een foto in de database van product staat
+                // Als product gekoeld is, toon temperatuur
                 if ($gekoeld) {
                     print ("Product is gekoeld! ");
                     $temp = sqltemp($productnr);
