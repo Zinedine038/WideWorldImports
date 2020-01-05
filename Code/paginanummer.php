@@ -1,9 +1,11 @@
 <?php
+/// Voor catgoriepagina's regelen dat dit wordt opgedeelt in pagina's
 $host = getHost();
 $databasename = getDatabasename();
 $port = getPort();
 $user = getUser();
 $pass = getPass();
+
 
 $page = 1;
 if (isset($_GET["page"])) {
@@ -24,6 +26,7 @@ mysqli_stmt_bind_param($statement, "iii", $StockitemstockgroupID, $limitmin, $re
 mysqli_stmt_execute($statement);
 $result = mysqli_stmt_get_result($statement);
 mysqli_stmt_close($statement); ?>
+
 <div class="container pt-5">
     <div class="row">
         <div class="col">
