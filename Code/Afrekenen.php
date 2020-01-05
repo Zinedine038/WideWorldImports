@@ -1,10 +1,12 @@
 <?php
+// start sessie en zet header en configuratie in pagina.
 session_start();
 include "header.php";
 include_once '../config.php';
 ?>
 
 <?php
+//Verbinding maken met database voor wachtwoord controle op correctheid.
 $host = getHost();
 $databasename = getDatabasename();
 $port = getPort();
@@ -58,6 +60,8 @@ if(isset($_POST["wachtwoord"])) {
 
 
 ?>
+
+<!-- Formulier pagina om in te loggen -->
 <div style="width: 90%; padding: 5%; display:  <?php if (isset($_SESSION["voornaam"])) {print("none");} else {print("unset");} ?>">
     <div class="container" style="background-color: gray">
     <div class="row" style="width: 90%; padding: 5%">
@@ -82,6 +86,9 @@ if(isset($_POST["wachtwoord"])) {
 </div>
 
 <?php
+
+// Initialiseer en prepareer variabelen.
+
 $postcode="";
 $huisnummer="";
 $plaats="";
@@ -170,6 +177,7 @@ if (isset($_POST["huisnummer"]) || isset($_POST["postcode"])) {
 
 if (isset($_POST["submit"])) {
     if ($postcode == "" || $huisnummer == "") {
+        // Foutmelding als huisnummer en postcode niet is ingevuld.
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Geef je huisnummer en postcode!</h1>");
     }
 }
@@ -183,7 +191,7 @@ if  ($postcode!="" && $huisnummer!="") {
     }
     else{
         print("<h1 style='color: red; text-align: center; background-color: #00fafa'>Adres niet gevonden, geef een geldige postcode en huisnummer op!</h1>");
-        //error, wordt al weergeven bij bovenstaande functie.
+        // Error bij ongeldige postcode en/of huisnummer.
     }}
 
 
@@ -193,6 +201,8 @@ if  ($postcode!="" && $huisnummer!="") {
 ?>
 
 <?php
+
+// Verzend info naar database in specifiek geval, in dit geval als je geen account hebt. Als je geen account hebt is je sessie voornaam namelik leeg.
 
 if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
     if (isset($_POST["huisnummertoe"])) {
@@ -207,6 +217,7 @@ if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
         $tussenvoegseltoevoeg="";
     }
 
+    // Stuur betaling door naar de databasefuncties die het stuurt naar de database
     make_order_without_account($_POST["voornaam"], $_POST["achternaam"], $tussenvoegseltoevoeg, $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg ,$_POST["postcode"], $_POST["plaats"], $_POST["email"], $_SESSION["cart"]);
 
     $URL="Betalinggeslaagd.php";
@@ -218,6 +229,8 @@ if (!isset($_SESSION["voornaam"]) && isset($_POST["verzenden"])) {
 if (empty($_SESSION["cart"])) {
     print ("Error: karretje is leeg!!!");
 }
+
+// Verstuurt info naar database als account heeft, en vraagt en past de nodige variabelen aan.
 if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION["cart"]) ) {
     if (isset($_POST["huisnummertoe"])) {
         $huisnummertoevoeg = $_POST["huisnummertoe"];
@@ -235,6 +248,8 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
     } else {
         $spam = false;
     }
+
+    // Stuur betaling door naar de databasefuncties die het stuurt naar de database
     make_order_with_account($_SESSION["UserID"], $_POST["straatnaam"], $_POST["huisnummer"], $huisnummertoevoeg, $_POST["postcode"], $_POST["plaats"], $_SESSION["cart"]);
     $URL = "Betalinggeslaagd.php";
     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
@@ -252,6 +267,7 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
 
             <div class="col-md-6">
 
+                <!-- Betaal pagina info controleeermogelijkheid -->
 
                 <form action="Afrekenen.php" method="post" onsubmit="return formKlopt();">
 
@@ -302,6 +318,7 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
                         } ?>">
                     </div>
 
+                    <!-- Onzichtbare tabel om formulieren te synchroniseren met elkaar -->
 
                     <input style="display: none" name="huisnummer" type="text" id="huisnummer2"
                            value="<?php print($huisnummer); ?>">
@@ -324,6 +341,7 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
 
             <div class="col-md-6">
 
+                <!-- Appart formulier voor automatisch invullen info a.h.v. postcode. -->
 
                 <form onsubmit="formVul()" action="Afrekenen.php" method="post">
 
@@ -374,6 +392,9 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
 
                     <br>
 
+                    <!-- Onzichtbare tabel om formulieren te synchroniseren met elkaar -->
+
+
                     <input style="display: none" name="voornaam" type="text" id="voornaam2"
                            value="<?php print($voornaam); ?>">
                     <input style="display: none" name="tussenvoegsel" type="text" id="tussenvoegsel2"
@@ -404,6 +425,8 @@ if (isset($_SESSION["UserID"]) && isset($_POST["verzenden"]) && !empty($_SESSION
 
 
     <?php
+
+    // Zet de footer onder de pagina.
     include "footer.php";
 
 ?>
