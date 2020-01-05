@@ -11,6 +11,7 @@ include 'header.php';
 include 'Winkelmandje/php/Component.php';
 include_once '../config.php';
 
+//Generates a list of random products
 $result = getRandomProducts(12);
 $teller=1;
 $randomProducts=array();
@@ -25,7 +26,10 @@ while($row=$result->fetch_assoc())
     $randomProducts[$teller]["Rating"] = $row["Rating"];
     $teller+=1;
 }
-$current=1; ?>
+$current=1;
+//Carousel HTML code, gets random objects and puts them in a carousel
+?>
+
 <div class="container">
 <?php
 if(!isset($_GET["stockitemgroupid"])) {
