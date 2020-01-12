@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+print("DANKJEWEL WWI JE WAS MOOI! RIP.");
 $count = 0;
 $i = 0;
 
